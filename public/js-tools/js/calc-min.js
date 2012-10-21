@@ -1,0 +1,3 @@
+var $number1,$number2,$number3,$result;$(function(){$number1=$("#number1");$number2=$("#number2");$number3=$("#number3");$result=$("#result");$("#calculate").click(calculate);$("#reset").click(reset)});
+function calculate(){var a=Number($number1.val()),b=Number($number2.val()),c=Number($number3.val());console.log("Performing addition of "+a+" and "+b+".");a+=b;console.log("Performing multiplication of "+a+" and "+c+".");setTimeout(function(){nonExistingObjectForExceptionReportingDemonstration.bar()},1E3);$result.text(a*c)}function reset(){debugger;$number1.val("");$number2.val("");$number3.val("");$result.text("")};
+//@ sourceMappingURL=./calc-min-js.map

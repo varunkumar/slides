@@ -1,0 +1,2 @@
+var b,c,d,e;$(function(){b=$("#number1");c=$("#number2");d=$("#number3");e=$("#result");$("#calculate").click(h);$("#reset").click(i)});function h(){var a=Number(b.a()),f=Number(c.a()),g=Number(d.a());console.log("Performing addition of "+a+" and "+f+".");a+=f;console.log("Performing multiplication of "+a+" and "+g+".");setTimeout(function(){nonExistingObjectForExceptionReportingDemonstration.b()},1E3);e.text(a*g)}function i(){debugger;b.a("");c.a("");d.a("");e.text("")};
+//@ sourceMappingURL=./calc-min-js.map
