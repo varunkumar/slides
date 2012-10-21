@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Talks by Varunkumar Nagarajan">
+    <title>
+      Talks by Varunkumar Nagarajan
+    </title>
+    <link rel="stylesheet" type="text/css" href="chronoline/jquery.qtip.min.css">
+    <link rel="stylesheet" type="text/css" href="chronoline/chronoline.css">
+  </head>
+  <body>
+    <div id="list" style="width: 100%; height: 50%">
+      <div style="background: #AAA; margin: 10px 0px;">
+        <h2 style="display: inline">
+          {talks}.varunkumar.me
+        </h2>
+        <span style="float: right;margin-top: 5px;margin-right: 15px;font-size: 10pt;font-weight: bold;"><a href="http://www.varunkumar.me">Home</a></span>
+      </div>
+      <ul>
+        <li>
+          <span>[18-Jul-2012]</span> <a href="/node-friends" target="_blank">Node.js and friends</a></span>
+        </li>
+        <li>
+          <span>[20-Oct-2012]</span> <a href="/js-tools" target="_blank">Tools for debugging JavaScript</a></span>
+        </li>
+      </ul>
+      <div style="background: #AAA">
+        <h2>
+          {timeline}
+        </h2>
+      </div>
+    </div>
+    <center>
+      <div id="timeline" style="background: rgb(212, 227, 253);border: 10px solid #AAA;"></div>
+    </center>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="chronoline/jquery.qtip.min.js"></script>
+    <script type="text/javascript" src="chronoline/raphael-min.js"></script>
+    <script type="text/javascript" src="chronoline/chronoline.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+          var events = [
+            {dates: [new Date(2012, 6, 18)], title: "<a href='http://google.com'>Node.js and friends<\/a>", section: 0},
+            {dates: [new Date(2012, 9, 20)], title: "Tools for debugging JavaScript", section: 3}
+          ];
+
+          var timeline1 = new Chronoline(document.getElementById('timeline'), events,
+              {visibleSpan: DAY_IN_MILLISECONDS * 366,
+             animated: true,
+             tooltips: true,
+             startDate: new Date(2011, 0, 1),
+             defaultStartDate: new Date(2012, 0, 1),
+             endDate: new Date(2014, 0, 1),
+             sectionLabelAttrs: {'fill': '#997e3d', 'font-weight': 'bold'},
+             scrollable: true,
+             scrollLeft: prevMonth,
+             scrollRight: nextMonth,
+             draggable: true,
+             labelInterval: isHalfMonth,
+             markToday: false
+          });
+
+          });
+    </script>
+  </body>
+</html>
