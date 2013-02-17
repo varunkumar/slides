@@ -7,6 +7,6 @@
 [submodule "public/webcomponents/js/toolkit/platform/mdv/mdv"]
 	path = public/webcomponents/js/toolkit/platform/mdv/mdv
 	url = git://github.com/toolkitchen/mdv.git
-[submodule "public/webcomponents/js/toolkit/platform/pointergestures"]
-	path = public/webcomponents/js/toolkit/platform/pointergestures
+[submodule "public/webcomponents/js/toolkit/platform/PointerGestures"]
+	path = public/webcomponents/js/toolkit/platform/PointerGestures
 	url = git://github.com/toolkitchen/PointerGestures.git

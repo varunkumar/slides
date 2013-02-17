@@ -29,26 +29,25 @@
 
   // Polyfill for object observation
   var files = [
-    'platform/compat.js',
-    'side_table.js',
-    'ChangeSummary/change_summary.js',
-    'model.js',
+    'src/compat.js',
+    'src/side_table.js',
+    'third_party/ChangeSummary/change_summary.js',
+    'src/model.js',
     '../dirty-check.js'
   ];
   
   // Polyfill for mdv
   if (!hasMDV) {
     // Polyfill user-agent styles for template
-    document.write('<link rel="stylesheet" href="' + path + 'template_element.css">');
+    document.write('<link rel="stylesheet" href="' + path + 'src/template_element.css">');
     files = files.concat([
-      'script_value_binding.js',
-      'text_replacements_binding.js',
-      'element_attribute_bindings.js',
-      'element_bindings.js',
-      'input_bindings.js',
-      'template_element.js',
-      'delegates.js',
-      'test_common.js'
+      'src/script_value_binding.js',
+      'src/text_replacements_binding.js',
+      'src/element_attribute_bindings.js',
+      'src/element_bindings.js',
+      'src/input_bindings.js',
+      'src/template_element.js',
+      'src/delegates.js'
     ]);
   }
   
