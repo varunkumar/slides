@@ -1,3 +1,9 @@
 [submodule "public/webcomponents/js/toolkit/third_party/mocha"]
 	path = public/webcomponents/js/toolkit/third_party/mocha
 	url = git://github.com/visionmedia/mocha.git
+[submodule "public/webcomponents/js/toolkit/third_party/expect.js"]
+	path = public/webcomponents/js/toolkit/third_party/expect.js
+	url = git://github.com/LearnBoost/expect.js.git
+[submodule "public/webcomponents/js/toolkit/platform/mdv/mdv"]
+	path = public/webcomponents/js/toolkit/platform/mdv/mdv
+	url = git://github.com/toolkitchen/mdv.git
