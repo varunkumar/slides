@@ -13,7 +13,7 @@
 // limitations under the License.
 
 this.Model = (function() {
-  var router = new ChangeSummary.CallbackRouter();
+  var router = new ChangeSummary();
   var queue = [];
   var notificationQueueIsRunning = false;
 
@@ -39,11 +39,11 @@ this.Model = (function() {
 
     getValueAtPath: ChangeSummary.getValueAtPath,
     setValueAtPath: ChangeSummary.setValueAtPath,
-    observeObject: router.observeObject.bind(router),
-    unobserveObject: router.unobserveObject.bind(router),
-    observeArray: router.observeArray.bind(router),
-    unobserveArray: router.unobserveArray.bind(router),
-    observePath: router.observePath.bind(router),
-    unobservePath: router.unobservePath.bind(router)
+    observeObject: router.observePropertySet.bind(router),
+    unobserveObject: router.unobservePropertySet.bind(router),
+    observeArray: router.observePropertySet.bind(router),
+    unobserveArray: router.unobservePropertySet.bind(router),
+    observePath: router.observePathValue.bind(router),
+    unobservePath: router.unobservePathValue.bind(router)
   };
 })();
