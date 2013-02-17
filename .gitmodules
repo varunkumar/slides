@@ -19,6 +19,3 @@
 [submodule "public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/mocha"]
 	path = public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/mocha
 	url = git://github.com/visionmedia/mocha.git
-[submodule "public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/chai"]
-	path = public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/chai
-	url = git://github.com/chaijs/chai.git
