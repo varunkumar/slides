@@ -1,0 +1,3 @@
+[submodule "public/webcomponents/js/toolkit/third_party/mocha"]
+	path = public/webcomponents/js/toolkit/third_party/mocha
+	url = git://github.com/visionmedia/mocha.git
