@@ -10,3 +10,15 @@
 [submodule "public/webcomponents/js/toolkit/platform/PointerGestures"]
 	path = public/webcomponents/js/toolkit/platform/PointerGestures
 	url = git://github.com/toolkitchen/PointerGestures.git
+[submodule "public/webcomponents/js/toolkit/third_party/ChangeSummary"]
+	path = public/webcomponents/js/toolkit/third_party/ChangeSummary
+	url = git://github.com/rafaelw/ChangeSummary.git
+[submodule "public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/ChangeSummary"]
+	path = public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/ChangeSummary
+	url = git://github.com/rafaelw/ChangeSummary.git
+[submodule "public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/chai"]
+	path = public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/chai
+	url = git://github.com/chaijs/chai.git
+[submodule "public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/mocha"]
+	path = public/webcomponents/js/toolkit/platform/MDV/mdv/third_party/mocha
+	url = git://github.com/visionmedia/mocha.git
