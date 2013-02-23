@@ -8,7 +8,7 @@ var SLIDE_CONFIG = {
     enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
     enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
     //analytics: 'UA-XXXXXXXX-1', // TODO: Using this breaks GA for some reason (probably requirejs). Update your tracking code in template.html instead.
-    favIcon: 'images/google_developers_logo_tiny.png',
+    favIcon: 'images/favicon.ico',
     fonts: [
       'Open Sans:regular,semibold,italic,italicsemibold',
       'Source Code Pro',
@@ -20,8 +20,8 @@ var SLIDE_CONFIG = {
   // Author information
   presenters: [{
     name: 'Varunkumar Nagarajan',
-    company: '',
-    gplus: 'http://plus.ericbidelman.com',
+    company: 'D. E. Shaw India Software Private Limited, Hyderabad',
+    gplus: 'http://plus.varunkumar.me',
     twitter: '@varunkumar',
     www: 'http://www.varunkumar.me',
     github: 'http://github.com/varunkumar'

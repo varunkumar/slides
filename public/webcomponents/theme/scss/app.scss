@@ -378,9 +378,9 @@ label {
   }
   .avatar {
     float: right;
-    background: url(https://lh6.googleusercontent.com/-0W5UECRQxqc/TrIv9fqjOaI/AAAAAAAACns/6Hm7wJfJKz8/IMG_20111031_121123.jpg?sz=500) -10px 0;
-    width: 365px;
-    height: 500px;
+    background: url(http://www.varunkumar.me/static/images/may2012.jpg) -150px -20px no-repeat;
+    width: 400px;
+    height: 400px;
     @include mask-size(50% 50%);
     @include mask-position(50% 50%);
     -webkit-transition: -webkit-mask-size 0.6s cubic-bezier(.17,.67,0,1.45);
