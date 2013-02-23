@@ -1,5 +1,5 @@
 <!--
-Author: Eric Bidelman <ebidel@gmail.com>
+Author: Varunkumar Nagarajan <varunkumar.n@gmail.com>
 
 Google IO 2012 HTML5 Slide Template
 https://code.google.com/p/io-2012-slides
@@ -7,7 +7,7 @@ https://code.google.com/p/io-2012-slides
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Web Components!</title>
+  <title>Web Components</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
@@ -20,14 +20,16 @@ https://code.google.com/p/io-2012-slides
   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
   <!--<script src="demos/components/web_components_polyfill/src/components-polyfill.js"></script>-->
-  <script src="/static/libs/toolkit/platform/platform.js"></script>
+  <script src="js/toolkit/platform/platform.js"></script>
   <link rel="components" href="demos/components/my-components/x-gangnam-style.html"/>
+  <link rel="components" href="demos/components/my-components/x-doodle.html"/>
   <link rel="components" href="demos/components/my-components/x-meme.html"/>
   <link rel="components" href="demos/components/my-components/mega-button/x-megabutton.html"/>
   <script>
     Element.prototype.createShadowRoot = Element.prototype.webkitCreateShadowRoot;
   </script>
   <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  <script src="/js-tools/js/jquery.min.js"></script>
 </head>
 <body style="opacity: 0">
 
@@ -55,79 +57,6 @@ https://code.google.com/p/io-2012-slides
   </article>
 </slide>
 
-
-<slide id="feature-detect"  >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>To view the demos in this presentation...</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><ol>
-<li>Use Chrome Canary</li>
-<li>Enable yourself:<ul>
-<li><strong>Enable experimental WebKit features</strong> in <code>about:flags</code></li>
-<li><strong>Enable experimental JavaScript</strong> in <code>about:flags</code></li>
-<li><strong>Enable Show Shadow DOM</strong> in DevTools</li>
-</ul>
-</li>
-</ol>
-<p id="need-shadow" class="topmargin"><label></label><span>You don't have Shadow DOM enabled</span></p>
-
-<p id="need-objectobserve"><label></label><span>You don't have Object.observe()</span></p>
-
-<p id="need-mo"><label></label><span>You don't have MutationObservers</span></p>
-
-<script>
-(function() {
-var needShadow = document.querySelector('#need-shadow');
-var needObjectObserve = document.querySelector('#need-objectobserve');
-var needMo = document.querySelector('#need-mo');
-
-if (!!!('createShadowRoot' in document.body)) {
-    needShadow.classList.add('red');
-    needShadow.firstElementChild.classList.add('bad');
-    needShadow.lastElementChild.textContent = "You don't have Shadow DOM enabled";
-
-    // Hide live demos.
-    document.addEventListener('DOMContentLoaded', function(e) {
-        [].forEach.call(document.querySelectorAll('.host'), function(el) {
-            el.hidden = true;
-        });
-    });
-} else {
-    needShadow.classList.add('green');
-    needShadow.firstElementChild.classList.add('good');
-    needShadow.lastElementChild.textContent = 'Shadow DOM enabled';
-}
-
-if (!!!Object.observe) {
-  needObjectObserve.classList.add('red');
-    needObjectObserve.firstElementChild.classList.add('bad');
-    needObjectObserve.lastElementChild.textContent = "You don't have Object.observe()";
-} else {
-    needObjectObserve.classList.add('green');
-    needObjectObserve.firstElementChild.classList.add('good');
-    needObjectObserve.lastElementChild.textContent = "Object.observe() available";
-}
-
-if (!!!(window.WebKitMutationObserver || window.MutationObserver)) {
-  needMo.classList.add('red');
-    needMo.firstElementChild.classList.add('bad');
-    needMo.lastElementChild.textContent = "You don't have MutationObservers";
-} else {
-    needMo.classList.add('green');
-    needMo.firstElementChild.classList.add('good');
-    needMo.lastElementChild.textContent = "MutationObservers available";
-}
-})();
-</script></article>
- 
-</slide>
-
 <slide id="who"  >
   
     <hgroup>
@@ -135,203 +64,28 @@ if (!!!(window.WebKitMutationObserver || window.MutationObserver)) {
         
         
       </span>
-      <h2>Who is this guy?</h2>
+      <h2>/me</h2>
       <h3></h3>
     </hgroup>
     <article ><p><span class="build"><p class="avatar rounded"></p></span></p>
-<p>Eric Bidelman - <img src="images/logos/google_logo.png" style="height: 30px;margin: 0;"> <img src="images/logos/chrome_logo.png" style="height:27px;margin:0;vertical-align: top;"> Team</p>
+<p>Varunkumar Nagarajan</p>
 
 <p style="margin-top:2em;">
-  <a rel="author" href="http://plus.ericbidelman.com">
-    <img src="http://www.google.com/images/icons/ui/gprofile_button-44.png" width="44" height="44"></a> <a rel="author" href="http://plus.ericbidelman.com">plus.ericbidelman.com</a>
+  <a rel="author" href="http://plus.varunkumar.me">
+    <img src="images/logos/gprofile_button-44.png" width="44" height="44"></a> <a rel="author" href="http://plus.varunkumar.me">plus.varunkumar.me</a>
 </p>
 
 <p>
-  <a rel="author" style="margin-left:-8px;" href="http://twitter.com/ebidel">
-    <img src="images/logos/twitter_newbird_blue.png" width="58" height="58"></a> <a rel="author" href="http://twitter.com/ebidel" style="margin-left:-5px;">@ebidel</a>
+  <a rel="author" style="margin-left:-8px;" href="http://twitter.com/varunkumar">
+    <img src="images/logos/twitter_newbird_blue.png" width="58" height="58"></a> <a rel="author" href="http://twitter.com/varunkumar" style="margin-left:-5px;">@varunkumar</a>
 </p>
 
-<p><a rel="author" href="http://www.ericbidelman.com">ericbidelman.com</a></p>
-<p><a href="http://html5rocks.com">html5rocks.com</a></p>
-<p>O'Reilly book - "<a href="http://www.amazon.com/Using-HTML5-Filesystem-Eric-Bidelman/dp/1449309453">Using the HTML5 Filesystem API</a>"</p></article>
+<p><a rel="author" href="http://www.varunkumar.me">varunkumar.me</a></p>
+</article>
  
 </slide>
 
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2></h2>
-      <h3></h3>
-    </hgroup>
-    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Web components?</h2></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Demo</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><p class="centered">
-  <code class="prettyprint">&lt;x-gangnam-style>&lt;/x-gangnam-style></code>
-</p>
-
-<style>
-/*Need to define these globally. Don't work in the component.
-See https://bugs.webkit.org/show_bug.cgi?id=72462 */
-@-webkit-keyframes psydroid-dance {
-  0% { top: 0; }
-  20% { top: 4px; }
-  30% { top: 0; }
-  50% { top: 4px; }
-  60% { top: 0; }
-  80% { top: 4px; }
-  90% { top: 0; }
-  100% { top: 0; }
-}
-@-webkit-keyframes psydroid-leg-l {
-  0% { top: 116px; }
-  10% { top: 116px; }
-  15% { top: 116px; }
-  25% { top: 116px; }
-  30% { top: 110px; }
-  40% { top: 116px; }
-  45% { top: 120px; }
-  55% { top: 116px; }
-  60% { top: 120px; }
-  70% { top: 116px; }
-  75% { top: 110px; }
-  85% { top: 116px; }
-  100% { top: 116px; }
-}
-@-webkit-keyframes psydroid-leg-r {
-  0% { top: 116px; }
-  10% { top: 120px; }
-  15% { top: 110px; }
-  25% { top: 116px; }
-  30% { top: 120px; }
-  40% { top: 116px; }
-  45% { top: 110px; }
-  55% { top: 116px; }
-  60% { top: 110px; }
-  70% { top: 116px; }
-  75% { top: 120px; }
-  85% { top: 116px; }
-  100% { top: 116px; }
-}
-@-webkit-keyframes psydroid-arm-l {
-  0% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-  10% { -moz-transform: rotate(-60deg); -webkit-transform: rotate(-60deg); transform: rotate(-60deg); }
-  20% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-65deg); transform: rotate(-65deg); }
-  25% { -moz-transform: rotate(-55deg); -webkit-transform: rotate(-55deg); transform: rotate(-55deg); }
-  40% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-75deg); transform: rotate(-75deg); }
-  50% { -moz-transform: rotate(-60deg); -webkit-transform: rotate(-60deg); transform: rotate(-60deg); }
-  55% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-80deg); transform: rotate(-80deg); }
-  65% { -moz-transform: rotate(-55deg); -webkit-transform: rotate(-55deg); transform: rotate(-55deg); }
-  80% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-65deg); transform: rotate(-65deg); }
-  90% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-  100% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-}
-@-webkit-keyframes psydroid-arm-r {
-  0% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-  10% { -moz-transform: rotate(60deg); -webkit-transform: rotate(60deg); transform: rotate(60deg); }
-  20% { -moz-transform: rotate(65deg); -webkit-transform: rotate(65deg); transform: rotate(65deg); }
-  25% { -moz-transform: rotate(55deg); -webkit-transform: rotate(55deg); transform: rotate(55deg); }
-  40% { -moz-transform: rotate(65deg); -webkit-transform: rotate(75deg); transform: rotate(75deg); }
-  50% { -moz-transform: rotate(60deg); -webkit-transform: rotate(60deg); transform: rotate(60deg); }
-  55% { -moz-transform: rotate(65deg); -webkit-transform: rotate(80deg); transform: rotate(80deg); }
-  65% { -moz-transform: rotate(55deg); -webkit-transform: rotate(55deg); transform: rotate(55deg); }
-  80% { -moz-transform: rotate(65deg); -webkit-transform: rotate(65deg); transform: rotate(65deg); }
-  90% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-  100% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-}
-</style>
-
-<p class="centered topmargin">
-  <x-gangnam-style></x-gangnam-style>
-  <p style="font-size: small;text-align:center;padding-top: 1em;">( hover over the bar )</p>
-</p></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Demo</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><p class="centered">
-  <code class="prettyprint">&lt;x-megabutton>Mega button&lt;/x-megabutton></code>
-</p>
-
-<p class="centered topmargin">
-  <x-megabutton>Butter buttonz</x-megabutton>
-</p></article>
- 
-</slide>
-
-<slide  class="nobackground fill highlight" style="background-image: url(images/bgs/plus-widget.jpg)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Embedded widgets</h2>
-      <h3></h3>
-    </hgroup>
-    <article ></article>
- 
-</slide>
-
-<slide  class="nobackground fill highlight" style="background-image: url(images/bgs/widget-library.jpg)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Reusable libraries / frameworks</h2>
-      <h3></h3>
-    </hgroup>
-    <article ></article>
- 
-</slide>
-
-<slide id="b2tf" class="nobackground fill" style="background-image: url(images/bgs/b2tf.jpg)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>We're going "Back to the Future"</h2>
-      <h3></h3>
-    </hgroup>
-    <article class="flexbox vcenter centered auto-fadein"><div class="build">
-<p>A <b>tectonic shift</b> for web development</p>
-
-<p>Important <b>new constructs</b> for building complex web apps</p>
-
-<p><em>"Declarative Renaissance"</em></p>
-</div></article>
- 
-</slide>
-
-<slide   >
+<slide>
   
     <hgroup>
       <span>
@@ -339,109 +93,116 @@ See https://bugs.webkit.org/show_bug.cgi?id=72462 */
         
       </span>
       <h2>Once upon a time...</h2>
-      <h3>HTML5 had to define it's identity</h3>
     </hgroup>
-    <article ><p>Not everyone <s>agrees</s> agreed.</p>
+    <article>
+      
+<ul class="build">
+<li>Web was just a platform for creating interactive and navigable content<ul>
+<li>HTML was used to define the static text and images</li>
+<li>JavaScript to control the interactions and animations</li>
+<li>CSS to present the content</li></ul></li>
+<li>Capabilities on the browser were limited</li>
+<li>We need to depend on backend servers to accomplish most of the user tasks</li>
+</ul>
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Today's Web...</h2>
+    </hgroup>
+    <article class="build">
+<p>Powerful combo - HTML5, JS, CSS3</p>      
+<ul class="build">
+<li>Browsers are becoming powerful day by day</li>
+<li> Web apps of today are as powerful as native apps</li>
+<li>We can build complex web applications with richer contents</li>
+<li>We can 
 <ul>
-<li><a href="http://jeffcroft.com/blog/2010/aug/02/term-html5/">jeffcroft.com/blog/2010/aug/02/term-html5/</a><ul>
-<li><a href="http://paulirish.com/html5istherightname.html">paulirish.com/html5istherightname.html</a></li>
+<li>Build apps which can work offline</li>
+<li>Access devices from our web apps</li>
+<li>Even have databases / complete file system on the client side</li>
+<li>Do real-time communication on the web and much more...</li>
+</ul></li>
+<li><a href="http://www.chromeexperiments.com/">Chrome experiments</a> ★ <a href="http://www.findyourwaytooz.com/">Find your way to OZ</a></li>
 </ul>
-</li>
-<li><a href="http://isgeolocationpartofhtml5.com">isgeolocationpartofhtml5.com</a></li>
-</ul>
-<p class="centered topmargin">Web Components have the same identity crisis.</p></article>
+<p class="centered topmargin">Thanks to HTML5, JS and CSS3, we can do amazing stuff on the web <label class="good"></label></p></article>
  
 </slide>
 
-<slide   >
+<slide>
   
     <hgroup>
       <span>
         
         
       </span>
-      <h2>Defining Web Components</h2>
-      <h3>key players</h3>
+      <h2>With great power, comes great responsibility</h2>
     </hgroup>
-    <article ><ul class="build">
-<li><code>&lt;template&gt;</code> - <em>Scaffold/Blueprint</em><ul class="build">
-<li>inert chunks of clonable DOM. Can be activated for later use (e.g MDV)</li>
-</ul>
-</li>
-<li>Custom elements - <em>Toolbelt</em><ul class="build">
-<li>create new HTML elements - expand HTML's existing vocabulary.</li>
-<li>extend existing DOM objects with new imperative APIs</li>
-</ul>
-</li>
-<li>Shadow DOM - <em>Mortar/glue</em><ul class="build">
-<li>building blocks for encapsulation &amp; boundaries inside of DOM</li>
-</ul>
-</li>
-</ul></article>
+    <article class="build">     
+<p>Follow better engineering practices</p>
+<p>Write code that is maintainable</p>
+<p>The code must be
+  <ul>
+    <li>Modular</li>
+    <li>Encapsulated</li>
+    <li>Re-usable</li>
+  </ul>
+</p>
+<p>Build re-usable components</p>
+<p>Any Object Oriented language will help us get there</p> 
+<p class="centered topmargin">How do we incorporate these on the web platform?</p></article>
  
 </slide>
 
-<slide   >
+<slide>
   
     <hgroup>
       <span>
         
         
       </span>
-      <h2>Defining Web Components</h2>
-      <h3>supporting cast</h3>
+      <h2>What's missing?</h2>
     </hgroup>
-    <article ><ul class="build">
-<li>Style encapsulation</li>
-<li>Knowledge into app's state<ul class="build">
-<li>DOM changes: <code>MutationObserver</code></li>
-<li>Model changes: <code>Object.observe()</code></li>
+    <article class="build">
+    <p>The fundamental problem is the lack of DOM encapsulation which could lead to</p>     
+<ul class="build">
+<li>Collision of DOM contents (ID collision)</li>
+<li>Broken styles</li>
+<li>Unexpected JavaScript behavior</li>
 </ul>
-</li>
-<li>CSS variables, <code>calc()</code></li>
-</ul>
-<p class="centered topmargin build">
-  <span><em>A collection new capabilities in the browser</em></span>
-</p></article>
+<p>Libraries work around these problems by following certain assumptions and conventions</p>
+</article>
  
 </slide>
 
-<slide  class="nobackground funnyimage" style="background-image: url(images/animated/dog.gif)">
+<slide>
   
     <hgroup>
       <span>
         
         
       </span>
-      <h2>Get</h2>
-      <h3>ready!</h3>
+      <h2>Modularize the Web</h2>
     </hgroup>
-    <article ></article>
- 
-</slide>
-
-<slide id="template-segue" class="segue nobackground highlight fill" style="background-image: url(images/bgs/drinksblueprint.jpg)">
-  
-    <aside class="gdbar"><img src="images/logos/chrome_logo.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Templates</h2>
-      <h3>scaffold / blueprint</h3>
-    </hgroup>
-  
-</slide>
-
-<slide  class="nobackground funnyimage notnewconcept" style="background-image: url(images/animated/shock.gif)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Templates...</h2>
-      <h3>not<br> a new concept</h3>
-    </hgroup>
-    <article ></article>
- 
+    <article>
+    <p>MV* frameworks help us to some extent</p>     
+<ul class="build">
+<li>Organize the complexity</li>
+<li>Separate contents from the presentation layer</li>
+<li>Define Templates / views</li>
+<li>Associate a model with the view</li>
+<li>Monitor the model for changes and update the view (Data binding)</li>
+<li>Does it solve all the problems? Lets see.</li>
+</ul>
+<p class="centered topmargin"><img src="images/logos/backbone.png" style="width: 150px"/><img src="images/logos/angular.png" style="width: 150px"/></p>
+</article>
 </slide>
 
 <slide   >
@@ -456,7 +217,7 @@ See https://bugs.webkit.org/show_bug.cgi?id=72462 */
     </hgroup>
     <article ><p><em>Method #1</em>: "offscreen" DOM using <code>[hidden]</code> or <code>display:none</code></p>
 <pre class="prettyprint" data-lang="html">
-&lt;div id="mytemplate" hidden>
+&lt;div id="mytemplate" <b>hidden</b>>
   &lt;img src="logo.png">
   &lt;div class="comment">&lt;/div>
 &lt;/div>
@@ -505,6 +266,135 @@ See https://bugs.webkit.org/show_bug.cgi?id=72462 */
  
 </slide>
 
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>What do we have in JS space?</h2>
+    </hgroup>
+    <article>
+<ul class="build">
+<li>JavaScript Object constructor and Module patterns <label class="good"></label></li>
+<li>Listening to changes
+  <ul>
+    <li>Model - via Wrapper object. Dirty check <label class="bad"></label></li>
+    <li>View  - via event handlers, DOM Mutation events - Not efficient</li>
+  </ul>
+</li>
+</ul>
+</article>
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Encapsulation</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><div class="build">
+
+<p><label class="good"></label> Fundamental foundation of OOP</p>
+
+<p><label class="good"></label> Separates code <em>you</em> wrote from the code that will <em>consume</em> it</p>
+
+<p><label class="bad"></label> We don't have it on the web!</p>
+
+<p><label class="sortof"></label> Well, sort of:</p>
+
+<h2 class="centered"><code>&lt;iframe&gt;</code></h2>
+
+<p class="topmargin"><label class="bad"></label> <code>&lt;iframe&gt;</code> are heavy and restrictive. ★  <a href="http://benvinegar.github.com/seamless-talk">Seamless iframe</a></p>
+
+</div></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Web components - The future?</h2></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Defining Web Components</h2>
+      <h3>key players</h3>
+    </hgroup>
+    <article ><ul class="build">
+<li><code>&lt;template&gt;</code><ul class="build">
+<li>inert chunks of clonable DOM. Can be activated for later use</li>
+</ul>
+</li>
+<li>Custom elements<ul class="build">
+<li>create new HTML elements - expand HTML's existing vocabulary.</li>
+<li>extend existing DOM objects with new imperative APIs</li>
+</ul>
+</li>
+<li>Shadow DOM<ul class="build">
+<li>building blocks for encapsulation &amp; boundaries inside of DOM</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Defining Web Components</h2>
+      <h3>supporting cast</h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>Style encapsulation</li>
+<li>Knowledge into app's state<ul class="build">
+<li>DOM changes: <code>MutationObserver</code></li>
+<li>Model changes: <code>Object.observe()</code></li>
+</ul>
+</li>
+<li>CSS variables, <code>calc()</code></li>
+</ul>
+<p class="centered topmargin build">
+  <span><em>A collection of new capabilities on the browser</em></span>
+</p></article>
+ 
+</slide>
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Web components - Templates</h2></article>
+ 
+</slide>
 <slide   >
   
     <hgroup>
@@ -554,22 +444,9 @@ t.content.querySelector('img').src = 'http://...';
 document.body.appendChild(<b>t.content.cloneNode(true)</b>);
 </pre>
 
-<div class="build">
-
-<div>
-<code>.content</code> provides access to the <code>&lt;template&gt;</code>'s guts:</p>
-
-<pre class="prettyprint" data-lang="interface">
-interface HTMLTemplateElement : HTMLElement {
-  attribute DocumentFragment content;
-}
-</pre>
-</div>
-
-</div></article>
+</article>
  
 </slide>
-
 <slide   >
   
     <hgroup>
@@ -580,75 +457,7 @@ interface HTMLTemplateElement : HTMLElement {
       <h2></h2>
       <h3></h3>
     </hgroup>
-    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Templates</h2>
-
-<h3 class="auto-fadein">baked into the web platform...</h3></article>
- 
-</slide>
-
-<slide  class="nobackground dirty-sexy funnyimage" style="background-image: url(images/animated/dirty-sexy-money.gif)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2></h2>
-      <h3>$$$</h3>
-    </hgroup>
-    <article ></article>
- 
-</slide>
-
-<slide id="shadow-dom-segue" class="segue nobackground highlight fill" style="background-image: url(images/bgs/blocks.jpg)">
-  
-    <aside class="gdbar"><img src="images/logos/chrome_logo.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Shadow DOM</h2>
-      <h3>mortar / glue</h3>
-    </hgroup>
-  
-</slide>
-
-<slide  class="nobackground funnyimage notnewconcept" style="background-image: url(images/animated/shock.gif)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Encapsulation...</h2>
-      <h3>not<br> a new concept</h3>
-    </hgroup>
-    <article ></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Encapsulation</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><div class="build">
-
-<p><label class="good"></label> Fundamental foundation of OOP</p>
-
-<p><label class="good"></label> Separates code <em>you</em> wrote from the code that will <em>consume</em> it</p>
-
-<p><label class="bad"></label> We don't have it on the web!</p>
-
-<p><label class="sortof"></label> Well, sort of:</p>
-
-<h2 class="centered"><code>&lt;iframe&gt;</code></h2>
-
-<p class="topmargin"><label class="bad"></label> <code>&lt;iframe&gt;</code> are heavy and restrictive</p>
-
-</div></article>
+    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Web components - Shadow DOM</h2></article>
  
 </slide>
 
@@ -671,7 +480,7 @@ interface HTMLTemplateElement : HTMLElement {
 <li>Insertion Points</li>
 <li>Styling<ul>
 <li>encapsulated styles &amp; shadow boundaries</li>
-<li>styling hooks: custom pseudo elements</li>
+<li>styling hooks: using CSS variables</li>
 <li><code>@host</code> at-rule</li>
 </ul>
 </li>
@@ -775,8 +584,8 @@ vendors have been using to implement their native controls, to us</h3></article>
 
 <pre class="prettyprint" data-lang="html">
 &lt;div id="host">
-  &lt;h1>My Title&lt;/h1>
-  &lt;h2>My Subtitle&lt;/h2>
+  &lt;h1>Varunkumar Nagarajan&lt;/h1>
+  &lt;h2>Hyderabad, India&lt;/h2>
   &lt;div>...other content...&lt;/div>
 &lt;/div>
 </pre>
@@ -784,38 +593,24 @@ vendors have been using to implement their native controls, to us</h3></article>
 <pre class="prettyprint" data-lang="js">
 var host = document.querySelector('#host');
 <b>var shadow = host.<a data-tooltip-property="createShadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js>createShadowRoot</a>();</b>
-<b>shadow.innerHTML = '&lt;h2>Yo, you got replaced!&lt;/h2>' +
-                   '&lt;div>by my awesome content&lt;/div>';</b>
+<b>shadow.innerHTML = '&lt;h2>Yo, you just got replaced!&lt;/h2>' +
+                   '&lt;div>Who? Varunkumar (@varunkumar)&lt;/div>';</b>
 // <b>host.<a data-tooltip-property="shadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js data-tooltip-js-property>shadowRoot</a>;</b>
 </pre>
 
 <div class="host">
-  <h1>My Title</h1>
-  <h2>My Subtitle</h2>
+  <h1>Varunkumar Nagarajan</h1>
+  <h2>Hyderabad, India</h2>
   <div>...other content...</div>
 </div>
 
 <script>
 (function() {
 var shadow = document.querySelector('#shadow-dom-creating .host').createShadowRoot();
-shadow.innerHTML = '<h2>Yo, you got replaced!</h2>' +
-                   '<div>by my awesome content</div>';
+shadow.innerHTML = '<h2>Yo, you just got replaced!</h2>' +
+                   '<div>Who? Varunkumar (@varunkumar)</div>';
 })();
 </script></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2></h2>
-      <h3></h3>
-    </hgroup>
-    <article class="flexbox vcenter centered unstyled"><h2 class="auto-fadein">So....<br>unstyled markup is not sexy</h2></article>
  
 </slide>
 
@@ -840,12 +635,12 @@ shadow.innerHTML = '<h2>Yo, you got replaced!</h2>' +
 var shadow = document.querySelector('#host').<a data-tooltip-property="createShadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js>createShadowRoot</a>();
 shadow.innerHTML = '<b>&lt;style>h2 { color: red; }&lt;/style></b>' + 
                    '&lt;h2>Yo, you got replaced!&lt;/h2>' + 
-                   '&lt;div>by my awesome content&lt;/div>';
+                   '&lt;div>Who? Varunkumar (@varunkumar)&lt;/div>';
 </pre>
 
 <div class="host">
-  <h1>My Title</h1>
-  <h2>My Subtitle</h2>
+  <h1>Varunkumar Nagarajan</h1>
+  <h2>Hyderabad, India</h2>
   <div>...other content...</div>
 </div>
 
@@ -854,76 +649,10 @@ shadow.innerHTML = '<b>&lt;style>h2 { color: red; }&lt;/style></b>' +
 var shadow = document.querySelector('#shadow-dom-style-encapsulation .host').createShadowRoot();
 shadow.innerHTML = '<style>h2 { color: red;}</style>' + 
                    '<h2>Yo, you got replaced!</h2>' + 
-                   '<div>by my awesome content</div>';
+                   '<div>Who? Varunkumar (@varunkumar)</div>';
 
 })();
-</script></article>
- 
-</slide>
-
-<slide id="shadow-style-control"  >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Protection from pesky outside styles</h2>
-      <h3></h3>
-    </hgroup>
-    <article class="smaller"><aside class="note">
-  <section>
-    <img src="images/shadow/shadow-rendering.svg" style="width: 100%;">
-  </section>
-</aside>
-
-<p>Author's styles don't cross shadow boundary by default, but have full control.</p>
-<pre class="prettyprint" data-lang="js">
-var shadow = document.querySelector('#host').<a data-tooltip-property="createShadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js>createShadowRoot</a>();
-shadow.innerHTML = '&lt;style>h2 { color: red; }&lt;/style>&lt;h2>Yo, you got replaced!&lt;/h2>' +
-                   '&lt;div>by my awesome content&lt;/div>';
-<b data-action-resetstyleinheritance title="click me">// shadow.resetStyleInheritance = true;</b> // click me
-<b data-action-applyauthorstyles title="click me">// shadow.applyAuthorStyles = true;</b> // click me
-</pre>
-
-<div class="host" style="margin-bottom:1em;">
-  <h1>My Title</h1>
-  <h2>My Subtitle</h2>
-  <div>...other content...</div>
-</div>
-
-<ul>
-<li><code>.resetStyleInheritance</code><ul>
-<li><code>false</code> - (default) inheritable CSS properties continue to inherit.</li>
-<li><code>true</code> - resets properties to <code>initial</code> at the shadow boundary.</li>
-</ul>
-</li>
-<li><code>.applyAuthorStyles</code><ul>
-<li><code>true</code> to allow author's styles to "bleed" across shadow boundary. Default is <code>false</code>.</li>
-</ul>
-</li>
-</ul>
-<script>
-(function() {
-var shadow = document.querySelector('#shadow-style-control .host').createShadowRoot();
-// See crbug.com/162517 - !important needed for some reason.
-shadow.innerHTML = '<style>h2 { color: red !important;}</style>' + 
-                   '<h2>Yo, you got replaced!</h2>' + 
-                   '<div>by my awesome content</div>';
-
-var resetStyles = document.querySelector('#shadow-style-control [data-action-resetstyleinheritance]');
-resetStyles.addEventListener('click', function(e) {
-  shadow.resetStyleInheritance = !shadow.resetStyleInheritance;
-  this.textContent = 'shadow.resetStyleInheritance = ' + shadow.resetStyleInheritance.toString() + ';';
-});
-var applyAuthorStyles = document.querySelector('#shadow-style-control [data-action-applyauthorstyles]');
-applyAuthorStyles.addEventListener('click', function(e) {
-  shadow.applyAuthorStyles = !shadow.applyAuthorStyles;
-  this.textContent = 'shadow.applyAuthorStyles = ' + shadow.applyAuthorStyles.toString() + ';';
-});
-
-})();
-</script></article>
+</script><br/><p class="smaller">Author's styles don't cross shadow boundary by default.</p><p class="smaller">Change the behavior via properties <code>resetStyleInheritance</code> and <code>applyAuthorStyles</code></p></article>
  
 </slide>
 
@@ -960,8 +689,8 @@ applyAuthorStyles.addEventListener('click', function(e) {
 </pre>
 
 <div class="host">
-  <h1>My Title</h1>
-  <h2>My Subtitle</h2>
+  <h1>Varunkumar Nagarajan</h1>
+  <h2>Hyderabad, India</h2>
   <div>...other content...</div>
 </div>
 
@@ -969,7 +698,7 @@ applyAuthorStyles.addEventListener('click', function(e) {
 (function() {
 var shadow = document.querySelector('#shadow-host-at .host').createShadowRoot();
 shadow.innerHTML = '<style>h2 { color: red;}' +
-'@host {\
+'@host{\
   * {\
     opacity: 0.2;\
     -webkit-transition: opacity 400ms ease-in-out;\
@@ -979,97 +708,14 @@ shadow.innerHTML = '<style>h2 { color: red;}' +
   }\
 }</style>' + 
 '<h2>Yo, you got replaced!</h2>' + 
-'<div>by my awesome content</div>';
+'<div>Who? Varunkumar (@varunkumar)</div>';
 
 })();
 </script></article>
  
 </slide>
 
-<slide id="pseduo-element-styling"  >
-  
-    <hgroup>
-      <span>
-        
-        
-          <a href="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#custom-pseudo-elements" target="_blank" class="spec" title="Spec link"></a>
-        
-      </span>
-      <h2>Custom pseudo elements</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><aside class="note notnewconcept funnyimage">
-  <section>
-    <h2>Custom pseudo elements...</h3>
-    <img src="images/animated/shock.gif" style="width: 100%;">
-    <h3>Not<br>a new concept</h3>
-  </section>
-</aside>
-
-<p class="input-list centered">
-<input type="range">
-</p>
-
-<div class="build">
-<pre class="prettyprint" data-lang="css">
-input[type=range].custom {
-  -webkit-appearance: none;
-  background-color: red;
-}
-input[type=range].custom<b>::-webkit-slider-thumb</b> {
-  -webkit-appearance: none;
-  background-color: blue;
-  width: 10px;
-  height: 40px;
-}
-</pre>
-
-<p class="build input-list centered">
-<span><input type="range" class="custom"></span>
-<span><input type="range" class="custom bling"></span>
-</p>
-</div>
-
-<p>List of pseudo elements: <a href="http://trac.webkit.org/browser/trunk/Source/WebCore/css/html.css?format=txt">WebKit</a>, <a href="https://developer.mozilla.org/en-US/docs/CSS/CSS_Reference/Mozilla_Extensions#Pseudo-elements_and_pseudo-classes">FF</a></p></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Style hooks with custom pseudo elements</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><p>Widget author can designate certain elements be styleable by outsiders.</p>
-<pre class="prettyprint" data-lang="html">
-&lt;style>
-  #host<b>::x-slider-thumb</b> {
-    background-color: blue;
-  }
-&lt;/style>
-&lt;div id="host">&lt;/div>
-&lt;script>
-document.querySelector('#host').createShadowRoot().innerHTML = '&lt;div>' +
-  '&lt;div <b>pseudo="x-slider-thumb"</b>>&lt;/div>' + 
-'&lt;/div>';
-&lt;/script>
-</pre>
-
-<ul>
-<li><em>Note</em>: name needs to be prefixed with "<code>x-</code>"<ul>
-<li>string name creates association with element in shadow tree</li>
-</ul>
-</li>
-<li>Can't access these elements from outside JS, but can style them!</li>
-</ul></article>
- 
-</slide>
-
-<slide   >
+<slide   id="shadow-css-var">
   
     <hgroup>
       <span>
@@ -1081,7 +727,7 @@ document.querySelector('#host').createShadowRoot().innerHTML = '&lt;div>' +
       <h2>Style hooks using CSS Variables</h2>
       <h3>theming</h3>
     </hgroup>
-    <article ><p>Widget <strong>author</strong> includes variable placeholders:</p>
+    <article class="smaller"><p>Widget <strong>author</strong> includes variable placeholders:</p>
 <pre class="prettyprint" data-lang="shadow dom css">
 button {
   color: <a data-tooltip-property="var" data-tooltip-support='["webkit", "unprefixed"]'>var</a>(button-text-color);
@@ -1097,9 +743,21 @@ button {
 }
 </pre>
 
-<p class="centered">
-<a href="demos/page.html" class="demo">DEMO</a>
-</p></article>
+</p><div class="host" style="-webkit-var-header-text-color: green; -moz-var-header-text-color: green;">
+  <h1>Varunkumar Nagarajan</h1>
+  <h2>Hyderabad, India</h2>
+  <div>...other content...</div>
+</div>
+
+<script>
+(function() {
+var shadow = document.querySelector('#shadow-css-var .host').createShadowRoot();
+shadow.innerHTML = '<style>h2 { color: -webkit-var(header-text-color);color: -moz-var(header-text-color);}</style>' + 
+'<h2>Yo, you got replaced!</h2>' + 
+'<div>Who? Varunkumar (@varunkumar)</div>';
+
+})();
+</script></article>
  
 </slide>
 
@@ -1115,8 +773,8 @@ button {
     </hgroup>
     <article ><pre class="prettyprint" data-lang="html">
 &lt;div id="host">
-  &lt;h1>My Title&lt;/h1>
-  &lt;h2>My Subtitle&lt;/h2>
+  &lt;h1>Varunkumar Nagarajan&lt;/h1>
+  &lt;h2>Hyderabad, India&lt;/h2>
   &lt;div>...other content...&lt;/div>
 &lt;/div>
 </pre>
@@ -1127,7 +785,7 @@ button {
   <span style="opacity:0.5">#shadow-root</span>
     &lt;style>h2 {color: red;}&lt;/style>
     &lt;h2>Yo, you got replaced!&lt;/h2>
-    &lt;div>by my awesome content&lt;/div>
+    &lt;div>Who? Varunkumar (@varunkumar)&lt;/div>
 &lt;/div>
 </pre>
 
@@ -1162,13 +820,13 @@ button {
     <article class="smaller"><ul>
 <li><code>&lt;content&gt;</code> elements are insertion points.</li>
 <li><code>select</code> attribute uses CSS selectors to specify where children are funneled.</li>
-<li><code>content.getDistributedNodes()</code> returns list of element distributed in the insertion point.</li>
 </ul>
 <div class="columns-2">
 <pre class="prettyprint" data-lang="host">
 &lt;div id="host"&gt;
-  &lt;h1&gt;My Title&lt;/h1&gt;
-  &lt;h2&gt;My Subtitle&lt;/h2&gt;
+  &lt;firstName&gt;Varunkumar&lt;/firstName&gt;
+  &lt;lastName&gt;Nagarajan&lt;/lastName&gt;
+  &lt;city&gt;Hyderabad, India&lt;/city&gt;
   &lt;div&gt;...other content...&lt;/div&gt;
 &lt;/div&gt;
 </pre>
@@ -1178,19 +836,21 @@ button {
   h2 {color: red;}
 &lt;/style>
 &lt;hgroup>
-  <b>&lt;content select="h2">&lt;/content&gt;</b>
-  &lt;div&gt;You got enhanced&lt;/div&gt;
-  <b>&lt;content select="h1:first-child">&lt;/content&gt;</b>
+  <b>&lt;h2&gt;&lt;content select="firstName">&lt;/content&gt; 
+    (@varunkumar)&lt;/h2&gt;</b>
+  <b>&lt;content select="city">&lt;/content&gt;</b>
 &lt;/hgroup>
 <b>&lt;content select="*">&lt;/content&gt;</b>
 </pre>
 </div>
 
 <div class="host">
-  <h1>My Title</h1>
-  <h2>My Subtitle</h2>
+  <firstName>Varunkumar</firstName>
+  <lastName>Nagarajan</lastName>
+  <city>Hyderabad, India</city>
   <div>...other content...</div>
 </div>
+<br/>
 
 <script>
 (function() {
@@ -1199,9 +859,8 @@ shadow.innerHTML = '<style>\
 h2 { color: red;}\
 </style>\
 <hgroup>\
-  <content select="h2"></content>\
-  <div>You got enhanced</div>\
-  <content select="h1:first-child"></content>\
+  <h2><content select="firstName"></content> (@varunkumar)</h2>\
+  <content select="city"></content>\
 </hgroup>\
 <content select="*"></content>';
 })();
@@ -1219,50 +878,8 @@ h2 { color: red;}\
       <h2></h2>
       <h3></h3>
     </hgroup>
-    <article class="flexbox vcenter centered defintion"><h2 class="auto-fadein">Insertion Points</h2>
-
-<h3 class="auto-fadein">allow us to define a declarative API</h3></article>
+    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Web components - Observers</h2></article>
  
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2></h2>
-      <h3></h3>
-    </hgroup>
-    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Encapsulation / Boundaries / Re-usability</h2>
-
-<h3 class="auto-fadein">baked into the web platform...</h3></article>
- 
-</slide>
-
-<slide  class="nobackground funnyimage" style="background-image: url(images/animated/irish-flick.gif)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Cha-</h2>
-      <h3>ching!</h3>
-    </hgroup>
-    <article ></article>
- 
-</slide>
-
-<slide id="mutation-segue" class="segue nobackground highlight fill" style="background-image: url(images/bgs/mutation.jpg)">
-  
-    <aside class="gdbar"><img src="images/logos/chrome_logo.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Observing Changes</h2>
-      <h3>Mutation Observers / Object.observe()</h3>
-    </hgroup>
-  
 </slide>
 
 <slide   >
@@ -1289,7 +906,6 @@ h2 { color: red;}\
 </li>
 <li>Replacement for <code>MutationEvent</code> performance / stability bottlenecks.</li>
 <li>Availability: Chrome, Safari, FF</li>
-<li><em>Who?</em> JS Framework authors, extension developers</li>
 </ul></article>
  
 </slide>
@@ -1358,7 +974,6 @@ var observer = new <b><a data-tooltip-property="MutationObserver" data-tooltip-s
         
       </span>
       <h2>Comparison Example</h2>
-      <h3>Inserting a DOM node</h3>
     </hgroup>
     <article class="smaller"><pre class="prettyprint" data-lang="js">
 // MutationEvent
@@ -1379,8 +994,130 @@ var observer = new <a data-tooltip-property="MutationObserver" data-tooltip-supp
 </pre>
 
 <p class="centered topmargin">
-<a href="demos/mutation-summary/examples/shuffle_compare/shuffle.html" class="demo">DEMO</a>
 </p></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Mutation Observers vs. Mutation Events</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="smaller" style="font-size: 70%">
+      Rotations: <input id="moveCount" type="number" value="1000">
+
+  <select id="watchType" onchange="setupWatch();">
+    <option value="event">DOM Mutation Events</option>
+    <option value="observer">DOM Mutation Observers</option>
+    <option value="summary">The Mutation Summary Library</option>
+  </select>
+  <button onclick="shuffle();">Rotate!</button>
+
+  <ol id="deck"><li>MS Dhoni</li><li>R Ashwin</li><li>Shikar Dhawan</li><li>Ashok Dinda</li><li>Harbhajan Singh</li><li>Ravindra Jadega</li><li>Virat Kohli</li><li>Bhuvneshwar Kumar</li><li>Pragyan Ohja</li><li>Cheteswar Pujara</li><li>Ajinkya Rahane</li><li>Virender Sehwag</li><li>Ishant Sharma</li><li>Sachin Tendulkar</li><li>Murali Vijay</li></ol>
+
+  <h3 id="report"></h3>
+  <script>
+    var changeCount;
+var callbacks;
+var watchType;
+var observer;
+var observerSummary;
+
+function shuffle() {
+  prepReport();
+
+  var deck = document.getElementById('deck');
+  var moveCount = Number(document.getElementById('moveCount').value);
+  while(moveCount-- > 0) {
+    var randomCard = deck.childNodes[randInt(0, deck.childNodes.length - 1)];
+    deck.removeChild(randomCard);
+    var randomPlace = deck.firstChild;
+    var randomCount = randInt(0, deck.childNodes.length - 1);
+    while(randomCount-- > 0) {
+      randomPlace = randomPlace.nextSibling;
+    }
+    deck.insertBefore(randomCard, randomPlace);
+  }
+
+  setTimeout(report, 0);
+}
+
+function mutationEventIsFiring(e) {
+  callbacks++;
+  changeCount++;
+}
+
+function observeMutations(mutations) {
+  callbacks++;
+  changeCount += mutations.length;
+}
+
+function handleSummary(summaries) {
+  callbacks++;
+  var shuffleChanges = summaries[0];
+  changeCount += shuffleChanges.reordered.length;
+}
+
+function randInt(start, end) {
+  return Math.round(Math.random() * (end-start) + start);
+}
+
+function prepReport() {
+  document.getElementById('report').innerText = '';
+  changeCount = 0;
+  callbacks = 0;
+}
+
+function setupWatch() {
+  var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
+  switch(watchType) {
+    case 'event':
+      document.removeEventListener('DOMNodeInserted', mutationEventIsFiring);
+      document.removeEventListener('DOMNodeRemoved', mutationEventIsFiring);
+      break;
+    case 'observer':
+      observer.disconnect();
+      break;
+    case 'summary':
+      observerSummary.disconnect();
+      break;
+  }
+
+  watchType = document.getElementById('watchType').value;
+
+  switch(watchType) {
+    case 'event':
+      document.addEventListener('DOMNodeInserted', mutationEventIsFiring);
+      document.addEventListener('DOMNodeRemoved', mutationEventIsFiring);
+      window.report = function() {
+        document.getElementById('report').textContent = changeCount + ' events fired';
+      }
+      break;
+    case 'observer':
+      observer = new MutationObserver(observeMutations);
+      observer.observe(document, { childList: true, subtree: true});
+      window.report = function() {
+        document.getElementById('report').textContent = changeCount + ' mutations reported in ' + callbacks + ' callbacks';
+      }
+      break;
+    case 'summary':
+      observerSummary = new MutationSummary({ callback: handleSummary, queries: [{ all: true }]});
+      window.report = function() {
+        document.getElementById('report').textContent = changeCount + ' reorders reported in ' + callbacks + ' callbacks';
+      }
+      break;
+  }
+}
+
+window.addEventListener('DOMContentLoaded', setupWatch);
+  </script>
+</article>
  
 </slide>
 
@@ -1419,211 +1156,18 @@ var o = {};
 <ul class="build">
 <li>Get notified when a property is added, deleted, or its value changes.</li>
 <li>Get notified when properties are reconfigured (e.g. <code>Object.freeze</code>)</li>
-<li>Landing in Chrome Canary. Turn on <strong>Experimental JavaScript APIs</strong> in <code>about:flags</code>.</li>
+<li>Available in Chrome Canary. Turn on <strong>Experimental JavaScript APIs</strong> in <code>about:flags</code>.</li>
 </ul>
 <p>See <a href="http://weblog.bocoup.com/javascript-object-observe/">Bocoup's writeup</a>.</p></article>
  
 </slide>
 
-<slide id="obj-observe-binding"  >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Benefit: improved data binding</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><p>The <img src="images/logos/angular.png" style="height:35px;vertical-align: middle;"> <a href="http://angularjs.org">AngularJS</a> team experimented with a prototype build of Chromium:</p>
-<p class="fleft">
-  <img src="images/angularspeedup.png">
-</p>
-
-<p class="fleft build"><span>20-40x faster!</span></p></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-          <a href="http://mdv.googlecode.com/git/docs/design_intro.html" target="_blank" class="spec" title="Spec link"></a>
-        
-      </span>
-      <h2><img src="images/icons/clock.png" title="Soon" alt="Soon"> End game: Model Driven Views (MDV)</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><pre class="prettyprint" data-lang="html">
-&lt;div id="example">
-&lt;ul>
-  <b>&lt;template iterate>
-    &lt;li>{{ name }}
-      &lt;ul>&lt;template iterate="skills">&lt;li>...&lt;/li>&lt;/template>&lt;/ul>
-    &lt;/li>
-  &lt;/template></b>
-&lt;/ul>
-&lt;/div>
-&lt;script>
-document.querySelector('#example')<b>.model</b> = [
-  {name: 'Sally', skills: ['carpentry']}, 
-  {name: 'Helen', skills: ['weaving', 'omnipotence']}
-];
-&lt;/script>
-</pre>
-
-<p>Play with it today: <a href="https://code.google.com/p/mdv/">code.google.com/p/mdv/</a></p></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2><img src="images/icons/calendar.png" alt="Today" title="Today"> Templating in <img src="images/logos/angular.png"> AngularJS</h2>
-      <h3></h3>
-    </hgroup>
-    <article class="smaller"><p>A (close-ish) taste of the future:</p>
-<pre class="prettyprint" data-lang="html">
-&lt;div <b>ng-controller="AppController"</b>>
-  &lt;ul>
-    &lt;li <b>ng-repeat="person in model"</b>>{{ person.name }}
-    &lt;ul>&lt;li <b>ng-repeat="skill in person.skills"</b>>{{skill}}&lt;/li>&lt;/ul>
-  &lt;/ul>
-&lt;/div>
-&lt;script>
-function AppController($scope) {
-  $scope.model = [{name: 'Sally', skills: ['carpentry']},
-                  {name: 'Helen', skills: ['weaving', 'omnipotence']}];
-}
-&lt;/script>
-</pre>
-
-<div ng-app ng-controller="AppController" class="angular-template-example">
-<ol>
-  <li ng-repeat="person in model">{{ person.name }}
-  <ul><li ng-repeat="skill in person.skills">{{skill}}</li></ul>
-</ol>
-</div>
-
-<script>
-function AppController($scope) {
-  $scope.model = [
-    {name: 'Sally', skills: ['carpentry']},
-    {name: 'Helen', skills: ['weaving', 'omnipotence']}
-  ];
-}
-</script></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2></h2>
-      <h3></h3>
-    </hgroup>
-    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Observing changes to DOM and JS</h2>
-
-<h3 class="auto-fadein">baked into the web platform...</h3></article>
- 
-</slide>
-
-<slide  class="nobackground dirty-sexy funnyimage" style="background-image: url(images/animated/dirty-sexy-money.gif)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2></h2>
-      <h3>$$$</h3>
-    </hgroup>
-    <article ></article>
- 
-</slide>
-
-<slide  class="segue nobackground highlight fill" style="background-image: url(images/bgs/istock-lasanga.jpg)">
-  
-    <aside class="gdbar"><img src="images/logos/chrome_logo.png"></aside>
-    <hgroup class="auto-fadein">
+<slide  class="segue nobackground highlight fill">
+  <hgroup class="auto-fadein">
       <h2>Custom Elements</h2>
       <h3>Putting it all together</h3>
     </hgroup>
   
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2><img src="images/icons/calendar.png" alt="Today" title="Today"> Creating a basic tab control (YUI 3)</h2>
-      <h3></h3>
-    </hgroup>
-    <article class="smaller"><div class="columns-2">
-<pre class="prettyprint" data-lang="html" class="columns-2">
-&lt;div id=&quot;demo&quot;&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;#foo&quot;&gt;foo&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#bar&quot;&gt;bar&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;div&gt;
-    &lt;div id=&quot;foo&quot;&gt;&lt;p&gt;foo content&lt;/p&gt;&lt;/div&gt;
-    &lt;div id=&quot;bar&quot;&gt;&lt;p&gt;bar content&lt;/p&gt;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</pre>
-<pre class="prettyprint" data-lang="js">
-YUI().use('tabview', function(Y) {
-  var tabview = new Y.TabView({srcNode: '#demo'});
-  tabview.render();
-});
-</pre>
-<img src="images/screenshots/yui_tab.png">
-</div>
-
-<footer class="source"><a href="http://yuilibrary.com/yui/docs/tabview/tabview-basic.html">YUI documentation</a></footer></article>
- 
-</slide>
-
-<slide id="customels-tab-devtools" class="nobackground" >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>But...there's nothing "basic" about it!</h2>
-      <h3></h3>
-    </hgroup>
-    <article class="flexbox vcenter centered"><p onclick="this.classList.toggle('active')" title="click me" alt="click me"></p></article>
- 
-</slide>
-
-<slide  class="nobackground highlight fill" style="background-image: url(images/bgs/disaster.jpg)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Insanity!!!</h2>
-      <h3></h3>
-    </hgroup>
-    <article ></article>
- 
 </slide>
 
 <slide   >
@@ -1638,7 +1182,7 @@ YUI().use('tabview', function(Y) {
     </hgroup>
     <article ><ol class="build">
 <li>Templates (<code>&lt;template&gt;</code>)</li>
-<li>Shadow DOM (<code>@host</code>, custom pseudo elements, styling hooks)</li>
+<li>Shadow DOM (<code>@host</code>, styling hooks)</li>
 <li>Mutation Observers, <code>Object.observe()</code></li>
 </ol>
 <p class="centered build topmargin blue"><span style="font-size:50px;">WE DO :)</span></p></article>
@@ -1714,178 +1258,17 @@ document.body.appendChild(tabs);
 &lt;/script&gt;
 </pre></article>
  
+ <p>Or, we can even extend existing elements</p>
 </slide>
 
-<slide   >
+<slide id="feature-detect"  >
   
     <hgroup>
       <span>
         
         
       </span>
-      <h2>Or, extend existing [custom] elements</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><pre class="prettyprint" data-lang="x-megabutton.html">
-&lt;element name="x-megabutton" <b>extends="button"</b> <b>constructor="MegaButton"</b>>
-  &lt;template>
-    &lt;button>&lt;content>&lt;/content>&lt;/button>
-  &lt;/template>
-  &lt;script>
-    MegaButton.prototype = {
-      megaClick: function(e) {
-        play('moo.mp3');
-      }
-    };
-  &lt;/script>
-&lt;/element>
-</pre>
-
-<p>Use it:</p>
-<pre class="prettyprint" data-lang="yourapp.html">
-&lt;link rel="components" href="x-megabutton.html">
-&lt;x-megabutton>Mega button&lt;/x-megabutton>
-</pre></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Demo: Mega Button</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><p class="centered">
-  <code class="prettyprint">&lt;x-megabutton>Mega button&lt;/x-megabutton></code>
-</p>
-
-<p class="centered topmargin">
-<x-megabutton>Better buttonz</x-megabutton> 
-</p></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Demo: Meme Generator</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><pre class="prettyprint" data-lang="html">
-&lt;x-meme src="images/beaches.jpg">
-  &lt;h1 contenteditable>Stay classy&lt;/h1>
-  &lt;h2 contenteditable>Web!&lt;/h2>
-&lt;/x-meme>
-</pre>
-
-<p class="centered topmargin">
-<a href="/static/webcomponents/demos/components/my-components/meme.html" class="demo">DEMO</a>
-</p></article>
- 
-</slide>
-
-<slide id="tab-component-example"  >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Example: tab component</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><div class="columns-2">
-<h3>Web Components <img src="images/logos/webcomponents.png"></h3>
-<pre class="prettyprint" data-lang="html">
-&lt;x-tab&gt;
-  &lt;h2&gt;One&lt;/h2&gt;
-  &lt;section&gt;
-    Code to instantiate this component:
-    &lt;pre&gt;&lt;/pre&gt;
-  &lt;/section&gt;
-  &lt;h2&gt;Two is bigger than three&lt;/h2&gt;
-  &lt;section&gt;
-    Second panel hotness
-  &lt;/section&gt;
-&lt;/x-tab&gt;
-</pre>
-
-<h3 style="-webkit-column-break-before: always;"><img src="images/logos/angular.png"> AngularJS</h3>
-<pre class="prettyprint" data-lang="html">
-&lt;tabs ng-app=&quot;tabs&quot;&gt;
-  &lt;pane title=&quot;One&quot;&gt;
-    Code to instantiate this component:
-    &lt;pre&gt;&lt;/pre&gt;
-  &lt;/pane&gt;
-  &lt;pane title=&quot;Two is bigger than three&quot;&gt;
-    Second panel hotness.
-  &lt;/pane&gt;
-&lt;/tabs&gt;
-</pre>
-</div>
-
-<p class="centered"><a href="demos/components/tabs/index.html" class="demo">DEMO</a></p></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2></h2>
-      <h3></h3>
-    </hgroup>
-    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Defining / extending HTML elements</h2>
-
-<h3 class="auto-fadein">baked into the web platform...</h3></article>
- 
-</slide>
-
-<slide  class="nobackground funnyimage" style="background-image: url(images/animated/dog.gif)">
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Love</h2>
-      <h3>it!</h3>
-    </hgroup>
-    <article ><!-- 
-#---
-
-title: The Declarative Renaissance
-build_lists: true
-
-- Guardrails, not etiquette
-- Interoperable widget libraries
-- Multiple authors on a page without stepping on one another's toes
-- Many use cases fully declarative
-- Declarative is faster
-- Rise in shared semantics
- --></article>
- 
-</slide>
-
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Don't forget to enable yourself</h2>
+      <h2>Don't forget to enable yourself...</h2>
       <h3></h3>
     </hgroup>
     <article ><ol>
@@ -1897,7 +1280,163 @@ build_lists: true
 </ul>
 </li>
 </ol>
-<p>Polyfills:</p>
+<p id="need-shadow" class="topmargin"><label></label><span>You don't have Shadow DOM enabled</span></p>
+
+<p id="need-objectobserve"><label></label><span>You don't have Object.observe()</span></p>
+
+<p id="need-mo"><label></label><span>You don't have MutationObservers</span></p>
+
+<script>
+(function() {
+var needShadow = document.querySelector('#need-shadow');
+var needObjectObserve = document.querySelector('#need-objectobserve');
+var needMo = document.querySelector('#need-mo');
+
+if (!!!('createShadowRoot' in document.body)) {
+    needShadow.classList.add('red');
+    needShadow.firstElementChild.classList.add('bad');
+    needShadow.lastElementChild.textContent = "You don't have Shadow DOM enabled";
+
+    // Hide live demos.
+    document.addEventListener('DOMContentLoaded', function(e) {
+        [].forEach.call(document.querySelectorAll('.host'), function(el) {
+            el.hidden = true;
+        });
+    });
+} else {
+    needShadow.classList.add('green');
+    needShadow.firstElementChild.classList.add('good');
+    needShadow.lastElementChild.textContent = 'Shadow DOM enabled';
+}
+
+if (!!!Object.observe) {
+  needObjectObserve.classList.add('red');
+    needObjectObserve.firstElementChild.classList.add('bad');
+    needObjectObserve.lastElementChild.textContent = "You don't have Object.observe()";
+} else {
+    needObjectObserve.classList.add('green');
+    needObjectObserve.firstElementChild.classList.add('good');
+    needObjectObserve.lastElementChild.textContent = "Object.observe() available";
+}
+
+if (!!!(window.WebKitMutationObserver || window.MutationObserver)) {
+  needMo.classList.add('red');
+    needMo.firstElementChild.classList.add('bad');
+    needMo.lastElementChild.textContent = "You don't have MutationObservers";
+} else {
+    needMo.classList.add('green');
+    needMo.firstElementChild.classList.add('good');
+    needMo.lastElementChild.textContent = "MutationObservers available";
+}
+})();
+</script></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Demo</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p class="centered">
+  <code class="prettyprint">&lt;x-gangnam-style>&lt;/x-gangnam-style></code>
+</p>
+
+<style>
+/*Need to define these globally. Don't work in the component.
+See https://bugs.webkit.org/show_bug.cgi?id=72462 */
+@-webkit-keyframes psydroid-dance {
+  0% { top: 0; }
+  20% { top: 4px; }
+  30% { top: 0; }
+  50% { top: 4px; }
+  60% { top: 0; }
+  80% { top: 4px; }
+  90% { top: 0; }
+  100% { top: 0; }
+}
+@-webkit-keyframes psydroid-leg-l {
+  0% { top: 116px; }
+  10% { top: 116px; }
+  15% { top: 116px; }
+  25% { top: 116px; }
+  30% { top: 110px; }
+  40% { top: 116px; }
+  45% { top: 120px; }
+  55% { top: 116px; }
+  60% { top: 120px; }
+  70% { top: 116px; }
+  75% { top: 110px; }
+  85% { top: 116px; }
+  100% { top: 116px; }
+}
+@-webkit-keyframes psydroid-leg-r {
+  0% { top: 116px; }
+  10% { top: 120px; }
+  15% { top: 110px; }
+  25% { top: 116px; }
+  30% { top: 120px; }
+  40% { top: 116px; }
+  45% { top: 110px; }
+  55% { top: 116px; }
+  60% { top: 110px; }
+  70% { top: 116px; }
+  75% { top: 120px; }
+  85% { top: 116px; }
+  100% { top: 116px; }
+}
+@-webkit-keyframes psydroid-arm-l {
+  0% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  10% { -moz-transform: rotate(-60deg); -webkit-transform: rotate(-60deg); transform: rotate(-60deg); }
+  20% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-65deg); transform: rotate(-65deg); }
+  25% { -moz-transform: rotate(-55deg); -webkit-transform: rotate(-55deg); transform: rotate(-55deg); }
+  40% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-75deg); transform: rotate(-75deg); }
+  50% { -moz-transform: rotate(-60deg); -webkit-transform: rotate(-60deg); transform: rotate(-60deg); }
+  55% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-80deg); transform: rotate(-80deg); }
+  65% { -moz-transform: rotate(-55deg); -webkit-transform: rotate(-55deg); transform: rotate(-55deg); }
+  80% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-65deg); transform: rotate(-65deg); }
+  90% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+}
+@-webkit-keyframes psydroid-arm-r {
+  0% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  10% { -moz-transform: rotate(60deg); -webkit-transform: rotate(60deg); transform: rotate(60deg); }
+  20% { -moz-transform: rotate(65deg); -webkit-transform: rotate(65deg); transform: rotate(65deg); }
+  25% { -moz-transform: rotate(55deg); -webkit-transform: rotate(55deg); transform: rotate(55deg); }
+  40% { -moz-transform: rotate(65deg); -webkit-transform: rotate(75deg); transform: rotate(75deg); }
+  50% { -moz-transform: rotate(60deg); -webkit-transform: rotate(60deg); transform: rotate(60deg); }
+  55% { -moz-transform: rotate(65deg); -webkit-transform: rotate(80deg); transform: rotate(80deg); }
+  65% { -moz-transform: rotate(55deg); -webkit-transform: rotate(55deg); transform: rotate(55deg); }
+  80% { -moz-transform: rotate(65deg); -webkit-transform: rotate(65deg); transform: rotate(65deg); }
+  90% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+}
+</style>
+
+<p class="centered topmargin">
+  <x-gangnam-style></x-gangnam-style>
+  <x-doodle></x-doodle>
+  <p style="font-size: small;text-align:center;padding-top: 1em;">( hover over the bar )</p>
+</p></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Polyfills</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
 <ul>
 <li><a href="http://github.com/dglazkov/Web-Components-Polyfill">Web-Components-Polyfill</a></li>
 <li>Mozilla's <a href="https://github.com/mozilla/x-tag">x-tags Custom Elements Polyfill</a> (works on all browsers)</li>
@@ -1919,7 +1458,7 @@ build_lists: true
     <article class="smaller"><p>Web Components / Custom Elements</p>
 <ul>
 <li><a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html">Web Components Explainer</a> explainer doc, <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html">Custom Elements spec</a></li>
-<li>Follow +<a href="https://plus.google.com/103330502635338602217/">Web Components</a> ★ <a href="https://twitter.com/dglazkov">@dglazkov</a> ★ +<a href="https://plus.google.com/111648463906387632236/">Dimitri Glazkov</a></li>
+<li>Follow +<a href="https://plus.google.com/103330502635338602217/">Web Components</a> ★ +<a href="https://plus.google.com/118075919496626375791/posts">Eric Bidelman</a> ★ <a href="https://twitter.com/dglazkov">@dglazkov</a> ★ +<a href="https://plus.google.com/111648463906387632236/">Dimitri Glazkov</a></li>
 <li><a href="http://lists.w3.org/Archives/Public/public-webapps/">Public WebApps mailing list</a></li>
 </ul>
 <p>Shadow DOM</p>
@@ -1949,8 +1488,8 @@ build_lists: true
 
 
 <slide class="thank-you-slide segue nobackground">
-  <article class="flexbox vcenter auto-fadein">
-    <h2>Fine.</h2>
+  <article>
+    <p class="centered topmargin">Thank you</p>
     <!-- <p>PRESENTATION LINK</p> -->
   </article>
 </slide>
@@ -1966,9 +1505,10 @@ build_lists: true
 </slides>
 
 <script src="js/angular.min.js"></script>
+<script src="js/mutation_summary.js"></script>
 <script>
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-22014378-1']);
+_gaq.push(['_setAccount', 'UA-3626417-6']);
 _gaq.push(['_trackPageview']);
 
 (function() {
