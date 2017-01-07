@@ -1,0 +1,42 @@
+-	Evolution of Web (30 mins)
+o	The web
+o	Server components
+o	Browser components
+-	Server side technologies (1 hr)
+o	Basics of HTTP: HTTP verbs, request, response model, headers
+o	Servlets, Filters
+o	Session management, Cookies
+o	Application containers - Tomcat
+-	Client side technologies
+o	HTML basics (30 mins)
+	Semantic tags
+	Best practices around HTML tag usage
+o	CSS (1 hr)
+	Box model
+	Layout
+	Selectors
+o	JavaScript (5 hrs)
+	Language features
+	Closures
+	Functions & objects
+	Event handling
+	DOM manipulation
+	AJAX – fetch() 
+	CORS
+	Strict mode JS
+	Intro to ES6 features – Template strings, rest params, let scope, object destructuring, etc.
+o	OO JavaScript, IIFE, module pattern, ES6 modules (1 hr)
+o	Callback hell and ways to avoid it (2 hrs)
+	Promises
+	Async await
+o	Tooling (3 hrs)
+	Browser dev tools
+	NPM, Bower, Yoman, Grunt, gulp, webpack
+	Transpilers
+	Linting
+	Testing
+o	Componentizing web (1 hr)
+	Web components
+	Introduce MV* frameworks
+	Application state management
+o	Progressive web apps & performance consideration (1 hr)

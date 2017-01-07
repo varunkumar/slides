@@ -1,0 +1,2883 @@
+<!--
+Author: Varunkumar Nagarajan <varunkumar.n@gmail.com>
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Client side web technologies</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/app.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank">
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  <script src="https://slides.varunkumar.me/js-tools/js/jquery.min.js"></script>
+</head>
+
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    <slide id="first-slide" class="nobackground">
+    </slide>
+    <slide class="title-slide segue nobackground">
+      <!-- <aside class="gdbar"><img src="images/logos/webcomponents.png"></aside> -->
+      <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+      <article class="auto-fadein">
+        <img src="images/logos/webcomponents.png">
+        <hgroup>
+          <h1 data-config-title>
+            <!-- populated from slide_config.json -->
+          </h1>
+          <h2 data-config-subtitle>
+            <!-- populated from slide_config.json -->
+          </h2>
+          <p data-config-presenter>
+            <!-- populated from slide_config.json -->
+          </p>
+        </hgroup>
+      </article>
+    </slide>
+    <slide id="who">
+      <hgroup>
+        <span></span>
+        <h2>/me</h2>
+      </hgroup>
+      <article>
+        <p><span class="build"><p class="avatar rounded"></p></span></p>
+        <p>Varunkumar Nagarajan</p>
+        <p style="margin-top:2em;">
+          <a rel="author" href="http://plus.varunkumar.me">
+            <img src="images/logos/gprofile_button-44.png" width="44" height="44"></a> <a rel="author" href="http://plus.varunkumar.me">plus.varunkumar.me</a>
+        </p>
+        <p>
+          <a rel="author" style="margin-left:-8px;" href="http://twitter.com/varunkumar">
+            <img src="images/logos/twitter_newbird_blue.png" width="58" height="58"></a> <a rel="author" href="http://twitter.com/varunkumar"
+            style="margin-left:-5px;">@varunkumar</a>
+        </p>
+        <p><a rel="author" href="http://www.varunkumar.me">varunkumar.me</a></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Course structure</h2>
+      </hgroup>
+      <article>
+        <table style="width: 100%">
+          <tr style="width: 100%">
+            <td style="width: 50%">
+              <ul>
+                <li>Evolution of web
+                  <ul>
+                    <li>The Web</li>
+                    <li>Server components</li>
+                    <li>Browser components</li>
+                  </ul>
+                </li>
+                <li>HTML - Markup language
+                  <ul>
+                    <li>Semantic tags</li>
+                    <li>HTML parsing</li>
+                    <li>Best practices</li>
+                  </ul>
+                </li>
+                <li>CSS
+                  <ul>
+                    <li>Execution model</li>
+                    <li>Box model</li>
+                    <li>Layout</li>
+                    <li>Selectors</li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+            <td style="width: 50%; font-weight: 600; color: #515151;">
+              <ul>
+                <li>JavaScript
+                  <ul>
+                    <li>Language features</li>
+                    <li>Closures</li>
+                    <li>Functions &amp; Objects</li>
+                    <li>Event handling</li>
+                    <li>DOM manipulation</li>
+                    <li>ES6 features</li>
+                    <li>Strict mode JavaScript</li>
+                  </ul>
+                </li>
+                <li>JS patterns
+                  <ul>
+                    <li>IIFE</li>
+                    <li>Module</li>
+                    <li>OOP JavaScript</li>
+                    <li>Classes</li>
+                    <li>ES6 modules</li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Course structure</h2>
+      </hgroup>
+      <article>
+        <table style="width: 100%">
+          <tr style="width: 100%">
+            <td style="width: 50%">
+              <ul>
+                <li>Callback hell
+                  <ul>
+                    <li>what is it?</li>
+                    <li>Promises</li>
+                    <li>Async and await</li>
+                  </ul>
+                </li>
+                <li>Frontend tooling
+                  <ul>
+                    <li>Browser devtools</li>
+                    <li>NPM, Bower, Yoman, Grunt, Gulp, Webpack</li>
+                    <li>Transpilers</li>
+                    <li>Linting</li>
+                    <li>Testing</li>
+                    <li>Intro to arc-ux-tools</li>
+                  </ul>
+                </li>
+                <li>Componentizing the web
+                  <ul>
+                    <li>Web components</li>
+                    <li>MV* framework</li>
+                    <li>Application state management</li>
+                  </ul>
+                </li>
+                <li>Progressive web apps &amp; performance considerations</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Disclaimer</h2>
+      </hgroup>
+      <article class="build">
+        <ul class="build">
+          <li>Not a professional trainer</li>
+          <li>Not an expert either</li>
+          <li>Never finished my talks on time :|</li>
+          <li>Might be too fast / slow at times</li>
+          <li>Feel free to stop me anytime and ask questions</li>
+        </ul>
+        <p>Let's get started <label class="good"></label></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Once upon a time...</h2>
+      </hgroup>
+      <article>
+        <ul class="build">
+          <li>Web was just a platform for creating interactive and navigable contents
+            <ul>
+              <li>HTML was used to define the static text and images</li>
+              <li>JavaScript to control interactions and animations</li>
+              <li>CSS to present the content</li>
+            </ul>
+          </li>
+          <li>Capabilities on the browser were limited</li>
+          <li>We need to depend on backend servers to accomplish most of the user tasks</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Today's Web...</h2>
+      </hgroup>
+      <article class="build">
+        <p>We have come a long way from where it started...</p>
+        <ul class="build">
+          <li>Browsers are becoming powerful day by day</li>
+          <li> Web apps of today are as powerful as native apps</li>
+          <li>We can build complex web applications with richer contents</li>
+          <li>We can
+            <ul>
+              <li>Build apps which can work offline</li>
+              <li>Access devices from our web apps</li>
+              <li>Even have databases / complete file system on the client side</li>
+              <li>Do real-time communication on the web and much more...</li>
+            </ul>
+          </li>
+          <li><a href="http://www.chromeexperiments.com/">Chrome experiments</a> ★ <a href="http://www.findyourwaytooz.com/">Find your way to OZ</a></li>
+        </ul>
+        <p class="centered topmargin">Thanks to recent developments, we can do amazing stuff on the web <label class="good"></label></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Evolution of the web</h2>
+      </hgroup>
+      <article class="build">
+        <ul>
+          <li>Internet</li>
+          <li>Client - Browser, Scripts, Headless browser</li>
+          <li>Server</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Internet - The Web</h2>
+      </hgroup>
+      <article class="build">
+        <p>Interconnected network of nodes - Provider and consumer</p>
+        <p>The whole world is well conencted today</p>
+        <p>Fibre lines, ultra fast ISPs</p>
+        <p class="centered topmargin"><img src="images/internet.jpg" style="width: 350px" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>How do they communicate?</h2>
+      </hgroup>
+      <article class="build">
+        <p>They use HTTP as the main communication channel</p>
+        <p>HTTP works in a request / response model</p>
+        <p class="centered topmargin"><img src="images/web.gif" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Request URL</h2>
+      </hgroup>
+      <article>
+        <p class="centered topmargin"><img src="images/url.png" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>URL Resolution</h2>
+      </hgroup>
+      <article>
+        <p class="centered topmargin"><img src="images/dns-rev-1.gif" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>HTTP Basics</h2>
+      </hgroup>
+      <article class="build">
+        <p>Request / Response headers</p>
+        <p>Message body</p>
+        <p>HTTP Verbs</p>
+        <ul class="build">
+          <li>GET</li>
+          <li>POST</li>
+          <li>PUT</li>
+          <li>DELETE</li>
+          <li>OPTIONS</li>
+          <li>PATCH</li>
+          <li>CONNECT</li>
+        </ul>
+        <p>HTTP response codes</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Server components</h2>
+      </hgroup>
+      <article class="build">
+        <p>Language agnostic</p>
+        <p>Web Server - Apache, nginx</p>
+        <p>Application Container - Tomcat, jetty</p>
+        <p>Load Balancer</p>
+        <p>Cache engines and so many other components...</p>
+        <p>Evolution of web technologies - Static vs Dynamic contents</p>
+        <ul class="build" style="font-size: 14px;">
+          <li>HTML</li>
+          <li>DHTML</li>
+          <li>Servlets / JSP / ASP</li>
+          <li>MVC - Struts, Spring MVC</li>
+          <li>AJAX</li>
+          <li>WebSockets - Push</li>
+          <li>WebRTC - Peer to Peer communication</li>
+          <li>WebTorrents (<a href="https://elendirx.github.io/web2web-gateway/#/">Web2Web</a>). This leads to serverless concepts
+            - The Future <label class="good"></label></li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Session management</h2>
+      </hgroup>
+      <article class="build">
+        <p>Session</p>
+        <ul class="build">
+          <li>HTTP protocols / web servers are stateless</li>
+          <li>Shared state between client and server</li>
+          <li>Session management techniques
+            <ul class="build fade">
+              <li>User authentication tokens</li>
+              <li>Hidden field</li>
+              <li>URL rewritting</li>
+              <li>Cookies</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Browser components</h2>
+      </hgroup>
+      <article class="build">
+        <p></p>
+        <p>DOM Parser</p>
+        <p>Rendering / Layout Engine - WebKit, Blink, Gecko, Servo, Trident, Presto, EdgeHTML</p>
+        <p>JavaScript Engine - V8, SpiderMoney, IonMonkey, Carakan, Chakra, Nitro, SquirrelFish, ChakraCore</p>
+        <p>Net module</p>
+        <p>Developer Tools</p>
+        <p class="centered topmargin"><img src="https://raw.github.com/paulirish/browser-logos/master/main-desktop.png" style="max-height: 150px;" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Browser components</h2>
+      </hgroup>
+      <article class="build">
+        <p class="centered topmargin">
+          <a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/">
+            <img src="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/layers.png" style="max-height: 450px;" />
+          </a>
+        </p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Developing for the web</h2>
+      </hgroup>
+      <article class="build">
+        <p>Browser compatibility</p>
+        <p>Markup language</p>
+        <p>Flexible nature of the language</p>
+        <p>Allows scope for errors</p>
+        <p>Async nature of the language</p>
+        <p>Maintainability</p>
+        <p>Accessibility</p>
+        <p>Device Compatibility</p>
+        <p>Web Crawlers / Search engines</p>
+        <p>Highly performant</p>
+        <p class="centered topmargin">Follow better engineering practices <label class="good"></label></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>HTML</h2>
+      </hgroup>
+      <article class="build">
+        <p>Markup, the basis of every page</p>
+        <p>Gives structure to your content</p>
+        <p class="centered topmargin"><img src="images/markup.gif" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <aside class="note">
+          <section>
+            <ul>
+              <li>HTMLUnknownElement</li>
+            </ul>
+          </section>
+        </aside>
+        <h2>HTML</h2>
+      </hgroup>
+      <article class="build">
+        <p>Elements and attributes are case insensitive</p>
+        <p>Certain elements don't need a closing tag. Ex: img, br, hr</p>
+        <p>Shorthand can be used for certain attributes. Ex: input required</p>
+        <p>Doctype defines what elements and attributes are allowed to be used in a certain flavor of HTML</p>
+        <p>Postel's law: Be conversative in what you do (send); be liberal in what you accept
+          <ul class="build">
+            <li><a href="http://lcamtuf.coredump.cx/squirrel/">The squirrel page</a> -- <a href="http://lcamtuf.coredump.cx/squirrel/">http://lcamtuf.coredump.cx/squirrel/</a></li>
+            <li>More details <a href="http://blog.varunkumar.me/2012/07/postels-law-and-modern-day-browsers.html">here</a></li>
+          </ul>
+        </p>
+        <p>Semantic elements - section, hgroup, article, header, footer, <a href="http://www.html5rocks.com/en/tutorials/responsive/picture-element/">picture</a>,
+          div vs span vs p</p>
+        <p class="centered">Remember, its always a good practise to <a href="http://validator.w3.org/">validate</a> your HTML <label class="good"></label></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>HTML5</h2>
+      </hgroup>
+      <article class="build">
+        <p>Semantics</p>
+        <p>Offline &amp; Storage</p>
+        <p>Device access - Geolocation API, NetInfo API, GUM</p>
+        <p>Connectivity - Web sockets, WebRTC</p>
+        <p>Multimedia - Audio, video</p>
+        <p>3D, Graphics &amp; Effects - WebGL, Canvas, CSS3 3D</p>
+        <p>Performance - Web Workers, NavigationTimingAPI</p>
+        <p>CSS3</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <aside class="note">
+          <section>
+            <ul>
+              <li>Parallel calls to server</li>
+              <li>HTTP 2 for web developers</li>
+              <li>Parsing order and single threaded nature</li>
+            </ul>
+          </section>
+        </aside>
+        <h2>Best practices</h2>
+      </hgroup>
+      <article class="build">
+        <ul class="build">
+          <li>Page load optimization - spriting, inlining, domain sharding, and concatenation</li>
+          <li>Async JavaScript loading - async, defer</li>
+          <li>Resource hints: Prefetch, precache, preconnect</li>
+          <li>HTTP/2 considerations - ship small, granular resources. Multiplexing &amp; header compression. <a href="https://blog.cloudflare.com/http-2-for-web-developers/">For developers</a></li>
+        </ul>
+        <p class="centered"><img src="images/resource-hints.jpg" style="max-height: 250px;" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CSS - let's add some style</h2>
+      </hgroup>
+      <article class="build">
+        <p>Gives you fine control over the formatting of contents</p>
+        <p>Provides layout for the documents</p>
+        <p>Not a programming language. Not a markup languge. Just a set of rules.</p>
+        <p>Works on a set of rules</p>
+        <ul class="build">
+          <li>Select elements you want to style</li>
+          <li>Set values for different properties</li>
+        </ul>
+        <p>color, background, font sizes and styles, position</p>
+        <p>CSS3 - Animation, transition, transformation and much more. <a href="http://deshack.varunkumar.me/">Demo</a></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CSS - Execution model</h2>
+      </hgroup>
+      <article class="build">
+        <p>Recalculation</p>
+        <p>Layout</p>
+        <p>Paint</p>
+        <p>Composition</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CSS - Execution model</h2>
+      </hgroup>
+      <article>
+        <img src="images/css-execution.png" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CSS - Execution model</h2>
+      </hgroup>
+      <article>
+        <img src="images/css-execution-1.png" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CSS - Box Model</h2>
+      </hgroup>
+      <article class="build">
+        <p>A box that wraps every HTML element</p>
+        <p class="centered topmargin"><img src="images/box-model.gif" /></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CSS - Layouts</h2>
+      </hgroup>
+      <article class="build">
+        <p>Flow layout</p>
+        <p>Table layout</p>
+        <p>display: none, block, inline</p>
+        <p>position: static, absolute, relative, fixed</p>
+        <p>float: left, right</p>
+        <p>And, the awesome <a href="http://www.html5rocks.com/en/tutorials/shapes/getting-started/">CSS Shapes</a> and <a href="http://www.html5rocks.com/en/tutorials/flexbox/quick/">Flex layout</a>&nbsp;
+          <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">Latest</a>
+        </p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CSS - Selectors</h2>
+      </hgroup>
+      <article class="build">
+        <p>.class, #id, *, element</p>
+        <p>element,element element element element&gt;element element+element</p>
+        <p>[attribute], [attribute=value], [attribute*=value], [attribute^=value], [attribute$=value]</p>
+        <p>Pseudo classes :hover, :visited, :active, :first-child, :nth-child(n)</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Best practices</h2>
+      </hgroup>
+      <article class="build">
+        <p>Avoid inline styling</p>
+        <p>Use classes appropriately</p>
+        <p>Be considerate about performance</p>
+        <p>Use inline and block styling effectively</p>
+        <p>Use shorthand for properties</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Adding behavior to web pages</h2>
+      </hgroup>
+      <article class="build">
+        <p>Java:JavaScript::Car:Carpet <label class="good"></label></p>
+        <p>Scripting language for adding behavior to web pages</p>
+        <ul class="build">
+          <li>Validate the data you enter in a form</li>
+          <li>Handle page events</li>
+          <li>Change contents on the page dynamically</li>
+          <li>Change styles on the fly</li>
+          <li>Animate page elements</li>
+          <li>And, a million other things</li>
+        </ul>
+        <p>Most modern JS apps work by finding a target element and add some actions to it.</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Overview</h2>
+      </hgroup>
+      <article class="build">
+        <p>Object Oriented dynamic typeless language</p>
+        <p>Syntax closer to Java and C</p>
+        <p>No classes. Class functionality is accomplished by object prototypes</p>
+        <p>Functions are objects and can be passed around like any other objects</p>
+        <p>Interpretted or compiled?</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Types</h2>
+      </hgroup>
+      <article class="build">
+        <p>Number - double precision 64 bit values. NaN, Infinity</p>
+        <p>String - <a href="http://www.reddit.com/r/javascript/comments/18rjb2/poll_which_quotation_marks_do_you_use_as_the_main/c8hfeth">Single quote vs double quote</a></p>
+        <p>Boolean</p>
+        <ul>
+          <li>false - false, 0, "", NaN, null and undefined</li>
+          <li>true - every other value</li>
+          <li>convert to boolean !!(expression)</li>
+        </ul>
+        <p>Symbol - No explicit object wrapper</p>
+        <p>Object - Function, Array, Date, RegExp</p>
+        <p>Null vs Undefined</p>
+        <p>Primitive Object Wrappers: String(), Number(), Symbol(). Use valueOf() to get primitive type</p>
+        <p>Host objects</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Types</h2>
+      </hgroup>
+      <article class="build">
+        <pre class="prettyprint" data-lang="js" style="line-height: 15px; font-size: 14px;">
+// Numbers
+typeof 37 === 'number';
+typeof 3.14 === 'number';
+typeof Infinity === 'number';
+typeof NaN === 'number'; // Despite being "Not-A-Number"
+typeof Number(1) === 'number'; // but never use this form!
+
+// Strings
+typeof '' === 'string';
+typeof 'bla' === 'string';
+typeof (typeof 1) === 'string'; // typeof always returns a string
+typeof String('abc') === 'string'; // but never use this form!
+
+// Booleans
+typeof true === 'boolean';
+typeof false === 'boolean';
+typeof Boolean(true) === 'boolean'; // but never use this form!
+
+// Symbols
+typeof Symbol() === 'symbol'
+typeof Symbol('foo') === 'symbol'
+typeof Symbol.iterator === 'symbol'
+
+// Undefined
+typeof undefined === 'undefined';
+typeof declaredButUndefinedVariable === 'undefined';
+typeof undeclaredVariable === 'undefined'; 
+
+// Objects
+typeof {a:1} === 'object';
+
+// use Array.isArray or Object.prototype.toString.call
+// to differentiate regular objects from arrays
+typeof [1, 2, 4] === 'object';
+
+typeof new Date() === 'object';
+
+// The following is confusing. Don't use!
+typeof new Boolean(true) === 'object'; 
+typeof new Number(1) === 'object'; 
+typeof new String('abc') === 'object';
+
+// Functions
+typeof function(){} === 'function';
+typeof class C {} === 'function';
+typeof Math.sin === 'function';
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Scope</h2>
+      </hgroup>
+      <article class="build">
+        <p>Global scope</p>
+        <p>Function scope</p>
+        <p>Block scope - let, const (Use babel)</p>
+        <pre class="prettyprint" data-lang="js">
+var messages = ['This', 'is', 'a', 'test'];
+
+for (var i = 0; i < messages.length; i++) {
+  setTimeout(function () {
+    console.log(messages[i]);
+  }, i * 1500); // Async call
+}
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Scope</h2>
+      </hgroup>
+      <article class="build">
+        <p>let vs var</p>
+        <ul class="build">
+          <li>let variables are block scoped</li>
+          <li>Global let variables are not properties on the global object</li>
+          <li>Loops create fresh bindings for iterator</li>
+          <li>ReferenceError on accessing before declaration</li>
+          <li>SyntaxError on redeclaring let variables</li>
+        </ul>
+        
+        <pre class="prettyprint" data-lang="js">
+const messages = ['This', 'is', 'a', 'test'];
+
+for (let i = 0; i < messages.length; i++) {
+  setTimeout(function () {
+    console.log(messages[i]);
+  }, i * 1500);
+}
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Hoisting</h2>
+      </hgroup>
+      <article class="build">
+        <pre class="prettyprint" data-lang="js" style="line-height: 20px;">
+          <b>doSomething(123);</b>
+          
+          function doSomething(arg1) {
+            console.log(arg1);
+          }
+
+          num = 6;
+          num + 7;
+          var num; 
+          /* gives no errors as long as num is declared*/
+
+          // Hoists only the declaration and not initialization
+          var x = 1; // Initialize x
+          console.log(x + ' ' + y);  //y is undefined
+          var y = 2;
+          //the above code and the below code are the same
+
+          var x = 1; // Initialize x
+          var y; // Initialize y
+          console.log(x + ' ' + y);  //y is undefined
+          y = 2; // Declare y
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Objects</h2>
+      </hgroup>
+      <article class="build">
+        <p>Name-value pairs</p>
+        <p>Creating an object: </p>
+        <pre class="prettyprint" data-lang="js">
+          var obj = new Object(); 
+          var obj = {}; // Called as an object literal
+        </pre>
+        <p>Accessing properties:</p>
+        <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+          obj.name = 'Varunkumar';
+          var name = obj.name;
+          obj['name'] = 'Varunkumar';
+          
+          var name = obj['name']; // obj[some_variable]
+          for (var key in obj) { 
+            var value = obj[k]; 
+          }
+          // Recommended way
+          var keys = Object.keys(obj);
+          for (var i = 0, len = keys.length; i < keys.length; i++) { 
+            var value = obj[keys[i]]; 
+          }
+      </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Arrays</h2>
+      </hgroup>
+      <article class="build">
+        <p>Special object with a magical length property</p>
+        <p>length is one more than the highest index (not necessarily the count)</p>
+        <pre class="prettyprint" data-lang="js">
+          var obj = new Array();
+          var obj = []; // Called as an object literal
+        </pre>
+        <p>Manipulate array:</p>
+        <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+          var a = [];
+          a.push(1);
+          var val = a.pop();
+          a.unshift(2);
+          var val = a.shift();
+          a.slice();
+          a.splice();
+          a.toString(); a.join(separator);
+          a.reverse(); 
+          a.concat(item1, [itemN]); a.sort(fn);
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Functions</h2>
+      </hgroup>
+      <article class="build">
+        <p>Unlike traditional languages, JS functions can be called with lesser or more number of args</p>
+        <pre class="prettyprint" data-lang="js">
+          function add(x, y) { 
+            var total = x + y; 
+            return total; 
+          } 
+          add(); // NaN; x & y are null
+          add(10, 13); // 23;
+          add(10, 13, 13); // 23; the last argument is ignored
+        </pre>
+        <p>Functions have access to an additional variable called <i>arguments</i></p>
+        <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+          function add() { 
+            var args = Array.prototype.slice.call(arguments);
+            return args.reduce(function(a, b) {
+              return a + b; 
+            });
+          }
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Functions</h2>
+      </hgroup>
+      <article class="build">
+        <p>Anonymous functions - aka callbacks</p>
+        <p>You can define a function within another function</p>
+        <p>Inner functions can access all the variables in the parent function's scope</p>
+        <p>This leads to the most powerful abstraction in JS - Closures</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Closures</h2>
+      </hgroup>
+      <article class="build">
+        <p>Closure is a combination of a function and the scope object in which it is created</p>
+        <pre class="prettyprint" data-lang="js">
+          function makeAdder(a) {
+            // returning an anonymous function
+            return function(b) {
+              return a + b;
+            };
+          }
+          
+          x = makeAdder(5); 
+          y = makeAdder(20); 
+          x(6); // returns 11
+          y(7); // returns 27
+        </pre>
+        <p>Did you notice that the state is being saved? Isn't that the basics of an object? <label class="good"></label></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - this</h2>
+      </hgroup>
+      <article class="build">
+        <p>this - the most confusing part of the language</p>
+        <pre class="prettyprint" data-lang="js">
+var x = 9; 
+var module = {
+  x: 81,
+  getX: function() { return this.x; }
+};
+
+module.getX();
+
+var retrieveX = module.getX;
+retrieveX();
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - this</h2>
+      </hgroup>
+      <article class="build">
+        <p>this - the most confusing part of the language</p>
+        <pre class="prettyprint" data-lang="js">
+this.x = 9;
+var retrieveX = function() { return this.x; }
+var module = {
+  x: 81,
+  getX: retrieveX
+};
+
+module.getX();
+retrieveX();
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - binding this</h2>
+      </hgroup>
+      <article class="build">
+        <p>apply vs call vs bind</p>
+        <pre class="prettyprint" data-lang="js">
+this.x = 9;
+var retrieveX = function() { return this.x; }
+var module = {
+  x: 81,
+  getX: retrieveX
+};
+module.getX();
+retrieveX();
+
+// Create a new function with 'this' bound to module
+var boundGetX = retrieveX.bind(module);
+boundGetX(); // 81
+
+retrieveX.apply(module, [element1, element2]);
+retrieveX.call(module, arg1, arg2);
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - ES6 features</h2>
+      </hgroup>
+      <article class="build">
+        <ul class="build">
+          <li>let &amp; const</li>
+          <li>Iterators &amp; for-of</li>
+          <li>Template literals</li>
+          <li>Default &amp; rest params</li>
+          <li>Arrow functions</li>
+          <li>Destructuring</li>
+          <li>Spread operator</li>
+          <li>Collections</li>
+          <li>Generators &amp; decorators (ES7)</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Iterators &amp; for-of</h2>
+      </hgroup>
+      <article class="build">
+        <p>Loop through all collections</p>
+        <pre class="prettyprint" data-lang="js">
+          const colors = ['red', 'blue', 'green'];
+          for (const color of colors) {
+            console.log(color);
+          }
+
+          const uniqueWords = new Set(words);
+
+          for (const [key, value] of phoneBookMap) {
+            console.log(key + "'s phone number is: " + value);
+          }
+
+          for (const char of 'India') {}
+
+          // Make any object iterable
+          myObject[Symbol.iterator]() 
+          => Needs to return an iterator object. .next() => {done: fale, value: 0}
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Template literals</h2>
+      </hgroup>
+      <article class="build">
+        <p>Interpolate expressions within strings</p>
+        <p>Support multilines</p>
+        <pre class="prettyprint" data-lang="js"  style="line-height: 15px;">
+          `Greetings ${user}!!
+          You have ${count} unread mails`
+        </pre>
+        <p>Not a replacement for template engines like Mustache - No looping, conditionals</p>
+        <p>Tagged template literals</p>
+        <pre class="prettyprint" data-lang="js" style="line-height: 15px;">
+var a = 5;
+var b = 10;
+
+function tag(strings, ...values) {
+  console.log(strings[0]); // "Hello "
+  console.log(strings[1]); // " world "
+  console.log(strings[2]); // ""
+  console.log(values[0]);  // 15
+  console.log(values[1]);  // 50
+
+  return "Bazinga!";
+}
+
+tag`Hello ${ a + b } world ${ a * b }`;
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Default &amp; rest params</h2>
+      </hgroup>
+      <article class="build">
+        <p>Default params</p>
+        <p>Default value expressions are evaluated at function call time</p>
+        <p>Default params cascade</p>
+        <pre class="prettyprint" data-lang="js">
+function setBackgroundColor(element, color = 'red') {
+  element.style.backgroundColor = color;
+}
+
+setBackgroundColor(someDiv);            // color set to 'red'
+setBackgroundColor(someDiv, undefined); // color set to 'red' too
+setBackgroundColor(someDiv, 'blue');    // color set to 'blue'
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Default &amp; rest params</h2>
+      </hgroup>
+      <article class="build">
+        <p>Rest params</p>
+        <p>No 'arguments' special object when rest / default params are used</p>
+        <pre class="prettyprint" data-lang="js">
+          function add(...args) { 
+            return args.reduce(function(a, b) {
+              return a + b; 
+            });
+          }
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Arrow function</h2>
+      </hgroup>
+      <article class="build">
+        <p>Short hand form of functions</p>
+        <pre class="prettyprint" data-lang="js">
+function add(...args) { 
+  return args.reduce((a, b) => a + b);
+}
+
+let add = (...args) => args.reduce((a, b) => a+b);
+
+let myFunc = (args) => { 
+  // do something
+}
+
+let myFunc = (args) => ({} // Object being returned)
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Arrow function</h2>
+      </hgroup>
+      <article class="build">
+        <p>No binding of this</p>
+        <pre class="prettyprint" data-lang="js">
+function Person() {
+  // The Person() constructor defines `this` as an instance of itself.
+  this.age = 0;
+
+  setInterval(function growUp() {
+    // In non-strict mode, the growUp() function defines `this` 
+    // as the global object, which is different from the `this`
+    // defined by the Person() constructor.
+    this.age++;
+  }, 1000);
+}
+var p = new Person();
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Arrow function</h2>
+      </hgroup>
+      <article class="build">
+        <pre class="prettyprint" data-lang="js">
+// ES5 solution
+function Person() {
+  var that = this;
+  that.age = 0;
+
+  setInterval(function growUp() {
+    // The callback refers to the `that` variable of which
+    // the value is the expected object.
+    that.age++;
+  }, 1000);
+}
+// Arrow fn
+function Person(){
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++; // |this| properly refers to the person object. Revisit confusing this
+  }, 1000);
+}
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Destructuring</h2>
+      </hgroup>
+      <article class="build">
+        <p>Assign properties of an array or object to variables</p>
+        <pre class="prettyprint" data-lang="js">
+var first = someArray[0];
+var second = someArray[1];
+var third = someArray[2];
+
+var [first, second, third] = someArray; // concise and readable -- really??
+var [foo, [[bar], baz]] = [1, [[2], 3]]; // Nesting is allowed
+var [,,third] = ["foo", "bar", "baz"]; // Skip element
+var [head, ...tail] = [1, 2, 3, 4]; // use rest pattern
+var [missing] = []; // out of bounds access
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Destructuring</h2>
+      </hgroup>
+      <article class="build">
+        <p>Destructuring objects. Useful for function params extraction.</p>
+        <pre class="prettyprint" data-lang="js" style="line-height: 20px;">
+var foo = obj.foo;
+var bar = obj.bar;
+
+var { foo: fooVar, bar: barVar} = { foo: "lorem", bar: "ipsum" };
+var { foo, bar } = { foo: "lorem", bar: "ipsum" }; 
+// shorthand when properties and variable names are the same
+
+var complicatedObj = {
+  arrayProp: [
+    'abc',
+    { second: 'asdf' }
+  ]
+};
+var { arrayProp: [first, { second }] } = complicatedObj;
+
+var { missing } = {}; // undefined
+<b>{ blowUp } = { blowUp: 10 }; // assignment without declaration -- SyntaxError
+({ safe } = { safe: 10}); // wrap in paranthesis</b>
+
+var [missing = true] = []; // default params
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Spread operator</h2>
+      </hgroup>
+      <article class="build">
+        <p>Expand expressions to multiple args, variables, assignments</p>
+        <pre class="prettyprint" data-lang="js">
+interableObj = [1, 2, 3];
+myFunction(...iterableObj); // calls myFunc with multiple params 
+[...iterableObj, 4, 5, 6];
+
+myFunction.apply(null, args); -> myFunction(...args); // Apply can be replaced with spread
+let arr1 = [1, 2, 3], arr2 = ['a', 'b'];
+arr3 = [...arr1, ...arr2]; // concatenation
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Collections</h2>
+      </hgroup>
+      <article class="build">
+        <p>Set, Map - Many helper methods</p>
+        <pre class="prettyprint" data-lang="js">
+arrayOfWords.indexOf('searchword') !== -1  // slow
+setOfWords.has('searchWord')               // fast
+
+setOfWords[15000]   // sets don't support indexing
+
+var urls = new Set;
+urls.add(new URL(location.href));  // two URL objects.
+urls.add(new URL(location.href));  
+alert(urls.size);  // ??
+        </pre>
+        <p>Hash tables without hash codes</p>
+        <p>Deterministic order of retrieval</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Collections</h2>
+      </hgroup>
+      <article class="build">
+        <p>WeakMap, WeakSet - Restrictions</p>
+        <ul class='build'>
+          <li>WeakMap supports only new, .has(), .get(), .set(), and .delete()</li>
+          <li>WeakSet supports only new, .has(), .add(), and .delete()</li>
+          <li>Values stored must be objects</li>
+          <li>Not iterable</li>
+          <li>GC can decide when to clean up references in the collection</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Generator</h2>
+      </hgroup>
+      <article class="build">
+        <p>Generator object confirms to both iterable and iterator protocols</p>
+        <pre class="prettyprint" data-lang="js">
+function* idMaker() {
+  var index = 0;
+  while(true) {
+    yield index++;
+  }
+}
+
+var gen = idMaker(); // "Generator { }"
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Decorator</h2>
+      </hgroup>
+      <article class="build">
+        <p>Decorator (ES7 aka ES2016) is a function that takes another func extending the behavior of latter without modifying it</p>
+        <p>Applied using '@'</p>
+        <p>Applied for properties and classes</p>
+        <pre class="prettyprint" data-lang="js">
+class A {
+  @readonly
+  someFunc() {}
+}
+
+readonly = (target, key, descriptor) => { // do something with descriptor }
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Transpiling</h2>
+      </hgroup>
+      <article class="build">
+        <p>Use next JavaScript, today</p>
+        <p>Same as polyfill?</p>
+        <p>Traceur, Babel and others</p>
+        <pre class="prettyprint" data-lang="js">
+[1,2,3].map(n => n + 1);
+[1,2,3].map(function(n) {
+  return n + 1;
+});
+
+String.padStart -> will be polyfilled
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Babel</h2>
+      </hgroup>
+      <article class="build">
+        <p>AST level transformation</p>
+        <p>Dynamically in the browser</p>
+        <p>Transpile as part of build process</p>
+        <p>Vast ecosystem with plenty of plugins</p>
+        <p>Side effects</p>
+        <ul class='build'>
+          <li>Generated code</li>
+          <li>Debugging with sourcemap is difficult</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - DOM Manipulation</h2>
+      </hgroup>
+      <article class="build">
+        <p>document.getElementById, document.querySelector()</p>
+        <p>createElement(), getAttribute(), setAttribute()</p>
+        <p>appendChild(), innerHTML, removeChild(), replaceChild()</p>
+        <p>Event handling - onclick, onload, onchange</p>
+        <pre class="prettyprint" data-lang="js">
+document.getElementById('myBtn').onclick=function(){displayDate()};
+document.getElementById('myBtn')
+  .addEventListenter('click', e => {}, {once: true, capture: true, passive: true});
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Strict mode</h2>
+      </hgroup>
+      <article class="build">
+        <p>Enabling strict mode: whole script, function</p>
+        <p>Converts mistakes into errors, Simplify variable use cases
+          <ul class="build">
+            <li>Undeclared variables</li>
+            <li>Make assignments to non-writable properties</li>
+            <li>Delete undeletable properties</li>
+            <li>Duplicate names in object literal</li>
+            <li>Duplicate parameter names</li>
+            <li>Prohibits 'with'</li>
+          </ul>
+        </p>
+        <p>More details <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">here</a></p>
+        <p>Minification and strict mode</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript patterns</h2>
+      </hgroup>
+      <article class="build">
+        <p>IIFE - Powerful pattern</p>
+        <p>Prevents leakage of variables</p>
+        <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+          (function() { })();
+        </pre>
+        <p>Module pattern - IIFE which returns an object</p>
+        <p>Singleton, Observer, Pub/sub, factory</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Basic class</h2>
+      </hgroup>
+      <article class="build">
+        <p>JS is a prototype-based language without class statement</p>
+        <p>JS uses functions as classes</p>
+        <p>Always use Capitalized names to differentiate class names and normal functions</p>
+        <p>Class is made up of two parts in JavaScript:</p>
+        <ul>
+          <li>constructor - This function contains all the logic to create an instance of the "class", i.e. instance specific
+            code.
+          </li>
+          <li>prototype - This is the object the instance inherits from. It contains all methods (and other properties) that
+            should be shared among all instances.</li>
+        </ul>
+        <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+          var Animal = function(name) { this.name = name; } 
+          Animal.prototype = {print: function() { console.log(this.name); } }
+
+          var Dog = function() { return Animal.call(this, 'Dog'); }
+          Dog.prototype = Object.create(Animal.prototype);
+          Dog.prototype.constructor = Dog; 
+          Dog.prototype.bark = function() { console.log('bark'); }
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - ES6 class</h2>
+      </hgroup>
+      <article class="build">
+        <p>Syntatic sugar over prototype classes</p>
+        <p>Can use as class expression as well</p>
+        <p>Class definitions are always executed in strict mode</p>
+        <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+class Animal {
+  constructor() { this.name = name; }
+
+  print() {
+    console.log(this.name);
+  }
+
+  static whoAmI() {
+    console.log('This is inside Animal class');
+  }
+}
+class Dog extends Animal {
+  constructor() {
+    super();
+  }
+  print() {
+    super.print();
+    console.log('Printing from dog class');
+  }
+  bark() {}
+}
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Objects &amp; Properties</h2>
+      </hgroup>
+      <article class="build">
+        <p>Object.preventExtensions()</p>
+        <p>Object.isExtensible()</p>
+        <p>Property
+          <ul>
+            <li>Data: value, get, set</li>
+            <li>Descriptor: writable, enumerable, configurable</li>
+          </ul>
+        </p>
+        <p>Object.getOwnPropertyDescriptor()</p>
+        <p>Object.defineProperty(), Object.defineProperties()</p>
+        <p>Object.keys(), Object.getOwnPropertyNames()</p>
+        <p>Object.seal(), Object.isSealed()</p>
+        <p>Object.freeze(), Object.isFrozen()</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - ES6 modules</h2>
+      </hgroup>
+      <article class="build">
+        <p>CommonJS module - mostly for node.js</p>
+        <pre class="prettyprint" data-lang="js">
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - ES6 modules</h2>
+      </hgroup>
+      <article class="build">
+        <p>AMD modules - mostly for browser usage</p>
+        <pre class="prettyprint" data-lang="js">
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - ES6 modules</h2>
+      </hgroup>
+      <article class="build">
+        <p>Has goodies of both CommonJS + AMD. <a href="http://www.2ality.com/2014/09/es6-modules-final.html">Blog</a></p>
+        <p>Named exports</p>
+        <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+//------ lib.js ------
+export const sqrt = Math.sqrt;
+export function square(x) {
+  return x * x;
+}
+export function diag(x, y) {
+  return sqrt(square(x) + square(y));
+}
+
+//------ main.js ------
+import { square, diag } from 'lib';
+console.log(square(11)); // 121
+console.log(diag(4, 3)); // 5
+
+//------ main.js ------
+import * as lib from 'lib';
+console.log(lib.square(11)); // 121
+console.log(lib.diag(4, 3)); // 5
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - ES6 modules</h2>
+      </hgroup>
+      <article class="build">
+        <p>Default exports</p>
+        <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+//------ MyClass.js ------
+export default class { ... };
+
+//------ main2.js ------
+import MyClass from 'MyClass';
+let inst = new MyClass();
+
+import { default as someVar} from 'MyClass'; // same as above
+
+const D = 123;
+export { D as default };
+export { D as someName };
+
+// Reexporting
+export * from 'src/other_module';
+export { foo, bar } from 'src/other_module';
+// Export other_module’s foo as myFoo
+export { foo as myFoo, bar } from 'src/other_module';
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - ES6 modules</h2>
+      </hgroup>
+      <article class="build">
+        <p>Import options</p>
+        <pre class="prettyprint" data-lang="js">
+// Default exports and named exports
+import theDefault, { named1, named2 } from 'src/mylib';
+import theDefault from 'src/mylib';
+import { named1, named2 } from 'src/mylib';
+
+// Renaming: import named1 as myNamed1
+import { named1 as myNamed1, named2 } from 'src/mylib';
+
+// Importing the module as an object
+// (with one property per named export)
+import * as mylib from 'src/mylib';
+
+// Only load the module, don’t import anything
+import 'src/mylib';
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Callback hell</h2>
+      </hgroup>
+      <article class="build">
+        <p>Callbacks lead to Spaghetti code</p>
+        <p>How to fix?</p>
+        <ul class="build">
+          <li>Name your functions</li>
+          <li>Keep your code shallow</li>
+          <li>Modularize</li>
+        </ul>
+        <p>ES6 solutions</p>
+        <ul class="build">
+          <li>Promises</li>
+          <li>Async / await (ES7)</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Callback hell</h2>
+      </hgroup>
+      <article class="build">
+        <p>Promises - state object for async operations</p>
+        <p>State: fullfilled (resolved), rejected, pending, settled (fullfilled / rejected)</p>
+        <pre class="prettyprint" data-lang="js">
+var promise = new Promise(function(resolve, reject) {
+  // do a thing, possibly async, then…
+
+  if (/* everything turned out fine */) {
+    resolve('Stuff worked!');
+  } else {
+    reject(new Error('It broke'));
+  }
+});
+promise.then(function(result) {
+  console.log(result); // "Stuff worked!"
+}, function(err) {
+  console.log(err); // Error: "It broke"
+});
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>JavaScript - Callback hell</h2>
+      </hgroup>
+      <article class="build">
+        <p>Async / await</p>
+        <p>Write promise-based code as if it were synchronous (still being non-blocking)</p>
+        <pre class="prettyprint" data-lang="js">
+async function myFirstAsyncFunction() {
+  try {
+    const fulfilledValue = await promise;
+  }
+  catch (rejectedValue) {
+    // …
+  }
+}
+        </pre>
+        <p>Async functions always return promise (fullfilled by return value; reject on error)</p>
+        <p>async can be used with arrow functions, class methods, etc.</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CORS</h2>
+      </hgroup>
+      <article class="build">
+        <p>Same origin policy - JSONP, crossdomain.xml in flash</p>
+        <p>Cross-Origin Resource Sharing - <a href="https://blog.varunkumar.me/2014/08/cross-origin-resource-sharing.html">Blog</a></p>
+        <p>Not to be confused as an auth layer</p>
+        <p>Preflight</p>
+        <ul>
+          <li>Browser decides when to send</li>
+          <li>Use HTTP OPTIONS verb</li>
+          <li>Preflight request is internal to browser. No trace on devtools</li>
+          <li>Preflight request has to be unauthenticated</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CORS</h2>
+      </hgroup>
+      <article class="build">
+        <p>Headers: Access-Control-Request-Method, Access-Control-Request-Headers, Origin, Access-Control-Allow-Origin, Access-Control-Allow-Method, Access-Control-Allow-Headers</p>
+        <img src="https://1.bp.blogspot.com/-FKxLKG6LuUo/U_98iy-WOaI/AAAAAAAAz1k/HTTE7iJNaEA/s1600/cors_flow.png" alt="">
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>CORS</h2>
+      </hgroup>
+      <article class="build">
+        <p>Enabling CORS on the server - Read CORS request, respond CORS response based on headers</p>
+        <p>Filters available for Java</p>
+        <p>CORS are enabled by default in XmlHTTPRequest</p>
+        <p>Use .withCredentials property to instruct browser to send Authorization header</p>
+        <p>CORS for images? - crossOrigin attribute</p>
+        <p>CORS for static script? - Gives DOM access, better error handling support with window.onerror</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>UI development - What's missing?</h2>
+      </hgroup>
+      <article class="build">
+        <p>The fundamental problem is the lack of DOM encapsulation which could lead to</p>     
+        <ul class="build">
+          <li>Collision of DOM contents (ID collision)</li>
+          <li>Broken styles</li>
+          <li>Unexpected JavaScript behavior</li>
+        </ul>
+        <p>Libraries work around these problems by following certain assumptions and conventions</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Modularize the Web</h2>
+      </hgroup>
+      <article>
+        <p>MV* frameworks help us to some extent</p>
+        <ul class="build">
+          <li>Organize the complexity</li>
+          <li>Separate contents from the presentation layer</li>
+          <li>Define Templates / views</li>
+          <li>Associate a model with the view</li>
+          <li>Monitor the model for changes and update the view (Data binding)</li>
+          <li>Does it solve all the problems? Lets see.</li>
+        </ul>
+        <p class="centered topmargin"><img src="images/logos/backbone.png" style="width: 150px"/><img src="images/logos/angular.png" style="width: 150px"/></p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2><img src="images/icons/calendar.png"> The templates of today</h2>
+      </hgroup>
+      <article >
+        <p><em>Method #1</em>: "offscreen" DOM using <code>[hidden]</code> or <code>display:none</code></p>
+        <pre class="prettyprint" data-lang="html">
+&lt;div id="mytemplate" <b>hidden</b>>
+  &lt;img src="logo.png">
+  &lt;div class="comment">&lt;/div>
+&lt;/div>
+        </pre>
+        <ol class="build">
+          <li><label class="good"></label> We're working directly w/ DOM. </li>
+          <li><label class="bad"></label> Resources are still loaded (e.g. that <code>&lt;img&gt;</code>)</li>
+          <li><label class="bad"></label> Other side-effects like URLs not being fully composed yet.</li>
+          <li><label class="bad"></label> Style and theming is painful.
+            <ul class="build">
+              <li>embedding page must scope all its CSS to <code>#mytemplate</code>.</li>
+              <li>no guarantees on future naming collisions.</li>
+            </ul>
+          </li>
+        </ol>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2><img src="images/icons/calendar.png" alt="Today" title="Today"> The templates of today</h2>
+      </hgroup>
+      <article ><p><em>Method #2</em>: manipulating markup as string. Overload <code>&lt;script&gt;</code>:</p>
+      <pre class="prettyprint" data-lang="js">
+&lt;script id="mytemplate" <b>type="text/x-handlebars-template"</b>>
+  &lt;img src="logo.png">
+  &lt;div class="comment">&lt;/div>
+&lt;/script>
+      </pre>
+      <ol>
+      <li><label class="bad"></label> encourages run-time string parsing (via <code>.innerHTML</code>)
+        <ul>
+          <li>may include user-supplied data &rarr; XSS attacks.</li>
+        </ul>
+      </li>
+      </ol>
+      <p class="topmargin"></p>
+      <p>Examples: <a href="http://handlebarsjs.com/">handlebars.js</a>, John Resig's <a href="http://ejohn.org/blog/javascript-micro-templating/">micro-template script</a></p>
+    </article>
+  </slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>What do we have in JS space?</h2>
+    </hgroup>
+    <article>
+<ul class="build">
+<li>JavaScript Object constructor and Module patterns <label class="good"></label></li>
+<li>Listening to changes
+  <ul>
+    <li>Model - via Wrapper object. Dirty check <label class="bad"></label></li>
+    <li>View  - via event handlers, DOM Mutation events - Not efficient</li>
+  </ul>
+</li>
+</ul>
+</article>
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>UI Encapsulation</h2>
+    </hgroup>
+    <article ><div class="build">
+
+<p><label class="good"></label> Fundamental foundation of OOP</p>
+
+<p><label class="good"></label> Separates code <em>you</em> wrote from the code that will <em>consume</em> it</p>
+
+<p><label class="bad"></label> We don't have it on the web!</p>
+
+<p><label class="sortof"></label> Well, sort of:</p>
+
+<h2 class="centered"><code>&lt;iframe&gt;</code></h2>
+
+<p class="topmargin"><label class="bad"></label> <code>&lt;iframe&gt;</code> are heavy and restrictive. ★  <a href="http://benvinegar.github.com/seamless-talk">Seamless iframe</a></p>
+
+</div></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Web components</h2></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Defining Web Components</h2>
+      <h3>key players</h3>
+    </hgroup>
+    <article ><ul class="build">
+<li><code>&lt;template&gt;</code><ul class="build">
+<li>inert chunks of clonable DOM. Can be activated for later use</li>
+</ul>
+</li>
+<li>Custom elements<ul class="build">
+<li>create new HTML elements - expand HTML's existing vocabulary.</li>
+<li>extend existing DOM objects with new imperative APIs</li>
+</ul>
+</li>
+<li>Shadow DOM<ul class="build">
+<li>building blocks for encapsulation &amp; boundaries inside of DOM</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Defining Web Components</h2>
+      <h3>supporting cast</h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>Style encapsulation</li>
+<li>Knowledge into app's state<ul class="build">
+<li>DOM changes: <code>MutationObserver</code></li>
+<li>Model changes: <code>Object.observe() (Deprecated now), Proxy</code></li>
+</ul>
+</li>
+<li>CSS variables, <code>calc()</code></li>
+</ul>
+<p class="centered topmargin build">
+  <span><em>A collection of new capabilities on the browser</em></span>
+</p></article>
+ 
+</slide>
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Web components - Templates</h2></article>
+ 
+</slide>
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/templates/index.html" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2><img src="images/icons/clock.png" alt="Tomorrow" title="Tomorrow"> Templates</h2>
+      <h3><code>&lt;template&gt;</code></h3>
+    </hgroup>
+    <article ><p>Contains inert markup intended to be used later:</p>
+<pre class="prettyprint" data-lang="html">
+&lt;template id="mytemplate">
+  &lt;img src="">
+  &lt;div class="comment">&lt;/div>
+&lt;/template>
+</pre>
+
+<ol>
+<li><label class="good"></label> We're working directly w/ DOM again. </li>
+<li><label class="good"></label> Parsed, not rendered<ul>
+<li><code>&lt;script&gt;</code>s don't run, images aren't loaded, media doesn't play, etc.</li>
+</ul>
+</li>
+</ol></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2><img src="images/icons/clock.png"> Templates</h2>
+    </hgroup>
+    <article ><ul>
+<li>Appending inert DOM to a node makes it go "live":</li>
+</ul>
+<pre class="prettyprint" data-lang="js">
+var t = document.querySelector('#mytemplate');
+t.content.querySelector('img').src = 'http://...';
+document.body.appendChild(<b>t.content.cloneNode(true)</b>);
+</pre>
+
+</article>
+ 
+</slide>
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Web components - Shadow DOM</h2></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Shadow DOM</h2>
+    </hgroup>
+    <article ><p>Is complex! Let's cover the basics:</p>
+<ul>
+<li>Concept of Shadow DOM</li>
+<li>Creating Shadow DOM</li>
+<li>Insertion Points</li>
+<li>Styling<ul>
+<li>encapsulated styles &amp; shadow boundaries</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Turns out...</h2>
+    </hgroup>
+    <article ><ul class="build">
+<li>DOM nodes can already "host" hidden DOM.</li>
+<li>It can't be accessed traversing the DOM.</li>
+</ul>
+<div class="build shadowvideo">
+<video controls height="300" src="http://www.ioncannon.net/examples/vp8-webm/big_buck_bunny_480p.webm"></video>
+<p style="float:left;margin-left: 1em;">
+<input type="date" style="zoom:2"><br>
+<input type="time" style="zoom:2">
+</p>
+</div>
+
+<p class="centered build" style="font-size:40px;"><span>So...browser vendor's have been holding out on us!</span></p></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter centered defintion"><h2 class="auto-fadein">Shadow DOM</h2>
+
+<h3 class="auto-fadein">exposes the same internals browser
+vendors have been using to implement their native controls, to us</h3></article>
+ 
+</slide>
+
+<slide id="shadow-dom-host"  >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Attaching Shadow DOM to a host</h2>
+    </hgroup>
+    <article class="flexbox vcenter centered"><p><img src="images/shadow/shadow-trees.svg" style="height: 100%;"></p></article>
+ 
+</slide>
+
+<slide id="shadow-dom-render"  >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Shadow tree is rendered instead</h2>
+    </hgroup>
+    <article class="flexbox vcenter centered"><p><img src="images/shadow/shadow-rendering.svg" style="height:100%;"></p>
+<div class="devtools" title="click me" alt="click me"></div></article>
+ 
+</slide>
+
+<slide id="shadow-dom-creating"  >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#extensions-to-element" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Creating Shadow DOM</h2>
+    </hgroup>
+    <article ><aside class="note">
+  <section>
+    <img src="images/shadow/shadow-rendering.svg" style="width: 100%;">
+  </section>
+</aside>
+
+<pre class="prettyprint" data-lang="html">
+&lt;div id="host">
+  &lt;h1>Varunkumar Nagarajan&lt;/h1>
+  &lt;h2>Hyderabad, India&lt;/h2>
+  &lt;div>...other content...&lt;/div>
+&lt;/div>
+</pre>
+
+<pre class="prettyprint" data-lang="js">
+var host = document.querySelector('#host');
+<b>var shadow = host.<a data-tooltip-property="createShadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js>createShadowRoot</a>();</b>
+<b>shadow.innerHTML = '&lt;h2>Yo, you just got replaced!&lt;/h2>' +
+                   '&lt;div>Who? Varunkumar (@varunkumar)&lt;/div>';</b>
+// <b>host.<a data-tooltip-property="shadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js data-tooltip-js-property>shadowRoot</a>;</b>
+</pre>
+
+<div class="host">
+  <h1>Varunkumar Nagarajan</h1>
+  <h2>Hyderabad, India</h2>
+  <div>...other content...</div>
+</div>
+
+<script>
+(function() {
+var shadow = document.querySelector('#shadow-dom-creating .host').createShadowRoot();
+shadow.innerHTML = '<h2>Yo, you just got replaced!</h2>' +
+                   '<div>Who? Varunkumar (@varunkumar)</div>';
+})();
+</script></article>
+ 
+</slide>
+
+<slide id="shadow-dom-style-encapsulation"  >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Style encapsulation</h2>
+    </hgroup>
+    <article ><aside class="note">
+  <section>
+    <img src="images/shadow/shadow-rendering.svg" style="width: 100%;">
+  </section>
+</aside>
+
+<p><code>&lt;style&gt;</code>s defined in <code>ShadowRoot</code> are scoped.</p>
+<pre class="prettyprint" data-lang="js">
+var shadow = document.querySelector('#host').<a data-tooltip-property="createShadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js>createShadowRoot</a>();
+shadow.innerHTML = '<b>&lt;style>h2 { color: red; }&lt;/style></b>' + 
+                   '&lt;h2>Yo, you got replaced!&lt;/h2>' + 
+                   '&lt;div>Who? Varunkumar (@varunkumar)&lt;/div>';
+</pre>
+
+<div class="host">
+  <h1>Varunkumar Nagarajan</h1>
+  <h2>Hyderabad, India</h2>
+  <div>...other content...</div>
+</div>
+
+<script>
+(function() {
+var shadow = document.querySelector('#shadow-dom-style-encapsulation .host').createShadowRoot();
+shadow.innerHTML = '<style>h2 { color: red;}</style>' + 
+                   '<h2>Yo, you got replaced!</h2>' + 
+                   '<div>Who? Varunkumar (@varunkumar)</div>';
+
+})();
+</script><br/><p class="smaller">Author's styles don't cross shadow boundary by default.</p><p class="smaller">Change the behavior via properties <code>resetStyleInheritance</code> and <code>applyAuthorStyles</code></p></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Remember our host node</h2>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="html">
+&lt;div id="host">
+  &lt;h1>Varunkumar Nagarajan&lt;/h1>
+  &lt;h2>Hyderabad, India&lt;/h2>
+  &lt;div>...other content...&lt;/div>
+&lt;/div>
+</pre>
+
+<p>that guy rendered as:</p>
+<pre class="prettyprint" data-lang="html">
+&lt;div id="host">
+  <span style="opacity:0.5">#shadow-root</span>
+    &lt;style>h2 {color: red;}&lt;/style>
+    &lt;h2>Yo, you got replaced!&lt;/h2>
+    &lt;div>Who? Varunkumar (@varunkumar)&lt;/div>
+&lt;/div>
+</pre>
+
+<p>...everything was replaced when we attached the shadow DOM <label class="bad"></label></p></article>
+ 
+</slide>
+
+<slide id="insertion-points2"  >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Shadow DOM insertion points</h2>
+      <h3>funnels for host's children</h3>
+    </hgroup>
+    <article class="flexbox vcenter centered build"><div class="auto-fadein"></div></article>
+ 
+</slide>
+
+<slide id="shadow-dom-insertion-pts-example"  >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Shadow DOM insertion points</h2>
+      <h3>funnels for host's children</h3>
+    </hgroup>
+    <article class="smaller"><ul>
+<li><code>&lt;content&gt;</code> elements are insertion points.</li>
+<li><code>select</code> attribute uses CSS selectors to specify where children are funneled.</li>
+</ul>
+<div class="columns-2">
+<pre class="prettyprint" data-lang="host">
+&lt;div id="host"&gt;
+  &lt;firstName&gt;Varunkumar&lt;/firstName&gt;
+  &lt;lastName&gt;Nagarajan&lt;/lastName&gt;
+  &lt;city&gt;Hyderabad, India&lt;/city&gt;
+  &lt;div&gt;...other content...&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<pre class="prettyprint" data-lang="Shadow DOM" style="-webkit-column-break-before: always;">
+&lt;style>
+  h2 {color: red;}
+&lt;/style>
+&lt;hgroup>
+  <b>&lt;h2&gt;&lt;content select="firstName">&lt;/content&gt; 
+    (@varunkumar)&lt;/h2&gt;</b>
+  <b>&lt;content select="city">&lt;/content&gt;</b>
+&lt;/hgroup>
+<b>&lt;content select="*">&lt;/content&gt;</b>
+</pre>
+</div>
+
+<div class="host">
+  <firstName>Varunkumar</firstName>
+  <lastName>Nagarajan</lastName>
+  <city>Hyderabad, India</city>
+  <div>...other content...</div>
+</div>
+<br/>
+
+<script>
+(function() {
+var shadow = document.querySelector('#shadow-dom-insertion-pts-example .host').createShadowRoot();
+shadow.innerHTML = '<style>\
+h2 { color: red;}\
+</style>\
+<hgroup>\
+  <h2><content select="firstName"></content> (@varunkumar)</h2>\
+  <content select="city"></content>\
+</hgroup>\
+<content select="*"></content>';
+})();
+</script></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter centered"><h2 class="auto-fadein">Web components - Observers</h2></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://www.w3.org/TR/domcore/#mutation-observers" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Mutation Observers</h2>
+      <h3>watch for changes in the DOM</h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>Defined in <a href="http://www.w3.org/TR/domcore/#mutation-observers">DOM4</a> ( Yep. We're on DOM4! )</li>
+<li>Observers, not listeners<ul class="build">
+<li>triggered by DOM changes rather than events (e.g. <code>oninput</code>, <code>click</code>)</li>
+</ul>
+</li>
+<li>Callback triggered at the end of DOM modifications.<ul class="build">
+<li>provided a list of all changes (<code>MutationRecord</code>s)</li>
+</ul>
+</li>
+<li>Replacement for <code>MutationEvent</code> performance / stability bottlenecks.</li>
+<li>Availability: Chrome, Safari, FF</li>
+</ul></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Example</h2>
+      <h3>observe child node insertion/deletions</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="js">
+var observer = new <b><a data-tooltip-property="MutationObserver" data-tooltip-support='["unprefixed", "webkit"]' data-tooltip-js>MutationObserver</a></b>(function(mutations, observer) {
+  mutations.forEach(function(record) {
+    for (var i = 0, node; node = <b>record.addedNodes</b>[i]; i++) {
+      console.log(node);
+    }
+  });
+});
+
+<b>observer.observe(el, {</b>
+  <b>childList: true,</b>      // include childNode insertion/removals
+  //subtree: true,        // observe the subtree root at el
+  //characterData: true, // include textContent changes
+  //attribute: true      // include changes to attributes within the subtree
+<b>});</b>
+
+// observer.disconnect() // Stop observations
+</pre></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Mutation Observers vs. Mutation Events</h2>
+    </hgroup>
+    <article ><p><strong><code>MutationEvent</code></strong></p>
+<ul class="build">
+<li>Deprecated in <a href="http://www.w3.org/TR/DOM-Level-3-Events/#events-mutationevents">DOM Events spec</a></li>
+<li>Adding listeners <a href="http://www.oxymoronical.com/blog/2008/10/How-extensions-can-slow-down-Firefox-my-dirty-little-secret">degrades app performance</a> by 1.5-7x!<ul class="build">
+<li>slow because of event propagation and synchronous nature</li>
+<li>fire too often: every single change</li>
+<li>removing listener(s) doesn't reverse the damage</li>
+</ul>
+</li>
+<li><a href="http://help.dottoro.com/ljfvvdnm.php#additionalEvents">Inconsistencies</a> with browser implementations.</li>
+</ul>
+<p class="red centered build topmargin" style="font-size:50px;"><span>Don't use Mutation Events!</span></p></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Comparison Example</h2>
+    </hgroup>
+    <article class="smaller"><pre class="prettyprint" data-lang="js">
+// MutationEvent
+document.addEventListener('DOMNodeInserted', function(e) {
+  console.log(e.target);
+}, false);
+</pre>
+
+<pre class="prettyprint" data-lang="js">
+// MutationObserver
+var observer = new <a data-tooltip-property="MutationObserver" data-tooltip-support='["unprefixed", "webkit"]' data-tooltip-js>MutationObserver</a>(function(mutations, observer) {
+  mutations.forEach(function(record) {
+    for (var i = 0, node; node = <b>record.addedNodes</b>[i]; i++) {
+      console.log(node);
+    }
+  });
+}).observe(document, {childList: true});
+</pre>
+
+<p class="centered topmargin">
+</p></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Mutation Observers vs. Mutation Events</h2>
+    </hgroup>
+    <article class="smaller" style="font-size: 70%">
+      Rotations: <input id="moveCount" type="number" value="1000">
+
+  <select id="watchType" onchange="setupWatch();">
+    <option value="event">DOM Mutation Events</option>
+    <option value="observer">DOM Mutation Observers</option>
+    <option value="summary">The Mutation Summary Library</option>
+  </select>
+  <button onclick="shuffle();">Rotate!</button>
+
+  <ol id="deck"><li>Parthiv Patel</li><li>R Ashwin</li><li>Umesh Yadav</li><li>Jayant Yadav</li><li>Ravindra Jadeja</li><li>Virat Kohli</li><li>Mohd Shami</li><li>Ajinkya Rahane</li><li>Cheteswar Pujara</li><li>Murali Vijay</li><li>Karun Nair</li></ol>
+
+  <h3 id="report"></h3>
+  <script>
+    var changeCount;
+var callbacks;
+var watchType;
+var observer;
+var observerSummary;
+
+function shuffle() {
+  prepReport();
+
+  var deck = document.getElementById('deck');
+  var moveCount = Number(document.getElementById('moveCount').value);
+  while(moveCount-- > 0) {
+    var randomCard = deck.childNodes[randInt(0, deck.childNodes.length - 1)];
+    deck.removeChild(randomCard);
+    var randomPlace = deck.firstChild;
+    var randomCount = randInt(0, deck.childNodes.length - 1);
+    while(randomCount-- > 0) {
+      randomPlace = randomPlace.nextSibling;
+    }
+    deck.insertBefore(randomCard, randomPlace);
+  }
+
+  setTimeout(report, 0);
+}
+
+function mutationEventIsFiring(e) {
+  callbacks++;
+  changeCount++;
+}
+
+function observeMutations(mutations) {
+  callbacks++;
+  changeCount += mutations.length;
+}
+
+function handleSummary(summaries) {
+  callbacks++;
+  var shuffleChanges = summaries[0];
+  changeCount += shuffleChanges.reordered.length;
+}
+
+function randInt(start, end) {
+  return Math.round(Math.random() * (end-start) + start);
+}
+
+function prepReport() {
+  document.getElementById('report').innerText = '';
+  changeCount = 0;
+  callbacks = 0;
+}
+
+function setupWatch() {
+  var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
+  switch(watchType) {
+    case 'event':
+      document.removeEventListener('DOMNodeInserted', mutationEventIsFiring);
+      document.removeEventListener('DOMNodeRemoved', mutationEventIsFiring);
+      break;
+    case 'observer':
+      observer.disconnect();
+      break;
+    case 'summary':
+      observerSummary.disconnect();
+      break;
+  }
+
+  watchType = document.getElementById('watchType').value;
+
+  switch(watchType) {
+    case 'event':
+      document.addEventListener('DOMNodeInserted', mutationEventIsFiring);
+      document.addEventListener('DOMNodeRemoved', mutationEventIsFiring);
+      window.report = function() {
+        document.getElementById('report').textContent = changeCount + ' events fired';
+      }
+      break;
+    case 'observer':
+      observer = new MutationObserver(observeMutations);
+      observer.observe(document, { childList: true, subtree: true});
+      window.report = function() {
+        document.getElementById('report').textContent = changeCount + ' mutations reported in ' + callbacks + ' callbacks';
+      }
+      break;
+    case 'summary':
+      observerSummary = new MutationSummary({ callback: handleSummary, queries: [{ all: true }]});
+      window.report = function() {
+        document.getElementById('report').textContent = changeCount + ' reorders reported in ' + callbacks + ' callbacks';
+      }
+      break;
+  }
+}
+
+window.addEventListener('DOMContentLoaded', setupWatch);
+  </script>
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://wiki.ecmascript.org/doku.php?id=harmony:observe" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2><code>Object.observe()</code></h2>
+      <h3>watch changes to JS objects</h3>
+    </hgroup>
+    <article class="smaller"><p class="centered" style="font-size:25px">
+  <span><code>Object.observe</code> : JS objects :: <code>MutationObserver</code> : DOM</span>
+</p>
+
+<pre class="prettyprint" data-lang="js">
+function observeChanges(changes) {
+  console.log('== Callback ==');
+  changes.forEach(function(change) {
+    console.log('What Changed?', change.name);
+    console.log('How did it change?', change.type);
+    console.log('What was the old value?', change.oldValue );
+    console.log('What is the present value?', change.object[change.name]);
+  });
+}
+
+var o = {};
+<b>Object.observe</b>(o, observeChanges);
+// Object.unobserve(o, observeChanges); // Stop watching.
+</pre>
+
+<ul class="build">
+<li>Get notified when a property is added, deleted, or its value changes.</li>
+<li>Get notified when properties are reconfigured (e.g. <code>Object.freeze</code>)</li>
+</ul>
+<p>See <a href="http://weblog.bocoup.com/javascript-object-observe/">Bocoup's writeup</a>.</p></article>
+ 
+</slide>
+<slide>
+    <hgroup>
+      <h2>Proxy object</h2>
+      <h3>watch changes to JS objects</h3>
+    </hgroup>
+    <article class="smaller"><p class="centered" style="font-size:25px">
+      <p>target, handler, traps - get, defineProperty, etc.</p>
+  <pre class="prettyprint" data-lang="js">
+var handler = {
+  get: function(target, name){
+    return name in target ? target[name] : 37;
+  },
+  set: function(target, name, value, receiver) {
+    target[name] = value;
+    console.log(target, name);
+    return true;
+  }
+};
+
+var p = new Proxy({}, handler);
+p.a = 1;
+p.b = undefined;
+
+console.log(p.a, p.b); // 1, undefined
+console.log('c' in p, p.c); // false, 37
+  </pre>
+  </article>
+ 
+</slide>
+
+<slide  class="segue nobackground highlight fill">
+  <hgroup class="auto-fadein">
+      <h2>Custom Elements</h2>
+      <h3>Putting it all together</h3>
+    </hgroup>
+  
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>Do we have all the pieces to build components?</h2>
+    </hgroup>
+    <article ><ol class="build">
+<li>Templates (<code>&lt;template&gt;</code>)</li>
+<li>Shadow DOM (<code>@host</code>, styling hooks)</li>
+<li>Mutation Observers, <code>Object.observe()</code></li>
+</ol>
+<p class="centered build topmargin blue"><span style="font-size:50px;">WE DO :)</span></p></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#declaring-custom-elements" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Creating custom elements</h2>
+    </hgroup>
+    <article ><p>Define a <em>declarative</em> "API" using insertion points:</p>
+<pre class="prettyprint" data-lang="x-tabs.html">
+<b>&lt;element name="x-tabs"></b>
+  &lt;template>
+    &lt;style>...&lt;/style>
+    &lt;content select="hgroup:first-child">&lt;/content>
+  &lt;/template>
+<b>&lt;/element></b>
+</pre>
+
+<p>Include and use it:</p>
+<pre class="prettyprint" data-lang="yourapp.html">
+&lt;link <b>rel="components"</b> href="x-tabs.html"&gt;
+&lt;x-tabs>
+  &lt;hgroup>
+    &lt;h2>Title&lt;/h2>
+    ...
+  &lt;/hgroup>
+&lt;/x-tabs>
+</pre></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#declaring-custom-elements" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Define an API</h2>
+    </hgroup>
+    <article class="smaller"><p>Define an <em>imperative</em> API:</p>
+<pre class="prettyprint" data-lang="x-tabs.html">
+&lt;element name="x-tabs" <b>constructor="TabsController"></b>
+  &lt;template>...&lt;/template>
+  <b>&lt;script&gt;
+    TabsController.prototype = {
+      doSomething: function() { ... }
+    };
+  &lt;/script&gt;</b>
+&lt;/element>
+</pre>
+
+<p>Declared <code>constructor</code> goes on global scope:</p>
+<pre class="prettyprint" data-lang="yourapp.html">
+&lt;link rel="components" href="x-tabs.html"&gt;
+&lt;script&gt;
+<b>var tabs = new TabsController();</b>
+tabs.addEventListener('click', function(e) { <b>e.target.doSomething();</b> });
+document.body.appendChild(tabs);
+&lt;/script&gt;
+</pre></article>
+ 
+ <p>Or, we can even extend existing elements</p>
+</slide>
+    <slide>
+      <hgroup>
+        <h2>Developer Tools</h2>
+      </hgroup>
+      <article class="build">
+        <ul class="build">
+          <li>Firebug</li>
+          <li>Chrome Developer Tools</li>
+          <li>Firefox Developer Toolbar</li>
+          <li>Opera DragonFly</li>
+          <li>Safari</li>
+          <li>IE Deverloper Tools</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools</h2>
+      </hgroup>
+      <article class="build">
+        <img src="https://slides.varunkumar.me/js-tools/images/chrome-dev-tools.png" style="height: 500px;"/>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Firefox Developer Toolbar</h2>
+      </hgroup>
+      <article class="build">
+        <img src="https://slides.varunkumar.me/js-tools/images/firefox-dev-toolbar.png" style="height: 500px;"/>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Firefox 3D Inspector (Tilt)</h2>
+      </hgroup>
+      <article class="build">
+        <img src="https://slides.varunkumar.me/js-tools/images/firefox-tilt.png" style="height: 500px;"/>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Firebug</h2>
+      </hgroup>
+      <article class="build">
+        <img src="https://slides.varunkumar.me/js-tools/images/firefox-firebug.png" style="height: 500px;"/>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools</h2>
+      </hgroup>
+      <article class="build">
+        <p>Webkit based. Dev tools is also a web application. <a href="http://anti-code.com/devtools-cheatsheet/">Chrome dev tools cheatsheet</a></p>
+        <ul class="build">
+          <li>Elements</li>
+          <li>Console</li>
+          <li>Source</li>
+          <li>Network</li>
+          <li>Timeline</li>
+          <li>Profiles</li>
+          <li>Application</li>
+          <li>Security</li>
+          <li>Audits</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools - Elements</h2>
+      </hgroup>
+      <article class="build">
+        <p>Lets you see everything in one DOM tree, and allows inspection and on-the-fly editing of DOM elements.</p>
+        <ul class="build">
+          <li> DOM Tree (Drag &amp; drop to reorder elements)</li>
+          <li> Live edit DOM elemens - Attributes, text, HTML.</li>
+          <li> Force Element state - :active, :hover</li>
+          <li> Subtree modifications event, DOM breakpoints </li>
+          <li> Event Listeners </li>
+          <li> CSS styles - Autocomplete, add new styles, Box model</li>
+          <li> XPath and much more... </li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools - Application</h2>
+      </hgroup>
+      <article class="build">
+        <p>Lets you inspect resources that are loaded in the inspected page. It lets you interact with HTML5 Database, Local Storage, Cookies, AppCache, etc.</p>
+        <ul class="build">
+          <li>Application - Manifest, Service Workers</li>
+          <li>Storage - IndexedDB, Local Storage, Session Storage, Cookies, Web SQL</li>
+          <li>Cache - Cache Storage, Application Cache</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools - Network</h2>
+      </hgroup>
+      <article class="build">
+        <p>Lets you inspect resources that are downloaded over the network.</p>
+        <ul class="build">
+          <li>Timeline waterfall</li>
+          <li>Initiator, Time to first byte</li>
+          <li>DOMContent event, Load event - Do UI heavy tasks on DOMContent.</li>
+          <li>Export as HAR (HTTP Archive) - Awesomeness!!
+            <ul>
+              <li><a href="http://code.google.com/p/harviewer/">HAR Viewer</a></li>
+              <li>Integrate with your continuous build system - Phantom + Yslow</li>
+            </ul>
+          </li>
+        </ul>
+        <pre class="prettyprint" data-lang="js">
+phantomjs examples/netsniff.js http://www.varunkumar.me > output/snap-demo.har
+yslow --info basic --format plain output/snap-demo.har
+        </pre>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools - Sources</h2>
+      </hgroup>
+      <article class="build">
+        <p>Lets you debug your JavaScript code.</p>
+        <ul class="build">
+          <li>More like an IDE - Tab navigator, Syntax highlighting, shortcuts</li>
+          <li>Source Maps, Revision Control, Pretty Print</li>
+          <li>Call stack, Watch expressions,</li>
+          <li>Breakpoints
+            <ul>
+              <li>Conditional breakpoints</li>
+              <li>DOM breakpoints</li>
+              <li>XHR breakpoints</li>
+              <li>Event Listener breakpoints</li>
+              <li>Workers, async code can be debugged</li>
+            </ul>
+          </li>
+          <li>Exceptions
+            <ul>
+              <li>Stack trace on console, pause on next exception</li>
+              <li>Printing stack trace - Error.stack, console.trace()</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools - Timeline panel</h2>
+      </hgroup>
+      <article class="build">
+        <p>Gives you a complete overview of where time is spent when loading and using your web app or page. All events, from loading resources to parsing JavaScript, calculating styles, and repainting are plotted on a timeline.</p>
+        <img src="https://slides.varunkumar.me/js-tools/images/chrome-timeline.png" style="height: 500px"/>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools - Profiles panel</h2>
+      </hgroup>
+      <article class="build">
+        <p>Lets you profile the execution time and memory usage of a web app or page.</p>
+        <ul>
+          <li>JavaScript CPU profile</li>
+          <li>Heap snapshot</li>
+          <li>Record allocation timeline</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools - Console</h2>
+      </hgroup>
+      <article class="build">
+        <ul>Firebug command line API
+          <li> $(id) - Returns a single element with the given id.</li>
+          <li> $$(selector) - Returns an array of elements that match the given CSS selector.</li>
+          <li> $0, $1, $n(index)</li>
+          <li> copy(obj) - Ex: copy($0)</li>
+          <li> inspect(obj) - Ex: inspect($0)</li>
+          <li> debug(fn), undebug(fn) - Adds / removes breakpoint to first line of fn</li>
+          <li> monitor(fn), unmonitor(fn) - Logs all the calls to fn</li>
+          <li> monitorEvents(obj), unmonitorEvents(obj) </li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools - Customizations</h2>
+      </hgroup>
+      <article class="build">
+        <ul class="build">
+          <li> Disable Cache. This works <strong>*only if the dev tools is open*</strong></li>
+          <li> Disable JavaScript. Works only if the dev tools is open. </li>
+          <li> Responsive Design, change user agent. </li>
+          <li> Throttle network</li>
+          <li> Simulate touch events</li>
+          <li> Log XHRs </li>
+          <li> Custom extensions -- Ex: <a href="http://stackoverflow.com/questions/12592473/difference-between-two-element-styles-with-google-chrome" target="_blank">CSS Diff</a></li>
+          <li> <a href="http://darcyclarke.me/design/skin-your-chrome-inspector/" target="_blank">Skin your Chrome web inspector</a></li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Chrome Developer Tools - Remote debugging</h2>
+      </hgroup>
+      <article class="build">
+        <ul>
+          <li> Start the target browser with the flag: --remote-debugging-port 9222</li>
+          <li> Port forwarding for Chrome for Android: adb forward tcp:9222 localabstract:chrome_devtools_remote </li>
+          <li> From the debug client: http://&lt;hostname&gt;:9222, http://&lt;hostname&gt;:9222/json</li>
+        </ul>
+        <p>Note the WS:// references in json output. That is the communication channel between dev tools and the web page.</p>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Tools</h2>
+      </hgroup>
+      <article class="build">
+        <ul class="build">
+          <li>Node.js
+            <ul class="build">
+              <li>Cross platform JS runtime environment</li>
+              <li>Tools, applications, servers</li>
+              <li>Event-driven architecture capable of async I/O</li>
+            </ul>
+          </li>
+          <li>Package managers - NPM, Bower, Yarn
+            <ul class="build">
+              <li>package.json</li>
+              <li>local vs global</li>
+              <li>Registry - npmjs.org, internal Nexus</li>
+            </ul>
+          </li>
+          <li>Grunt, gulp, Webpack, npm scripts</li>
+          <li>Babel, Traceur</li>
+          <li>Jasmine, Karma, Chai, Sinon</li>
+          <li>Browserify</li>
+          <li>ESLint</li>
+          <li>arc-ux-tools</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Developer Productivity</h2>
+      </hgroup>
+      <article class="build">
+        <ul class="build">
+          <li>Segrated UI + API based development model</li>
+          <li>Hyd based development</li>
+          <li>Local server with grunt for development</li>
+          <li>Watch &amp; Livereloads</li>
+        </ul>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Progressive Web apps</h2>
+      </hgroup>
+      <article class="build">
+        <p>New breed of web applications with focus on user experience</p>
+        <ul class="build">
+          <li>Reliable - Load instantly even in uncertain network conditions</li>
+          <li>Fast - Respond quickly to user interactions without jank</li>
+          <li>Engaging - Feel like a native app</li>
+        </ul>
+        <li>Deep link to different parts of application</li>
+        <li>ServerWorker - client side proxy that gives you control over your cache</li>
+        <li>PRPL pattern (Push critical; render initial routes; pre-cache other routes; lazy-load other routes</li>
+        <li>Fast - Content efficiency, critical rendering path, rendering perf</li>
+        <li>Engaging - Installable on home screen, fullscreen, push notifications (App manifest)</li>
+      </article>
+    </slide>
+    <slide>
+      <hgroup>
+        <h2>Component design</h2>
+      </hgroup>
+      <article class="build">
+        <ul class="build">
+          <li>Top down component identification</li>
+          <li>Defining APIs</li>
+          <li>Defining dataflows</li>
+        </ul>
+      </article>
+    </slide>
+    <slide class="thank-you-slide segue nobackground">
+      <article>
+        <p class="centered topmargin">Thank you</p>
+        <!-- <p>PRESENTATION LINK</p> -->
+      </article>
+    </slide>
+    <!-- <slide class="logoslide dark nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo_white.png"></span>
+  </article>
+</slide> -->
+    <slide class="backdrop"></slide>
+  </slides>
+  <script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-3626417-6']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+  <!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+
+</html>
