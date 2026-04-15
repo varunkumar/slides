@@ -1,0 +1,687 @@
+<!--
+Author: Varunkumar Nagarajan <varunkumar.n@gmail.com>
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web development for beginners</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/app.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank">
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  <script src="/js-tools/js/jquery.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<slide id="first-slide" class="nobackground">
+</slide>
+
+<slide class="title-slide segue nobackground">
+  <!-- <aside class="gdbar"><img src="images/logos/webcomponents.png"></aside> -->
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <article class="auto-fadein">
+    <img src="images/logos/webcomponents.png">
+    <hgroup>
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </article>
+</slide>
+
+<slide id="who"  >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>/me</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><span class="build"><p class="avatar rounded"></p></span></p>
+<p>Varunkumar Nagarajan</p>
+
+<p style="margin-top:2em;">
+  <a rel="author" href="http://plus.varunkumar.me">
+    <img src="images/logos/gprofile_button-44.png" width="44" height="44"></a> <a rel="author" href="http://plus.varunkumar.me">plus.varunkumar.me</a>
+</p>
+
+<p>
+  <a rel="author" style="margin-left:-8px;" href="http://twitter.com/varunkumar">
+    <img src="images/logos/twitter_newbird_blue.png" width="58" height="58"></a> <a rel="author" href="http://twitter.com/varunkumar" style="margin-left:-5px;">@varunkumar</a>
+</p>
+
+<p><a rel="author" href="http://www.varunkumar.me">varunkumar.me</a></p>
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Once upon a time...</h2>
+    </hgroup>
+    <article>
+      
+<ul class="build">
+<li>Web was just a platform for creating interactive and navigable content<ul>
+<li>HTML was used to define the static text and images</li>
+<li>JavaScript to control the interactions and animations</li>
+<li>CSS to present the content</li></ul></li>
+<li>Capabilities on the browser were limited</li>
+<li>We need to depend on backend servers to accomplish most of the user tasks</li>
+</ul>
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Today's Web...</h2>
+    </hgroup>
+    <article class="build">
+<p>Powerful combo - HTML5, JS, CSS3</p>      
+<ul class="build">
+<li>Browsers are becoming powerful day by day</li>
+<li> Web apps of today are as powerful as native apps</li>
+<li>We can build complex web applications with richer contents</li>
+<li>We can 
+<ul>
+<li>Build apps which can work offline</li>
+<li>Access devices from our web apps</li>
+<li>Even have databases / complete file system on the client side</li>
+<li>Do real-time communication on the web and much more...</li>
+</ul></li>
+<li><a href="http://www.chromeexperiments.com/">Chrome experiments</a> ★ <a href="http://www.findyourwaytooz.com/">Find your way to OZ</a></li>
+</ul>
+<p class="centered topmargin">Thanks to HTML5, JS and CSS3, we can do amazing stuff on the web <label class="good"></label></p></article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Getting started with web development...</h2>
+    </hgroup>
+    <article class="build">     
+<p>Evolution of web
+  <ul>
+    <li>Internet</li>
+    <li>Browser</li>
+    <li>Server</li>
+  </ul>
+</p>
+<p>Web Technologies
+  <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JS</li>
+  </ul>
+</p>
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>The Web</h2>
+    </hgroup>
+    <article class="build">
+    <p>Interconnected network of nodes - Provider and consumer</p>     
+    <p class="centered topmargin"><img src="images/internet.jpg" style="width: 350px"/></p>
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>How do they communicate?</h2>
+    </hgroup>
+    <article class="build">
+<p class="centered topmargin"><img src="images/web.gif"/></p>
+</article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>Request URL</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p class="centered topmargin"><img src="images/url.png"/></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>URL Resolution</h2>
+      <h3></h3>
+    </hgroup>
+    <article >
+      <p class="centered topmargin"><img src="images/dns-rev-1.gif"/></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>HTTP Basics</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Request / Response headers</p>
+      <p>Message body</p>
+      <p>HTTP Verbs</p>
+      <ul class="build">
+        <li>GET</li>
+        <li>POST</li>
+        <li>PUT</li>
+        <li>DELETE</li>
+        <li>OPTIONS</li>
+        <li>CONNECT</li>
+      </ul>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>Server components</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Load Balancer</p>
+      <p>Web Server - Apache, nginx</p>
+      <p>Application Container - Tomcat, jetty</p>
+      <p>Evolution of web technologies - Static vs Dynamic contents</p>
+      <ul class="build">
+        <li>HTML</li>
+        <li>DHTML</li>
+        <li>Servlets / JSP / ASP</li>
+        <li>MVC - Struts, Spring MVC</li>
+        <li>AJAX</li>
+        <li>WebSockets</li>
+        <li>WebRTC - The Future <label class="good"></label></li>
+      </ul>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>Browser components</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p></p>
+      <p>DOM Parser</p>
+      <p>Rendering / Layout Engine - WebKit, Blink, Gecko, Servo, Trident, Presto</p>
+      <p>JavaScript Engine - V8, SpiderMoney, IonMonkey, Carakan, Chakra, Nitro, SquirrelFish</p>
+      <p>Net module</p>
+      <p>Developer Tools</p>
+      <p class="centered topmargin"><img src="https://raw.github.com/paulirish/browser-logos/master/main-desktop.png" style="max-height: 150px;"/></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>Developing for the web</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Maintainability</p>
+      <p>Accessibility</p> 
+      <p>Device Compatibility</p>
+      <p>Web Crawlers / Search engines</p>
+      <p>Highly performant</p>
+      <p class="centered topmargin">Follow better engineering practices <label class="good"></label></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>HTML</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Markup, the basis of every page</p>
+      <p>Gives structure to your content</p>
+      <p class="centered topmargin"><img src="images/markup.gif"/></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>HTML</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Elements and attributes are case insensitive</p>
+      <p>Certain elements don't need a closing tag. Ex: img, br, hr</p>
+      <p>Shorthand can be used for certain attributes. Ex: input required</p>
+      <p>Doctype defines what elements and attributes are allowed to be used in a certain flavor of HTML</p>
+      <p>Semantic elements - section, hgroup, article, header, footer</p>
+      <p>div vs span vs p</p>
+      <p class="centered topmargin">Remember, its always a good practise to <a href="http://validator.w3.org/">validate</a> your HTML <label class="good"></label></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>CSS - let's add some style</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Gives you fine control over the formatting of contents</p>
+      <p>Provides layout for the documents</p>
+      <p>Not a programming language. Not a markup languge. Just a set of rules.</p>
+      <p>Works on a set of rules</p>
+      <ul class="build">
+        <li>Select elements you want to style</li>
+        <li>Set values for different properties</li>
+      </ul>
+      <p>color, background, font sizes and styles, position</p>
+      <p>CSS3 - Animation, transition, transformation and much more. <a href="http://deshack.varunkumar.me/">Demo</a></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>CSS - Box Model</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>A box that wraps every HTML element</p>
+      <p class="centered topmargin"><img src="images/box-model.gif"/></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>CSS - Layouts</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Flow layout</p>
+      <p>Table layout</p>
+      <p>display: none, block, inline</p>
+      <p>position: absolute, relative, fixed</p>
+      <p>float: left, right</p>
+      <p>And, the awesome <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">Flex layout</a></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>CSS - Selectors</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>.class, #id, *, element</p>
+      <p>element,element element element element&gt;element element+element</p>
+      <p>[attribute], [attribute=value], [attribute~=value], [attribute|=value]</p>
+      <p>Pseudo classes :hover, :visited, :active, :first-child, :nth-child(n)</p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - Adding behavior to web pages</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Java:JavaScript::Car:Carpet <label class="good"></label></p>
+      <p>Scripting language for adding behavior to web pages</p>
+      <ul class="build">
+        <li>Validate the data you enter in a form</li>
+        <li>Handle the page events</li>
+        <li>Change the contents on the page dynamically</li>
+        <li>Provide drag and drop functionality</li>
+        <li>Change styles on the fly</li>
+        <li>Animate page elements</li>
+        <li>And, a million other things</li>
+      </ul>
+      <p>Most modern JS apps work by finding a target element and add some actions to it.</p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - Overview</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Object Oriented dynamic language</p>
+      <p>Syntax closer to Java and C</p>
+      <p>No classes. Class functionality is accomplished by object prototypes</p>
+      <p>Functions are objects and can be passed around like any other object</p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - Types</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Number - double precision 64 bit values. NaN, isNaN</p>
+      <p>String - <a href="http://www.reddit.com/r/javascript/comments/18rjb2/poll_which_quotation_marks_do_you_use_as_the_main/c8hfeth">Single quote vs double quote</a></p>
+      <p>Boolean</p>
+      <ul>
+        <li>false - false, 0, "", NaN, null and undefined</li>
+        <li>true - every other value</li>
+        <li>convert to boolean !!(expression)</li>
+      </ul>
+      <p>Object - Function, Array, Date, RegExp</p>
+      <p>Null</p>
+      <p>Undefined</p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - Objects</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Name-value pairs</p>
+      <p>Creating an object: </p>
+      <pre class="prettyprint" data-lang="js">
+var obj = new Object();
+var obj = {}; // Called as an object literal
+      </pre>
+      <p>Accessing properties:</p>
+      <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+obj.name = "Varunkumar";
+var name = obj.name;
+
+obj["name"] = "Varunkumar";
+var name = obj["name"]; // obj[some_variable]
+
+for (var key in obj) {
+  var value = obj[k];
+}
+
+// Recommended way
+var keys = Object.keys(obj);
+for (var i = 0, len = keys.length; i < keys.length; i++) {
+  var value = obj[keys[i]];
+}
+      </pre>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - Arrays</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Special object with a magical length property</p>
+      <p>length is one more than the highest index (not necessarily the count)</p>
+      <pre class="prettyprint" data-lang="js">
+var obj = new Array();
+var obj = []; // Called as an object literal
+      </pre>
+      <p>Manipulate array:</p>
+      <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+var a = [];
+a.push(1);
+var val = a.pop();
+a.unshift(2);
+var val = a.shift();
+a.slice();
+a.splice();
+a.toString(); a.join(separator);
+a.reverse();
+a.concat(item1, [itemN]);
+a.sort(fn);
+      </pre>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - Functions</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Unlike traditional languages, JS functions can be called with lesser or more number of args</p>
+      <pre class="prettyprint" data-lang="js">
+function add(x, y) {
+  var total = x + y;
+  return total;
+}
+add(); // NaN; x & y are null
+add(10, 13); // 23; 
+add(10, 13, 13); // 23; the last argument is ignored
+      </pre>
+      <p>Functions have access to an additional variable called <i>arguments</i></p>
+      <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+function add() {
+  var args = Array.prototype.slice.call(arguments)
+  return args.reduce(function(a, b){ return a + b; });
+}
+      </pre>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - Functions</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Anonymous functions - aka callbacks</p>
+      <p>You can define a function within another function</p>
+      <p>Inner functions can access all the variables in the parent function's scope</p>
+      <p>This leads to the most powerful abstraction in JS - Closures</p>
+      <p class="centered topmargin">Remember, there is no block scope in JS</p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - Closures</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Closure is a combination of a function and the scope object in which it is created</p>
+      <pre class="prettyprint" data-lang="js">
+function makeAdder(a) {
+  // returning an anonymous function
+  return function(b) {
+    return a + b;
+  };
+}
+
+x = makeAdder(5);
+y = makeAdder(20);
+
+x(6); // returns 11
+y(7); // returns 27
+      </pre>
+      <p>Did you notice that the state is being saved? Isn't that the basics of an object? <label class="good"></label></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - OOP</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>JS is a prototype-based language without class statement</p>
+      <p>JS uses functions as classes</p>
+      <p>Always use Capitalized names to differentiate class names and normal functions</p>
+      <p>Class is made up of two parts in JavaScript:</p>
+      <ul>
+        <li>constructor - This function contains all the logic to create an instance of the "class", i.e. instance specific code.</li>
+        <li>prototype - This is the object the instance inherits from. It contains all methods (and other properties) that should be shared among all instances.</li>
+      </ul>
+      <pre class="prettyprint" data-lang="js" style="line-height: 17px; font-size: 16px;">
+var Animal = function(name) { this.name = name; }
+Animal.prototype = {print: function() { console.log(this.name); } }
+
+var Dog = function() { return Animal.call(this, 'Dog'); }
+
+Dog.prototype = Object.Create(Animal);
+Dog.prototype.constructor = Dog;
+Dog.prototype.bark = function() { console.log('bark'); }
+      </pre>
+      <p></p>
+    </article>
+</slide>
+
+<slide>
+    <hgroup>
+      <h2>JavaScript - DOM Manipulation</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>document.getElementById, document.querySelector()</p>
+      <p>createElement(), getAttribute(), setAttribute()</p>
+      <p>appendChild(), innerHTML(), removeChild(), replaceChild()</p>
+      <p>Event handling - onclick, onload, onchange</p>
+      <pre class="prettyprint" data-lang="js">
+document.getElementById("myBtn").onclick=function(){displayDate()};
+      </pre>
+      <p class="centered topmargin">jQuery provides useful abstraction on top of it.</p>
+    </article>
+</slide>
+
+  <slide>
+    <hgroup>
+      <h2>jQuery Basics</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="build">
+      <p>Library for manipulating the DOM easily</p>
+      <p>Provides lots of utility methods (browser vendors should provide us)</p>
+      <p>One of the most loved (and hated) library on the web</p>
+      <pre class="prettyprint" data-lang="js">
+$(document).ready(function() {
+  console.log('ready');
+});
+
+$(selector).somefn().anotherfn();
+.find(), .first(), .last(), .parent(), .parents(), closest(), next(), siblings()
+
+$('&lt;p&gt;'); // Creates a new &lt;p&gt; element
+
+.attr(name), .attr(name, value)
+.addClass(), .removeClass(), .toggleClass()
+.show(), .hide(), .fadeIn(), .fadeOut()
+
+      </pre>
+      <p class="centered topmargin">jQuery provides useful abstraction on top of it.</p>
+    </article>
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Resources</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="smaller"><p>References</p>
+<ul>
+<li><a href="http://docs.webplatform.org/wiki/beginners">Web development for beginners</a> on <a href="http://webplatform.org">WebPlatform.org</a></li>
+<li>Follow +<a href="http://www.w3.org/community/webed/">W3C Web Education</a></li>
+<li><a href="http://www.htmldog.com/">HTML Dog</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web_Development/Introduction_to_Web_development">Introduction to web development</a> on MDN</li>
+</ul>
+<p>Playgrounds</p>
+<ul>
+<li><a href="http://jsfiddle.net/">jsFiddle</a> ★ <a href="http://codepen.io">CodePen</a> ★ <a href="http://www.objectplayground.com/">Object Playground</a></li>
+</ul>
+<p>Follow them on twitter</p>
+<ul>
+<li>Chris Heilman (@<a href="http://twitter.com/codepo8">codepo8</a>)</li>
+<li>Paul Irish (@<a href="http://twitter.com/paul_irish">paul_irish</a>)</li>
+<li>Addy Osmani (@<a href="http://twitter.com/addyosmani">addyosmani</a>)</li>
+<li>HTML5 (@<a href="http://twitter.com/html5">html5</a>)</li>
+</ul></article>
+ 
+</slide>
+
+
+<!-- <slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Thank You!&gt;</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact></p>
+</slide> -->
+
+
+<slide class="thank-you-slide segue nobackground">
+  <article>
+    <p class="centered topmargin">Thank you</p>
+    <!-- <p>PRESENTATION LINK</p> -->
+  </article>
+</slide>
+
+<!-- <slide class="logoslide dark nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo_white.png"></span>
+  </article>
+</slide> -->
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-3626417-6']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

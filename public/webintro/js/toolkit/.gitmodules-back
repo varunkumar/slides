@@ -1,0 +1,12 @@
+[submodule "third_party/mocha"]
+	path = third_party/mocha
+	url = https://github.com/visionmedia/mocha.git
+[submodule "third_party/expect.js"]
+	path = third_party/expect.js
+	url = https://github.com/learnboost/expect.js.git
+[submodule "platform/mdv/mdv"]
+	path = platform/mdv/mdv
+	url = https://github.com/toolkitchen/mdv.git
+[submodule "platform/pointergestures"]
+	path = platform/pointergestures
+	url = https://github.com/toolkitchen/pointergestures.git
