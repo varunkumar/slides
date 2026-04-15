@@ -1,0 +1,3077 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+    <meta content="The Hacking Habits: From cracking captchas to commanding AI agents" name="description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Varunkumar Nagarajan" name="author" />
+    <title>The Hacking Habits</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M9 3h6v2H9V3z' fill='%2336a7f5' opacity='.5'/><path d='M9 5V11.5L5.5 19.5C5.1 20.4 5.8 21.5 6.8 21.5H17.2C18.2 21.5 18.9 20.4 18.5 19.5L15 11.5V5' stroke='%2336a7f5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='10.5' cy='17' r='1' fill='%2336a7f5' opacity='.6'/><circle cx='14' cy='18.5' r='.7' fill='%2336a7f5' opacity='.4'/></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --accent: #36a7f5;
+        --accent-dim: #1a7ac4;
+        --accent-glow: rgba(54, 167, 245, 0.15);
+        --text: #d4d4d8;
+        --text-bright: #fafafa;
+        --bg: #0c0c0f;
+        --bg-card: #18181b;
+        --green: #22c55e;
+        --red: #ef4444;
+        --blue: #3b82f6;
+        --purple: #a78bfa;
+      }
+
+      body {
+        font: 18px 'DM Sans', 'Lucida Grande', 'Trebuchet MS', Verdana, sans-serif;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--text);
+        background: var(--bg);
+      }
+
+      .presentation {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        display: block;
+        overflow: hidden;
+        background: var(--bg);
+      }
+
+      .slides {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        display: block;
+        -webkit-transition: -webkit-transform 1s ease-in-out;
+        -moz-transition: -moz-transform 1s ease-in-out;
+        -o-transition: -o-transform 1s ease-in-out;
+        transition: transform 1s ease-in-out;
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        transform: scale(0.8);
+      }
+
+      .slide {
+        display: none;
+        position: absolute;
+        overflow: hidden;
+        width: 1000px;
+        height: 800px;
+        left: 50%;
+        top: 50%;
+        margin-top: -400px;
+        background-color: var(--bg-card);
+        border: 1px solid rgba(54, 167, 245, 0.08);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        -webkit-transition: all 0.25s ease-in-out;
+        -moz-transition: all 0.25s ease-in-out;
+        -o-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+      }
+
+      .slide::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+      }
+
+      .slide:nth-child(even) {
+        border-radius: 16px 0;
+      }
+
+      .slide:nth-child(odd) {
+        border-radius: 0 16px;
+      }
+
+      .slide .counter {
+        color: rgba(54, 167, 245, 0.3);
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        display: block;
+        font-size: 11px;
+        font-family: 'Space Mono', monospace;
+      }
+
+      .force-render {
+        display: block;
+        visibility: hidden;
+      }
+
+      .slide.far-past {
+        display: block;
+        margin-left: -2400px;
+      }
+
+      .slide.past {
+        visibility: visible;
+        display: block;
+        margin-left: -1600px;
+      }
+
+      .slide.current {
+        visibility: visible;
+        display: block;
+        margin-left: -450px;
+      }
+
+      .slide.future {
+        visibility: visible;
+        display: block;
+        margin-left: 700px;
+      }
+
+      .slide.far-future {
+        display: block;
+        margin-left: 1700px;
+      }
+
+      body.three-d div.slides {
+        -webkit-transform: translateX(50px) scale(0.8) rotateY(10deg);
+        -moz-transform: translateX(50px) scale(0.8) rotateY(10deg);
+        -o-transform: translateX(50px) scale(0.8) rotateY(10deg);
+        transform: translateX(50px) scale(0.8) rotateY(10deg);
+      }
+
+      div:not(.current).reduced {
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        transform: scale(0.8);
+      }
+
+      .no-transitions {
+        -webkit-transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        transition: none;
+      }
+
+      #presentation-counter {
+        color: rgba(54, 167, 245, 0.2);
+        font-size: 70%;
+        font-family: 'Space Mono', monospace;
+        letter-spacing: 1px;
+        position: absolute;
+        top: 40%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Typography */
+      h1 {
+        font-family: 'Space Mono', monospace;
+        color: var(--accent);
+        font-size: 36px;
+        font-weight: 700;
+        padding: 0;
+        margin: 0 0 10px 0;
+      }
+
+      h2 {
+        font-family: 'Space Mono', monospace;
+        color: var(--accent);
+        font-size: 24px;
+        padding: 0;
+        margin: 0 0 16px 0;
+        font-weight: 700;
+        border-bottom: 2px solid rgba(54, 167, 245, 0.2);
+        padding-bottom: 8px;
+      }
+
+      h3 {
+        font-family: 'Space Mono', monospace;
+        color: var(--text);
+        font-size: 20px;
+        padding: 0;
+        margin: 0 0 12px 0;
+        font-weight: 400;
+      }
+
+      .borderless {
+        border: none;
+      }
+
+      h2:first-child {
+        margin-top: 0;
+      }
+
+      section {
+        font-family: 'DM Sans', sans-serif;
+        margin: 40px 40px 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+      }
+
+      section.middle {
+        line-height: 2em;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+        height: 800px;
+        width: 1000px;
+      }
+
+      p {
+        font-family: 'DM Sans', sans-serif;
+        color: var(--text);
+        margin: 8px 0;
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        color: var(--text-bright);
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul.bulleted {
+        padding-left: 0;
+        list-style: none;
+        line-height: 36px;
+      }
+
+      ul.bulleted li {
+        padding-left: 20px;
+        position: relative;
+        font-size: 16px;
+      }
+
+      ul.bulleted li::before {
+        content: '>';
+        color: var(--accent);
+        font-family: 'Space Mono', monospace;
+        font-weight: 700;
+        position: absolute;
+        left: 0;
+      }
+
+      /* Segue slides */
+      .segue-slide {
+        background: linear-gradient(135deg, var(--bg-card), #0f1520) !important;
+      }
+
+      .segue-label {
+        font-family: 'Space Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        color: var(--accent-dim);
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
+      .segue-title {
+        font-family: 'Space Mono', monospace;
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--text-bright);
+        margin-bottom: 12px;
+      }
+
+      .segue-subtitle {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 18px;
+        color: var(--text);
+        opacity: 0.7;
+      }
+
+      /* Year badge */
+      .year-badge {
+        display: inline-block;
+        font-family: 'Space Mono', monospace;
+        font-size: 13px;
+        font-weight: 700;
+        background: var(--accent);
+        color: var(--bg);
+        padding: 3px 12px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+      }
+
+      /* Habit tags */
+      .habit-tags {
+        margin-bottom: 16px;
+      }
+
+      .habit-tag {
+        display: inline-block;
+        font-family: 'Space Mono', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-right: 6px;
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .habit-tag.spot {
+        background: #f59e0b;
+      }
+
+      .habit-tag.automate {
+        background: var(--green);
+      }
+
+      .habit-tag.share {
+        background: var(--blue);
+      }
+
+      .habit-tag.levelup {
+        background: var(--purple);
+      }
+
+      /* Two column layout */
+      .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      /* Hack cards grid */
+      .hack-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .hack-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+        padding: 14px;
+      }
+
+      .hack-card h4 {
+        font-family: 'Space Mono', monospace;
+        color: var(--accent);
+        font-size: 14px;
+        margin: 0 0 6px 0;
+        font-weight: 700;
+      }
+
+      .hack-card p {
+        font-size: 13px;
+        margin: 0;
+        color: var(--text);
+        opacity: 0.8;
+      }
+
+      .hack-card a {
+        font-size: 11px;
+        display: inline-block;
+        margin-top: 6px;
+      }
+
+      /* Agent cards grid */
+      .agent-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .agent-card {
+        background: rgba(54, 167, 245, 0.05);
+        border: 1px solid rgba(54, 167, 245, 0.12);
+        border-radius: 8px;
+        padding: 16px 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 80px;
+      }
+
+      .agent-avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 2px solid rgba(54, 167, 245, 0.15);
+      }
+
+      .agent-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .agent-card.full-width {
+        grid-column: 1 / -1;
+      }
+
+      .agent-card h4 {
+        font-family: 'Space Mono', monospace;
+        color: var(--accent);
+        font-size: 15px;
+        margin: 0 0 4px 0;
+        font-weight: 700;
+      }
+
+      .agent-card .role {
+        font-size: 13px;
+        color: var(--text);
+        opacity: 0.7;
+        margin: 0;
+      }
+
+      /* Terminal prompt */
+      .prompt {
+        font-family: 'Space Mono', monospace;
+        font-size: 13px;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(54, 167, 245, 0.15);
+        border-radius: 6px;
+        padding: 12px 14px;
+        margin: 12px 0;
+        line-height: 1.7;
+      }
+
+      .prompt .cmd {
+        color: var(--accent);
+      }
+
+      .prompt .output {
+        color: var(--green);
+      }
+
+      /* Quote block */
+      .quote-block {
+        border-left: 3px solid var(--accent);
+        padding-left: 20px;
+        font-style: italic;
+        font-size: 22px;
+        color: var(--text-bright);
+        line-height: 1.6;
+        margin: 20px 0;
+      }
+
+      /* Workflow list */
+      .workflow-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+      }
+
+      .workflow-list li {
+        border-left: 2px solid var(--accent-dim);
+        padding: 6px 0 6px 16px;
+        font-size: 15px;
+        line-height: 1.5;
+        position: relative;
+        margin-bottom: 4px;
+      }
+
+      .workflow-list li::before {
+        content: '\2192';
+        color: var(--accent);
+        font-family: 'Space Mono', monospace;
+        position: absolute;
+        left: -8px;
+        background: var(--bg-card);
+        padding: 0 2px;
+      }
+
+      /* Tool items */
+      .tool-item {
+        display: flex;
+        align-items: baseline;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 12px 0;
+        gap: 16px;
+      }
+
+      .tool-item .tool-name {
+        font-family: 'Space Mono', monospace;
+        color: var(--accent);
+        font-size: 15px;
+        font-weight: 700;
+        min-width: 180px;
+      }
+
+      .tool-item .tool-desc {
+        font-size: 15px;
+        color: var(--text);
+        opacity: 0.8;
+      }
+
+      /* Image placeholder */
+      .img-placeholder {
+        border: 2px dashed rgba(54, 167, 245, 0.25);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(54, 167, 245, 0.3);
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        text-align: center;
+        background: rgba(54, 167, 245, 0.03);
+      }
+
+      /* Stat blocks */
+      .stat-row {
+        display: flex;
+        gap: 16px;
+        margin: 12px 0;
+      }
+
+      .stat-block {
+        text-align: center;
+        flex: 1;
+      }
+
+      .stat-block .number {
+        font-family: 'Space Mono', monospace;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .stat-block .label {
+        font-size: 12px;
+        color: var(--text);
+        opacity: 0.6;
+      }
+
+      /* Habit reveal cards */
+      .habit-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .habit-card {
+        border-radius: 10px;
+        padding: 18px;
+      }
+
+      .habit-card.spot-card {
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid rgba(245, 158, 11, 0.2);
+      }
+
+      .habit-card.automate-card {
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+      }
+
+      .habit-card.share-card {
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+      }
+
+      .habit-card.levelup-card {
+        background: rgba(167, 139, 250, 0.1);
+        border: 1px solid rgba(167, 139, 250, 0.2);
+      }
+
+      .habit-card h4 {
+        font-family: 'Space Mono', monospace;
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+      }
+
+      .habit-card.spot-card h4 { color: #f59e0b; }
+      .habit-card.automate-card h4 { color: var(--green); }
+      .habit-card.share-card h4 { color: var(--blue); }
+      .habit-card.levelup-card h4 { color: var(--purple); }
+
+      .habit-card p {
+        font-size: 14px;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      /* Agenda list */
+      .agenda-list {
+        margin-top: 8px;
+      }
+
+      .agenda-item {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      body.light-theme .agenda-item {
+        border-bottom-color: rgba(0, 0, 0, 0.06);
+      }
+
+      .agenda-item:last-child {
+        border-bottom: none;
+      }
+
+      /* Fast scroll mode */
+      body.fast-scroll .slide {
+        transition: all 0.08s ease-in-out !important;
+      }
+
+      .agenda-item[data-target] {
+        cursor: pointer;
+      }
+
+      .agenda-item[data-target]:hover .agenda-title {
+        color: var(--accent);
+      }
+
+      .agenda-item[data-target]:hover .agenda-num {
+        opacity: 1;
+      }
+
+      .agenda-num {
+        font-family: 'Space Mono', monospace;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--accent);
+        min-width: 28px;
+        opacity: 0.5;
+      }
+
+      .agenda-title {
+        font-family: 'Space Mono', monospace;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--text-bright);
+        min-width: 220px;
+      }
+
+      .agenda-desc {
+        font-size: 15px;
+        color: var(--text);
+        opacity: 0.5;
+      }
+
+      .agenda-item.focused {
+        background: rgba(54, 167, 245, 0.06);
+        border-radius: 6px;
+        margin: 0 -10px;
+        padding: 10px 10px;
+        border-bottom-color: transparent;
+        transition: background 0.25s ease;
+      }
+
+      body.light-theme .agenda-item.focused {
+        background: rgba(26, 122, 196, 0.06);
+      }
+
+      .agenda-item.focused .agenda-num {
+        opacity: 1;
+        color: var(--accent);
+      }
+
+      .agenda-item.focused .agenda-title {
+        color: var(--accent);
+      }
+
+      .agenda-item.focused .agenda-desc {
+        opacity: 0.8;
+      }
+
+      .agenda-item:not(.focused) {
+        transition: opacity 0.25s ease;
+      }
+
+      .agenda-list.has-focus .agenda-item:not(.focused) {
+        opacity: 0.4;
+      }
+
+      /* Crossfade photo slideshow */
+      .photo-slideshow {
+        position: relative;
+        width: 100%;
+        height: 320px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .photo-slideshow .slide-frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .photo-slideshow .slide-frame.active {
+        opacity: 1;
+      }
+
+      .photo-slideshow .slide-frame img {
+        max-width: 100%;
+        max-height: 280px;
+        border-radius: 6px;
+        object-fit: contain;
+      }
+
+      .photo-slideshow .slide-frame .slide-caption {
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        color: var(--accent);
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      .photo-slideshow .slide-frame .slideshow-placeholder {
+        width: 100%;
+        height: 260px;
+        border: 1px dashed rgba(54, 167, 245, 0.2);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Space Mono', monospace;
+        font-size: 13px;
+        color: var(--text);
+        opacity: 0.3;
+      }
+
+      .photo-slideshow .slide-dots {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+        z-index: 2;
+      }
+
+      .photo-slideshow .slide-dots .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--text);
+        opacity: 0.2;
+        transition: opacity 0.3s;
+        cursor: pointer;
+        padding: 4px;
+        box-sizing: content-box;
+        background-clip: content-box;
+      }
+
+      .photo-slideshow .slide-dots .dot:hover {
+        opacity: 0.5;
+      }
+
+      .photo-slideshow .slide-dots .dot.active {
+        opacity: 0.7;
+        background: var(--accent);
+        background-clip: content-box;
+      }
+
+      /* Auto-scrolling photo collage */
+      .collage-strip {
+        overflow: hidden;
+        position: relative;
+        height: 120px;
+        margin-top: 8px;
+        border-radius: 6px;
+      }
+
+      .collage-track {
+        display: flex;
+        gap: 8px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        animation: collageScroll 20s linear infinite;
+        animation-play-state: paused;
+      }
+
+      .slide.current .collage-track {
+        animation-play-state: running;
+      }
+
+      .collage-strip:hover .collage-track {
+        animation-play-state: paused;
+      }
+
+      .collage-track img {
+        height: 100%;
+        width: auto;
+        border-radius: 4px;
+        object-fit: cover;
+        opacity: 0.85;
+        transition: opacity 0.2s;
+      }
+
+      .collage-track img:hover {
+        opacity: 1;
+      }
+
+      .collage-track .collage-placeholder {
+        height: 100%;
+        min-width: 180px;
+        border: 1px dashed rgba(54, 167, 245, 0.2);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Space Mono', monospace;
+        font-size: 11px;
+        color: var(--text);
+        opacity: 0.3;
+        flex-shrink: 0;
+      }
+
+      @keyframes collageScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* Video grid */
+      .video-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 8px;
+      }
+
+      .video-card {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      body.light-theme .video-card {
+        background: rgba(0, 0, 0, 0.03);
+        border-color: rgba(0, 0, 0, 0.08);
+      }
+
+      .video-embed {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 50%;
+        background: #000;
+        overflow: hidden;
+      }
+
+      .video-embed iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .video-embed.video-placeholder {
+        background: var(--bg-card);
+      }
+
+      .video-embed.video-placeholder span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        color: var(--text);
+        opacity: 0.3;
+      }
+
+      .video-info {
+        padding: 6px 10px;
+      }
+
+      .video-info h4 {
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text-bright);
+        margin: 0 0 1px 0;
+      }
+
+      .video-info p {
+        font-size: 11px;
+        color: var(--text);
+        opacity: 0.6;
+        margin: 0;
+        line-height: 1.3;
+      }
+
+      /* Photo placeholder strip */
+      .photo-strip {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .photo-strip .img-placeholder {
+        flex: 1;
+        height: 80px;
+      }
+
+      /* Red X markers for problem slide */
+      .problem-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .problem-list li {
+        padding: 6px 0 6px 24px;
+        position: relative;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .problem-list li::before {
+        content: '\2717';
+        color: var(--red);
+        font-weight: 700;
+        position: absolute;
+        left: 0;
+        font-size: 18px;
+      }
+
+      /* Security access list */
+      .access-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .access-list li {
+        padding: 4px 0 4px 24px;
+        position: relative;
+        font-size: 15px;
+      }
+
+      .access-list li::before {
+        content: '\26A0';
+        color: var(--red);
+        position: absolute;
+        left: 0;
+      }
+
+      /* Isolation list */
+      .isolation-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .isolation-list li {
+        padding: 4px 0 4px 24px;
+        position: relative;
+        font-size: 15px;
+      }
+
+      .isolation-list li::before {
+        content: '\2713';
+        color: var(--green);
+        font-weight: 700;
+        position: absolute;
+        left: 0;
+      }
+
+      /* Evolution line */
+      .evolution-line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 12px 0 16px;
+        font-family: 'Space Mono', monospace;
+        font-size: 16px;
+      }
+
+      .evolution-line .dim {
+        color: var(--text);
+        opacity: 0.4;
+      }
+
+      .evolution-line .highlight {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .evolution-line .arrow {
+        color: var(--accent-dim);
+      }
+
+      /* Centered text slide */
+      .centered-text {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .centered-text p {
+        font-size: 22px;
+        line-height: 1.7;
+        color: var(--text-bright);
+      }
+
+      .centered-text .dimmed {
+        font-size: 16px;
+        color: var(--text);
+        opacity: 0.6;
+        margin-top: 20px;
+      }
+
+      /* Slack mockup */
+      .slack-mockup {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+        padding: 14px;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+
+      .slack-mockup .slack-user {
+        font-family: 'Space Mono', monospace;
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 13px;
+      }
+
+      .slack-mockup .slack-msg {
+        color: var(--text);
+        margin: 4px 0;
+      }
+
+      .slack-mockup .slack-response {
+        color: var(--green);
+        margin: 8px 0 0;
+        padding-left: 12px;
+        border-left: 2px solid rgba(34, 197, 94, 0.3);
+      }
+
+      /* Tagline */
+      .tagline {
+        font-style: italic;
+        color: var(--text);
+        opacity: 0.6;
+        font-size: 14px;
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      /* Flow text */
+      .flow-text {
+        font-family: 'Space Mono', monospace;
+        font-size: 14px;
+        color: var(--accent-dim);
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      /* Career timeline */
+      .timeline-item {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 8px;
+        font-size: 14px;
+        align-items: baseline;
+      }
+
+      .timeline-item .year {
+        font-family: 'Space Mono', monospace;
+        color: var(--accent);
+        font-weight: 700;
+        min-width: 60px;
+        font-size: 13px;
+      }
+
+      .timeline-item .desc {
+        color: var(--text);
+        line-height: 1.4;
+      }
+
+      /* Highlight text */
+      .text-accent {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .text-dimmed {
+        opacity: 0.5;
+        font-size: 14px;
+      }
+
+      /* Title icon animation */
+      .title-icon {
+        width: 28px;
+        height: 28px;
+        margin: 0 8px;
+        vertical-align: middle;
+        opacity: 0;
+        transform: scale(0);
+        transition: transform 0.3s ease;
+      }
+
+      .slide.current .title-icon {
+        animation: iconBounce 0.5s ease-out forwards;
+      }
+
+      @keyframes iconBounce {
+        0% { opacity: 0; transform: scale(0); }
+        60% { opacity: 1; transform: scale(1.2); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      /* Drawing canvas */
+      .drawing-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .drawing-active .drawing-canvas {
+        pointer-events: all;
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%2336a7f5"><path d="M12.9 3.1c.4-.4.4-1 0-1.4l-1.6-1.6c-.4-.4-1-.4-1.4 0L1 9v3h3L12.9 3.1z"/></svg>') 0 16, auto;
+      }
+
+      /* Timer */
+      .timer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.05);
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .timer.active {
+        opacity: 1;
+      }
+
+      .timer .progress {
+        width: 0%;
+        height: 100%;
+        background: var(--accent);
+        transition: width linear;
+      }
+
+      .timer.warning .progress {
+        background: var(--red);
+      }
+
+      .timer.caution .progress {
+        background: #ffa500;
+      }
+
+      /* Radial slide progress indicator */
+      .radial-progress {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        z-index: 100;
+        opacity: 0.6;
+        transition: opacity 0.3s;
+      }
+
+      .radial-progress svg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+      }
+
+      .radial-progress .track {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.08);
+        stroke-width: 3;
+      }
+
+      body.light-theme .radial-progress .track {
+        stroke: rgba(0, 0, 0, 0.08);
+      }
+
+      .radial-progress .fill {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-dasharray: 113;
+        stroke-dashoffset: 113;
+        transition: stroke-dashoffset 0.4s ease;
+      }
+
+      .radial-progress .label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Space Mono', monospace;
+        font-size: 9px;
+        font-weight: 700;
+        color: var(--text);
+        opacity: 0.8;
+      }
+
+      /* Drawing mode indicator */
+      .drawing-indicator {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: var(--accent);
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        display: none;
+        z-index: 100;
+        border: 1px solid rgba(54, 167, 245, 0.2);
+      }
+
+      .drawing-active .drawing-indicator {
+        display: block;
+      }
+
+      /* Event badge (Spark Lab) */
+      .event-badge {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 100;
+        font-family: 'Space Mono', monospace;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--accent-dim);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        opacity: 0.7;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .beaker-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+
+      /* Spark particles around badge */
+      .event-badge::before,
+      .event-badge::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        background: var(--accent);
+        opacity: 0;
+        animation: spark 2.4s ease-in-out infinite;
+      }
+
+      .event-badge::before {
+        width: 3px;
+        height: 3px;
+        top: -4px;
+        left: 8px;
+        animation-delay: 0s;
+      }
+
+      .event-badge::after {
+        width: 2px;
+        height: 2px;
+        top: 2px;
+        right: -6px;
+        animation-delay: 0.8s;
+      }
+
+      .spark-1, .spark-2, .spark-3 {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--accent);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .spark-1 {
+        width: 2px;
+        height: 2px;
+        bottom: -3px;
+        left: 20px;
+        animation: spark 2.4s ease-in-out infinite 0.4s;
+      }
+
+      .spark-2 {
+        width: 3px;
+        height: 3px;
+        top: -2px;
+        right: 12px;
+        animation: spark 2.4s ease-in-out infinite 1.2s;
+      }
+
+      .spark-3 {
+        width: 2px;
+        height: 2px;
+        bottom: 0;
+        right: -4px;
+        animation: spark 2.4s ease-in-out infinite 1.6s;
+      }
+
+      @keyframes spark {
+        0%, 100% { opacity: 0; transform: scale(0) translateY(0); }
+        20% { opacity: 1; transform: scale(1.2) translateY(-3px); }
+        40% { opacity: 0.8; transform: scale(1) translateY(-6px); }
+        60% { opacity: 0; transform: scale(0.5) translateY(-10px); }
+      }
+
+      /* ======================== */
+      /* Light Theme              */
+      /* ======================== */
+      body.light-theme {
+        --accent: #1a7ac4;
+        --accent-dim: #0f5a96;
+        --accent-glow: rgba(26, 122, 196, 0.15);
+        --text: #3f3f46;
+        --text-bright: #18181b;
+        --bg: #f4f4f5;
+        --bg-card: #ffffff;
+        --green: #16a34a;
+        --red: #dc2626;
+        --blue: #2563eb;
+        --purple: #7c3aed;
+      }
+
+      body.light-theme .presentation {
+        background: var(--bg);
+      }
+
+      body.light-theme .slide {
+        background: var(--bg-card);
+        border-color: rgba(26, 122, 196, 0.12);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      body.light-theme .slide::after {
+        opacity: 0;
+      }
+
+      body.light-theme .segue-slide {
+        background: var(--bg-card) !important;
+      }
+
+      body.light-theme .counter {
+        color: #a1a1aa;
+      }
+
+      body.light-theme .prompt {
+        background: rgba(0, 0, 0, 0.04);
+        border-color: rgba(26, 122, 196, 0.2);
+        color: var(--green);
+      }
+
+      body.light-theme .hack-card {
+        background: rgba(0, 0, 0, 0.02);
+        border-color: rgba(0, 0, 0, 0.06);
+      }
+
+      body.light-theme .agent-card {
+        background: rgba(26, 122, 196, 0.04);
+        border-color: rgba(26, 122, 196, 0.15);
+      }
+
+      body.light-theme .tool-item {
+        border-bottom-color: rgba(0, 0, 0, 0.06);
+      }
+
+      body.light-theme .drawing-indicator {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: var(--accent);
+        border-color: rgba(26, 122, 196, 0.3);
+      }
+
+      body.light-theme .event-badge {
+        color: var(--accent-dim);
+        opacity: 0.6;
+      }
+
+      body.light-theme .img-placeholder {
+        border-color: var(--accent-dim);
+      }
+
+      /* Theme toggle indicator */
+      .theme-indicator {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-family: 'Space Mono', monospace;
+        font-size: 11px;
+        color: var(--accent-dim);
+        opacity: 0;
+        z-index: 100;
+        transition: opacity 0.3s;
+        pointer-events: none;
+      }
+
+      .theme-indicator.visible {
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="drawing-indicator">Drawing Mode (Press 'C' to clear)</div>
+    <div class="event-badge"><svg class="beaker-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 3h6v2H9V3z" fill="currentColor" opacity="0.5"/><path d="M9 5V11.5L5.5 19.5C5.1 20.4 5.8 21.5 6.8 21.5H17.2C18.2 21.5 18.9 20.4 18.5 19.5L15 11.5V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 14h7" stroke="currentColor" stroke-width="1" opacity="0.4"/><circle cx="10.5" cy="17" r="1" fill="currentColor" opacity="0.6"/><circle cx="14" cy="18.5" r="0.7" fill="currentColor" opacity="0.4"/></svg>Spark Lab<span class="spark-1"></span><span class="spark-2"></span><span class="spark-3"></span></div>
+    <div class="theme-indicator" id="theme-indicator"></div>
+    <div class="radial-progress" id="radial-progress">
+      <svg viewBox="0 0 40 40"><circle class="track" cx="20" cy="20" r="18"/><circle class="fill" cx="20" cy="20" r="18"/></svg>
+      <span class="label" id="radial-label"></span>
+    </div>
+
+    <div class="presentation">
+      <div id="presentation-counter"></div>
+      <div class="slides">
+
+        <!-- Slide 1 - Title -->
+        <div class="slide reduced" data-time="30">
+          <section class="middle">
+
+            <div class="segue-label">Spark Lab Meetup</div>
+            <h1>The Hacking Habits</h1>
+            <h3 class="borderless">From cracking captchas to commanding AI agents</h3>
+            <p>Varunkumar Nagarajan</p>
+          </section>
+        </div>
+
+        <!-- Slide 2 - Agenda -->
+        <div class="slide reduced" id="agenda-slide" data-time="90">
+          <section>
+            <h2>Agenda</h2>
+            <div class="quote-block" style="font-size: 17px; margin: 0 0 20px 0;">"By the end of this talk, I want you to go home and hack something."</div>
+            <div class="agenda-list" id="agenda-list">
+              <div class="agenda-item" data-target="ch-about">
+                <span class="agenda-num">01</span>
+                <span class="agenda-title">About Me</span>
+                <span class="agenda-desc">18 years of building things</span>
+              </div>
+              <div class="agenda-item" data-target="ch-early">
+                <span class="agenda-num">02</span>
+                <span class="agenda-title">The Early Days</span>
+                <span class="agenda-desc">Blogging, captchas, hackathons, robots</span>
+              </div>
+              <div class="agenda-item" data-target="ch-life">
+                <span class="agenda-num">03</span>
+                <span class="agenda-title">Life Hacks</span>
+                <span class="agenda-desc">When hacking meets parenting</span>
+              </div>
+              <div class="agenda-item" data-target="ch-covid">
+                <span class="agenda-num">04</span>
+                <span class="agenda-title">The Covid Era</span>
+                <span class="agenda-desc">Mute buttons and hackathon highlights</span>
+              </div>
+              <div class="agenda-item" data-target="ch-ai">
+                <span class="agenda-num">05</span>
+                <span class="agenda-title">The AI Era</span>
+                <span class="agenda-desc">Hacking my kids' school experience</span>
+              </div>
+              <div class="agenda-item" data-target="ch-agents">
+                <span class="agenda-num">06</span>
+                <span class="agenda-title">Enter the Agents</span>
+                <span class="agenda-desc">From scripts to autonomous AI teammates</span>
+              </div>
+              <div class="agenda-item" data-target="ch-closing">
+                <span class="agenda-num">07</span>
+                <span class="agenda-title">Closing</span>
+                <span class="agenda-desc">The four hacking habits</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 3 - Objective + About Me -->
+        <div class="slide reduced" id="ch-about" data-time="90">
+          <section>
+            <h2>/me</h2>
+            <div class="two-column">
+              <div>
+                <h2 style="font-size: 18px;">Career Timeline</h2>
+                <div class="timeline-item">
+                  <span class="year">2008</span>
+                  <span class="desc">Joined D. E. Shaw India, Recon team</span>
+                </div>
+                <div class="timeline-item">
+                  <span class="year">2008-15</span>
+                  <span class="desc">Backoffice systems - Prism, GLO, MEWB</span>
+                </div>
+                <div class="timeline-item">
+                  <span class="year">2015</span>
+                  <span class="desc">Arcesium spinoff, started UI/UX team, built Report Manager &amp; Iris</span>
+                </div>
+                <div class="timeline-item">
+                  <span class="year">2019</span>
+                  <span class="desc">Started Trinity</span>
+                </div>
+                <div class="timeline-item">
+                  <span class="year">Today</span>
+                  <span class="desc">18 years and counting</span>
+                </div>
+              </div>
+              <div>
+                <h2 style="font-size: 18px;">Personal</h2>
+                <ul class="bulleted">
+                  <li>Married, two kids</li>
+                  <li>Wildlife photographer</li>
+                  <li>Loves Hackathon</li>
+                </ul>
+                <div class="profile-photo-frame" style="position: relative; margin-top: 16px; display: flex; justify-content: center;">
+                  <!-- Decorative blobs -->
+                  <div style="position: absolute; top: -12px; right: -8px; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle, rgba(54,167,245,0.15), transparent 70%); z-index: 0;"></div>
+                  <div style="position: absolute; bottom: -10px; left: -10px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(167,139,250,0.12), transparent 70%); z-index: 0;"></div>
+                  <div style="position: absolute; top: 30%; left: -16px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(34,197,94,0.1), transparent 70%); z-index: 0;"></div>
+                  <div style="position: absolute; bottom: 20%; right: -12px; width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,11,0.1), transparent 70%); z-index: 0;"></div>
+                  <!-- Accent ring -->
+                  <div style="position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: calc(100% + 12px); height: calc(100% + 12px); border-radius: 12px; border: 1px solid rgba(54,167,245,0.1); z-index: 0;"></div>
+                  <!-- Corner accents -->
+                  <div style="position: absolute; top: -3px; left: -3px; width: 16px; height: 16px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); border-radius: 4px 0 0 0; opacity: 0.4; z-index: 1;"></div>
+                  <div style="position: absolute; bottom: -3px; right: -3px; width: 16px; height: 16px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); border-radius: 0 0 4px 0; opacity: 0.4; z-index: 1;"></div>
+                  <img src="./images/varun.jpeg" alt="Varunkumar Nagarajan" style="width: 100%; max-height: 360px; object-fit: contain; border-radius: 8px; position: relative; z-index: 1;">
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 3 - Segue: The Early Days -->
+        <div class="slide reduced segue-slide" id="ch-early">
+          <section class="middle">
+            <div class="segue-label">Chapter 1</div>
+            <div class="segue-title">The Early Days</div>
+            <div class="segue-subtitle">2008 &ndash; 2012</div>
+          </section>
+        </div>
+
+        <!-- Slide 4 - The Early Days -->
+        <div class="slide reduced" data-time="180">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag spot">SPOT &amp; SOLVE</span>
+              <span class="habit-tag share">SHARE &amp; MULTIPLY</span>
+            </div>
+            <h2>The Early Days</h2>
+            <div class="year-badge">2008 - 2014</div>
+            <div class="hack-grid" style="margin-top: 8px;">
+              <div class="hack-card">
+                <h4>Blogging &amp; IRCTC Captcha</h4>
+                <p>Started a tech blog. Featured as a top tech blogger. Cracked the IRCTC captcha for faster bookings.</p>
+              </div>
+              <div class="hack-card">
+                <h4>PlanMan</h4>
+                <p>SMS/missed-call based workflow management. Won Yahoo! Hackathon.</p>
+                <a href="https://github.com/varunkumar/plan-man" target="_blank" style="font-size: 12px;">github.com/varunkumar/plan-man</a>
+              </div>
+              <div class="hack-card">
+                <h4>filter-fb &amp; filter-twitter</h4>
+                <p>Userscripts to clean up social media feeds. Filter keywords, hide likes. Before apps were a thing.</p>
+                <a href="https://github.com/varunkumar/filter-fb" target="_blank" style="font-size: 12px;">github.com/varunkumar/filter-fb</a>
+              </div>
+              <div class="hack-card">
+                <h4>VBot &amp; WebUSB Snake</h4>
+                <p>A quadbot that walks and dances. Snake game on Arduino via WebUSB from Chrome.</p>
+                <a href="https://github.com/varunkumar/vbot" target="_blank" style="font-size: 12px;">github.com/varunkumar/vbot</a>
+              </div>
+              <div class="hack-card">
+                <h4>TrackR</h4>
+                <p>Hack at Sequoia::Hack 2014. One of many hackathon entries over the years.</p>
+                <a href="https://github.com/varunkumar/TrackR" target="_blank" style="font-size: 12px;">github.com/varunkumar/TrackR</a>
+              </div>
+              <div class="hack-card">
+                <h4>70+ Open Source Repos</h4>
+                <p>Chrome extensions, VS Code plugins, web experiments. Contributing and learning in public.</p>
+                <a href="https://github.com/varunkumar" target="_blank" style="font-size: 12px;">github.com/varunkumar</a>
+              </div>
+            </div>
+            <div class="collage-strip">
+              <div class="collage-track">
+                <!-- First set -->
+                <img src="./images/blog.png" alt="Blog">
+                <img src="./images/yahoo.JPG" alt="Yahoo! Hackathon win">
+                <img src="./images/irctc_captcha_cracking.svg" alt="IRCTC captcha">
+                <img src="./images/vbot.png" alt="VBot quadbot">
+                <img src="./images/board.png" alt="WebUSB Snake">
+                <!-- Duplicate for seamless loop -->
+                <img src="./images/blog.png" alt="Blog">
+                <img src="./images/yahoo.JPG" alt="Yahoo! Hackathon win">
+                <img src="./images/irctc_captcha_cracking.svg" alt="IRCTC captcha">
+                <img src="./images/vbot.png" alt="VBot quadbot">
+                <img src="./images/board.png" alt="WebUSB Snake">
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 6 - Segue: Life Hacks -->
+        <div class="slide reduced segue-slide" id="ch-life">
+          <section class="middle">
+            <div class="segue-label">Chapter 2</div>
+            <div class="segue-title">Life Hacks</div>
+            <div class="segue-subtitle">When hacking meets parenting</div>
+          </section>
+        </div>
+
+        <!-- Slide 7 - Family Life, Hacked -->
+        <div class="slide reduced" data-time="90">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag spot">SPOT &amp; SOLVE</span>
+            </div>
+            <h2>Family Life, Hacked</h2>
+            <div class="year-badge">2013 - 2018</div>
+            <div class="two-column">
+              <div>
+                <ul class="bulleted">
+                  <li>Named kids after checking domain availability: <a href="https://adhiyan.in" target="_blank">adhiyan.in</a> &amp; <a href="https://aganvee.in" target="_blank">aganvee.in</a></li>
+                  <li><a href="https://github.com/varunkumar/wedding-invite" target="_blank">Wedding invite</a> with CSS3 animations &amp; JS mouse tracking</li>
+                  <li>Baby announcement sites for both kids</li>
+                  <li><a href="https://github.com/varunkumar/baby-track" target="_blank">baby-track</a>: Raspberry Pi + AWS IoT baby monitor</li>
+                </ul>
+                <div class="prompt">
+                  <div class="cmd">$ whois adhiyan.in</div>
+                  <div class="output">Domain available. Registering...</div>
+                  <div class="cmd">$ whois aganvee.in</div>
+                  <div class="output">Domain available. Two for two.</div>
+                </div>
+              </div>
+              <div>
+                <div class="photo-slideshow" id="life-hacks-slideshow">
+                  <div class="slide-frame active" data-idx="0">
+                    <img src="./images/aganvee.png" alt="Aganvee">
+                    <div class="slide-caption">aganvee.in</div>
+                  </div>
+                  <div class="slide-frame" data-idx="1">
+                    <img src="./images/adhiyan.png" alt="Adhiyan">
+                    <div class="slide-caption">adhiyan.in</div>
+                  </div>
+                  <div class="slide-frame" data-idx="2">
+                    <img src="./images/divvy.png" alt="Wedding Invite">
+                    <div class="slide-caption">divvy.varunkumar.me</div>
+                  </div>
+                  <div class="slide-frame" data-idx="3">
+                    <img src="./images/baby-trackpad.JPG" alt="Baby Track">
+                    <div class="slide-caption">Raspberry Pi + AWS IoT</div>
+                  </div>
+                  <div class="slide-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 8 - Segue: The Covid Era -->
+        <div class="slide reduced segue-slide" id="ch-covid">
+          <section class="middle">
+            <div class="segue-label">Chapter 3</div>
+            <div class="segue-title">The Covid Era</div>
+            <div class="segue-subtitle">Lockdowns, online school, and a burst of creativity</div>
+          </section>
+        </div>
+
+        <!-- Slide 9 - Physical Mute Button -->
+        <div class="slide reduced" data-time="60">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag spot">SPOT &amp; SOLVE</span>
+            </div>
+            <h2>Pup Pad</h2>
+            <div class="year-badge">2020</div>
+            <div class="two-column">
+              <div>
+                <p>School went virtual overnight. My son was struggling with mute/unmute on video calls.</p>
+                <p style="margin-top: 12px;">Built <a href="https://github.com/varunkumar/pup-pad" target="_blank">Pup Pad</a>: an Arduino Leonardo with physical buttons for mute, video toggle, and posting attendance in chat.</p>
+                <p style="margin-top: 8px; font-size: 15px; opacity: 0.6;">Works with Google Meet, Zoom, Teams, BlueJeans. The Arduino acts as a USB keyboard sending shortcuts.</p>
+                <p style="margin-top: 16px; color: var(--accent); font-family: 'Space Mono', monospace; font-size: 15px;">Problem solved. Kid happy.</p>
+              </div>
+              <div>
+                <img src="./images/pup-pad-board.png" alt="Pup Pad" style="width: 100%; max-height: 320px; object-fit: contain; border-radius: 8px;">
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 10 - Covid Hackathon Highlights -->
+        <div class="slide reduced" data-time="120">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag spot">SPOT &amp; SOLVE</span>
+              <span class="habit-tag levelup">LEVEL UP THE TOOLS</span>
+            </div>
+            <h2>Hackathon Highlights</h2>
+            <div class="year-badge">2020 - 2022</div>
+            <div class="video-grid">
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://www.youtube.com/embed/LInf2HsHRrk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                  <h4>BringBackMyWorkspace</h4>
+                  <p>Spatial audio office. Won "Mind Boggling Hackers" at Arcesium Hackathon 2020.</p>
+                </div>
+              </div>
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://www.youtube.com/embed/kov5EL8xpX0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                  <h4>Squasher.pro</h4>
+                  <p>"Most Creative Hack" 2021. GPT-2 + BERT summarizer, before ChatGPT existed.</p>
+                </div>
+              </div>
+              <div class="video-card">
+                <div class="video-embed" style="background: #000;">
+                  <img src="./images/camlio.png" alt="Camlio" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="video-info">
+                  <h4>Camlio</h4>
+                  <p>Real-time background removal via OpenCV + TensorFlow. Grand prize, Arcesium Hackathon 2019.</p>
+                </div>
+              </div>
+              <div class="video-card">
+                <div class="video-embed">
+                  <iframe src="https://www.youtube.com/embed/yfhf-txmPvQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                  <h4>Nemo</h4>
+                  <p>Early AI assistant for Aquata</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 11 - Segue: The AI Era -->
+        <div class="slide reduced segue-slide" id="ch-ai">
+          <section class="middle">
+            <div class="segue-label">Chapter 4</div>
+            <div class="segue-title">The AI Era</div>
+            <div class="segue-subtitle">Leveraging AI to hack my kids' school experience</div>
+          </section>
+        </div>
+
+        <!-- Slide 12 - Digitizing the School Diary -->
+        <div class="slide reduced" data-time="90">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag spot">SPOT &amp; SOLVE</span>
+              <span class="habit-tag automate">AUTOMATE THE TEDIOUS</span>
+              <span class="habit-tag share">SHARE &amp; MULTIPLY</span>
+            </div>
+            <h2>Digitizing the School Diary</h2>
+            <div class="year-badge">2025</div>
+            <p style="font-size: 15px; margin-bottom: 10px;">School issues a physical paper diary. In 2025.</p>
+            <ul class="workflow-list">
+              <li>Photographed every page of the diary</li>
+              <li>AI extracted all events, holidays, assemblies</li>
+              <li>Built <a href="https://github.com/varunkumar/school-calendar" target="_blank">school-calendar</a>: React + Tailwind, filterable by category</li>
+              <li>Deployed at <a href="https://calendar.adhiyan.in" target="_blank">calendar.adhiyan.in</a>. Shared with parents. Overnight hit.</li>
+            </ul>
+            <p style="font-size: 14px; margin-top: 4px; opacity: 0.5;">Built the whole site in under an hour. June 2025.</p>
+            <p style="font-size: 15px; margin-top: 4px; color: var(--accent); font-family: 'Space Mono', monospace;">My kids became superstars overnight.</p>
+          </section>
+        </div>
+
+        <!-- Slide - Calendar Screenshot -->
+        <div class="slide reduced">
+          <img src="./images/calendar.png" alt="School Calendar" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; z-index: 1;">
+        </div>
+
+        <!-- Slide 13 - The School Portal -->
+        <div class="slide reduced" data-time="120">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag spot">SPOT &amp; SOLVE</span>
+              <span class="habit-tag automate">AUTOMATE THE TEDIOUS</span>
+              <span class="habit-tag share">SHARE &amp; MULTIPLY</span>
+            </div>
+            <h2>Fixing the School Portal</h2>
+            <div class="two-column" style="margin-top: 8px;">
+              <div>
+                <p style="font-size: 16px; color: var(--text-bright); margin-bottom: 8px;">The portal is terrible.</p>
+                <ul class="problem-list" style="font-size: 14px;">
+                  <li>No notifications</li>
+                  <li>Unstable, frequently down</li>
+                  <li>Notices, homework buried deep</li>
+                  <li>Parents miss everything</li>
+                </ul>
+                <p style="font-size: 14px; margin-top: 8px; opacity: 0.6;">Wrote to the school. Wrote to the developers. Got nowhere.</p>
+              </div>
+              <div>
+                <p style="font-size: 16px; color: var(--accent); margin-bottom: 8px;">Built <a href="https://github.com/varunkumar/parentsalarm-alert" target="_blank">parentsalarm-alert</a>:</p>
+                <ul class="workflow-list" style="font-size: 14px;">
+                  <li>Puppeteer auto-logs in</li>
+                  <li>Extracts notices, homework, stationery</li>
+                  <li>Watermark storage, no duplicates</li>
+                  <li>Slack channels per child</li>
+                  <li>GitHub Actions cron</li>
+                </ul>
+                <p style="font-size: 13px; margin-top: 4px; opacity: 0.5;">Both Adhiyan's and Aganvee's feeds are live.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide - Portal Screenshot -->
+        <div class="slide reduced">
+          <img src="./images/slack.png" alt="Slack Notifications" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; z-index: 1;">
+        </div>
+
+        <!-- Slide 15 - The Pivot Moment -->
+        <div class="slide reduced" data-time="30">
+          <section class="middle">
+            <div class="centered-text">
+              <p>Scripts worked. Automation worked.</p>
+              <p>But the world was changing.</p>
+              <p style="margin-top: 20px;">Coding agents were becoming autonomous.</p>
+              <p style="margin-top: 20px;">I wanted to build something more intelligent.</p>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 16 - Segue: Enter the Agents -->
+        <div class="slide reduced segue-slide" id="ch-agents">
+          <section class="middle">
+            <div class="segue-label">Chapter 5</div>
+            <div class="segue-title">Enter the Agents</div>
+            <div class="segue-subtitle">From scripts to autonomous AI teammates</div>
+          </section>
+        </div>
+
+        <!-- Slide 17 - OpenClaw -->
+        <div class="slide reduced" data-time="120">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag levelup">LEVEL UP THE TOOLS</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="./images/openclaw.png" alt="OpenClaw" style="width: 40px; height: 40px; border-radius: 8px;">
+              <h2 style="margin: 0;">OpenClaw</h2>
+            </div>
+            <div class="evolution-line">
+              <span class="dim">Clawdbot</span>
+              <span class="arrow">&rarr;</span>
+              <span class="dim">Moltbot</span>
+              <span class="arrow">&rarr;</span>
+              <span class="highlight">OpenClaw</span>
+            </div>
+            <div class="hack-grid">
+              <div class="hack-card">
+                <h4>Long-term Memory</h4>
+                <p>Remembers context across conversations</p>
+              </div>
+              <div class="hack-card">
+                <h4>Tool Use</h4>
+                <p>Can call APIs, run code, browse the web</p>
+              </div>
+              <div class="hack-card">
+                <h4>Always On</h4>
+                <p>Runs 24/7 on dedicated hardware</p>
+              </div>
+              <div class="hack-card">
+                <h4>Multi-Agent</h4>
+                <p>Delegates tasks to specialized agents</p>
+              </div>
+              <div class="hack-card">
+                <h4>Skills &amp; Agent Ecosystem</h4>
+                <p>Pluggable skills and agents that can be composed and shared across workflows</p>
+              </div>
+              <div class="hack-card">
+                <h4>Self-Upskilling</h4>
+                <p>Agents learn from interactions and improve their capabilities over time</p>
+              </div>
+              <div class="hack-card" style="grid-column: 1 / -1;">
+                <h4>Channel Integrations</h4>
+                <p>Slack, WhatsApp, Telegram, email, web. Interact with agents wherever you already are.</p>
+              </div>
+            </div>
+            <div class="quote-block" style="font-size: 16px; margin-top: 12px;">
+              "Think Jarvis from Iron Man. Ask it anything. It learns. It delivers."
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 18 - The Setup & Security -->
+        <div class="slide reduced" data-time="120">
+          <section>
+            <h2>The Setup &amp; Security</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 8px;">
+              <div>
+                <h3 style="font-size: 14px; margin: 0 0 6px 0; color: var(--accent); opacity: 0.7;">THE SETUP</h3>
+                <ul class="bulleted" style="line-height: 32px; font-size: 14px;">
+                  <li>Mac Studio as the workhorse</li>
+                  <li>macOS VM for isolation</li>
+                  <li>Slack &amp; Telegram integration</li>
+                  <li>LLMs via GitHub provider</li>
+                </ul>
+                <h3 style="font-size: 14px; margin: 14px 0 6px 0; color: var(--accent); opacity: 0.7;">SECURITY</h3>
+                <p style="font-size: 13px; color: var(--text-bright); margin-bottom: 6px;">Agents have access to email, GitHub, APIs, school data.</p>
+                <ul class="bulleted" style="line-height: 32px; font-size: 14px;">
+                  <li>macOS VM sandboxing</li>
+                  <li>Scoped permissions per agent</li>
+                  <li>Full audit trail</li>
+                </ul>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+                  <!-- Desk -->
+                  <rect x="10" y="210" width="280" height="10" rx="3" fill="#2a2a30"/>
+                  <rect x="40" y="220" width="10" height="50" rx="2" fill="#222228"/>
+                  <rect x="250" y="220" width="10" height="50" rx="2" fill="#222228"/>
+                  <!-- Monitor -->
+                  <rect x="50" y="50" width="200" height="130" rx="6" fill="#1a1a1e" stroke="#333" stroke-width="1.5"/>
+                  <rect x="58" y="58" width="184" height="108" rx="3" fill="#0c0c10"/>
+                  <!-- Screen content -->
+                  <text x="68" y="76" font-family="monospace" font-size="8" fill="#36a7f5">~ $ openclaw status</text>
+                  <text x="68" y="88" font-family="monospace" font-size="7" fill="#22c55e">Naga   ● online</text>
+                  <text x="68" y="99" font-family="monospace" font-size="7" fill="#22c55e">Cobra  ● online</text>
+                  <text x="68" y="110" font-family="monospace" font-size="7" fill="#22c55e">Boa    ● online</text>
+                  <text x="68" y="121" font-family="monospace" font-size="7" fill="#22c55e">Viper  ● online</text>
+                  <text x="68" y="132" font-family="monospace" font-size="7" fill="#22c55e">Krait  ● online</text>
+                  <text x="68" y="143" font-family="monospace" font-size="7" fill="#22c55e">Momba  ● online</text>
+                  <text x="68" y="157" font-family="monospace" font-size="7" fill="#666">6 agents ready.</text>
+                  <!-- Monitor stand -->
+                  <rect x="130" y="180" width="40" height="16" rx="2" fill="#2a2a30"/>
+                  <rect x="115" y="195" width="70" height="5" rx="3" fill="#2a2a30"/>
+                  <!-- Mac Studio -->
+                  <rect x="230" y="180" width="50" height="24" rx="5" fill="#333338" stroke="#444" stroke-width="1"/>
+                  <circle cx="255" cy="192" r="2.5" fill="none" stroke="#555" stroke-width="0.7"/>
+                  <text x="255" y="212" font-family="monospace" font-size="5" fill="#555" text-anchor="middle">Mac Studio</text>
+                  <!-- VM bubble -->
+                  <rect x="232" y="148" width="56" height="24" rx="3" fill="none" stroke="#36a7f5" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.5"/>
+                  <text x="260" y="159" font-family="monospace" font-size="6" fill="#36a7f5" text-anchor="middle" opacity="0.6">macOS VM</text>
+                  <text x="260" y="168" font-family="monospace" font-size="5" fill="#888" text-anchor="middle">OpenClaw</text>
+                  <line x1="255" y1="172" x2="255" y2="180" stroke="#36a7f5" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.4"/>
+                  <!-- Cloud -->
+                  <ellipse cx="150" cy="25" rx="45" ry="14" fill="none" stroke="#555" stroke-width="0.7" stroke-dasharray="3,2"/>
+                  <text x="150" y="29" font-family="monospace" font-size="6" fill="#666" text-anchor="middle">GitHub LLM</text>
+                  <line x1="150" y1="39" x2="150" y2="50" stroke="#555" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.4"/>
+                </svg>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+                  <!-- Shield -->
+                  <path d="M80 12 L140 38 L140 105 Q140 155 80 178 Q20 155 20 105 L20 38 Z" fill="none" stroke="#36a7f5" stroke-width="1.5" opacity="0.3"/>
+                  <path d="M80 25 L128 45 L128 100 Q128 142 80 162 Q32 142 32 100 L32 45 Z" fill="rgba(54,167,245,0.04)" stroke="#36a7f5" stroke-width="0.8" opacity="0.5"/>
+                  <!-- Lock body -->
+                  <rect x="58" y="78" width="44" height="34" rx="4" fill="#1a1a1e" stroke="#36a7f5" stroke-width="1.2" opacity="0.8"/>
+                  <!-- Lock shackle -->
+                  <path d="M65 78 L65 66 Q65 54 80 54 Q95 54 95 66 L95 78" fill="none" stroke="#36a7f5" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+                  <!-- Keyhole -->
+                  <circle cx="80" cy="92" r="4" fill="#36a7f5" opacity="0.6"/>
+                  <rect x="78.5" y="94" width="3" height="8" rx="1" fill="#36a7f5" opacity="0.6"/>
+                  <!-- Orbiting dots -->
+                  <circle cx="80" cy="95" r="55" fill="none" stroke="#36a7f5" stroke-width="0.4" stroke-dasharray="3,5" opacity="0.15"/>
+                  <circle r="3" fill="#22c55e" opacity="0.6">
+                    <animateMotion dur="8s" repeatCount="indefinite" path="M80,40 A55,55 0 1,1 79.9,40" rotate="auto"/>
+                  </circle>
+                  <circle r="2.5" fill="#a78bfa" opacity="0.5">
+                    <animateMotion dur="8s" repeatCount="indefinite" path="M80,40 A55,55 0 1,1 79.9,40" rotate="auto" begin="2.6s"/>
+                  </circle>
+                  <circle r="3" fill="#36a7f5" opacity="0.5">
+                    <animateMotion dur="8s" repeatCount="indefinite" path="M80,40 A55,55 0 1,1 79.9,40" rotate="auto" begin="5.3s"/>
+                  </circle>
+                  <!-- Label -->
+                  <text x="80" y="133" font-family="monospace" font-size="7" fill="#36a7f5" text-anchor="middle" opacity="0.5">VM ISOLATED</text>
+                  <text x="80" y="144" font-family="monospace" font-size="6" fill="#888" text-anchor="middle">scoped &bull; audited</text>
+                </svg>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 20 - The Snake Squad -->
+        <div class="slide reduced" data-time="120">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag spot">SPOT &amp; SOLVE</span>
+              <span class="habit-tag automate">AUTOMATE THE TEDIOUS</span>
+              <span class="habit-tag levelup">LEVEL UP THE TOOLS</span>
+            </div>
+            <h2>The Snake Squad</h2>
+            <p style="font-size: 14px; margin-bottom: 12px;">Each agent has a name, role, email, GitHub account, and X handle.</p>
+            <div class="agent-grid">
+              <div class="agent-card">
+                <img class="agent-avatar" src="./images/naga.png" alt="Naga">
+                <div class="agent-info"><h4>Naga</h4><p class="role">Chief of Staff. Delegates tasks.</p></div>
+              </div>
+              <div class="agent-card">
+                <img class="agent-avatar" src="./images/viper.png" alt="Viper">
+                <div class="agent-info"><h4>Viper</h4><p class="role">Principal Engineer. Architecture.</p></div>
+              </div>
+              <div class="agent-card">
+                <img class="agent-avatar" src="./images/vobra.png" alt="Cobra">
+                <div class="agent-info"><h4>Cobra</h4><p class="role">Frontend Engineer. UI and design.</p></div>
+              </div>
+              <div class="agent-card">
+                <img class="agent-avatar" src="./images/boa.png" alt="Boa">
+                <div class="agent-info"><h4>Boa</h4><p class="role">Backend Engineer. APIs and infra.</p></div>
+              </div>
+              <div class="agent-card">
+                <img class="agent-avatar" src="./images/krait.png" alt="Krait">
+                <div class="agent-info"><h4>Krait</h4><p class="role">Test Engineer. Quality and validation.</p></div>
+              </div>
+              <div class="agent-card">
+                <img class="agent-avatar" src="./images/momba.png" alt="Momba">
+                <div class="agent-info"><h4>Momba</h4><p class="role">Study Buddy. Helps kids with school and homework.</p></div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 21 - My Workflow -->
+        <div class="slide reduced" data-time="90">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag automate">AUTOMATE THE TEDIOUS</span>
+            </div>
+            <h2>My Workflow</h2>
+            <div class="flow-text">Assign to Naga &rarr; Breaks down &rarr; Delegates &rarr; Mission Control</div>
+            <div class="hack-grid">
+              <div class="hack-card">
+                <h4>School Work</h4>
+                <p>Homework help, event tracking, parent notifications</p>
+              </div>
+              <div class="hack-card">
+                <h4>Photography Business</h4>
+                <p>Client management, editing workflows</p>
+              </div>
+              <div class="hack-card">
+                <h4>Daily Feeds</h4>
+                <p>News, tech updates, curated content</p>
+              </div>
+              <div class="hack-card">
+                <h4>Kids' Learning</h4>
+                <p>Educational content, concept explanations</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide - Mission Control Screenshot -->
+        <div class="slide reduced">
+          <img src="./images/mission-control.png" alt="Mission Control" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; z-index: 1;">
+        </div>
+
+        <!-- Slide 22 - Momba -->
+        <div class="slide reduced" data-time="150">
+          <section>
+            <div class="habit-tags">
+              <span class="habit-tag spot">SPOT &amp; SOLVE</span>
+              <span class="habit-tag automate">AUTOMATE THE TEDIOUS</span>
+              <span class="habit-tag share">SHARE &amp; MULTIPLY</span>
+              <span class="habit-tag levelup">LEVEL UP THE TOOLS</span>
+            </div>
+            <h2>Momba: The Study Buddy</h2>
+            <ul class="bulleted" style="line-height: 34px; font-size: 15px;">
+              <li>RAG system for school questions via Slack</li>
+              <li>Kids can print directly from Slack</li>
+              <li>Auto-extracts contests and events, sends reminders to parents</li>
+            </ul>
+            <div class="slack-mockup" style="margin-top: 10px;">
+              <div class="slack-user">@momba</div>
+              <div class="slack-msg">When is the next science exhibition?</div>
+              <div class="slack-response">March 15th. Want me to help prepare?</div>
+            </div>
+            <p style="font-size: 18px; color: var(--text-bright); margin-top: 16px;">My son doesn't use ChatGPT or Claude directly. <span style="color: var(--accent); font-family: 'Space Mono', monospace;">He talks to the agent in Slack.</span></p>
+            <p style="font-size: 14px; color: var(--text); opacity: 0.5; margin-top: 6px;">Homework help. Concept explanations. Conversations. He finds it more natural to talk to a familiar agent.</p>
+            <p class="tagline" style="margin-top: 8px;">All four habits converge here.</p>
+          </section>
+        </div>
+
+        <!-- Slide 24 - Tools I Use -->
+        <div class="slide reduced" data-time="60">
+          <section>
+            <h2>Tools I Use</h2>
+            <p style="font-size: 15px; color: var(--text); opacity: 0.6; margin-bottom: 20px;">Not a lot of fancy ones. Simplicity wins.</p>
+            <div class="tool-item">
+              <span class="tool-name">Mac Studio</span>
+              <span class="tool-desc">The workhorse behind all the agents</span>
+            </div>
+            <div class="tool-item">
+              <span class="tool-name">GitHub Copilot</span>
+              <span class="tool-desc">My favorite coding agent</span>
+            </div>
+            <div class="tool-item">
+              <span class="tool-name">Claude.ai</span>
+              <span class="tool-desc">Writing and brainstorming</span>
+            </div>
+            <div class="tool-item">
+              <span class="tool-name">LM Studio</span>
+              <span class="tool-desc">Local models for offline and private workloads.</span>
+            </div>
+            <div class="tool-item" style="border-bottom: none;">
+              <span class="tool-name">Gemini &amp; Grok</span>
+              <span class="tool-desc">Image and video generation.</span>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 25 - The Four Habits Revealed -->
+        <div class="slide reduced" id="ch-closing" data-time="90">
+          <section>
+            <h2>The Four Habits</h2>
+            <div class="habit-grid">
+              <div class="habit-card spot-card">
+                <h4>SPOT &amp; SOLVE</h4>
+                <p>See a problem, build a fix. Don't wait for permission.</p>
+              </div>
+              <div class="habit-card automate-card">
+                <h4>AUTOMATE THE TEDIOUS</h4>
+                <p>If you do it twice, script it. If you script it, schedule it.</p>
+              </div>
+              <div class="habit-card share-card">
+                <h4>SHARE &amp; MULTIPLY</h4>
+                <p>A hack shared is a hack multiplied. Build community around it.</p>
+              </div>
+              <div class="habit-card levelup-card">
+                <h4>LEVEL UP THE TOOLS</h4>
+                <p>Yesterday's hack becomes today's platform. Keep evolving.</p>
+              </div>
+            </div>
+            <p class="tagline" style="margin-top: 20px;">You've been watching these build up throughout the talk.</p>
+          </section>
+        </div>
+
+        <!-- Slide 26 - Closing -->
+        <div class="slide reduced" data-time="60">
+          <section class="middle">
+            <div style="max-width: 800px; margin: 0 auto; display: flex; gap: 28px; align-items: flex-start; text-align: left;">
+              <div style="flex-shrink: 0; margin-top: 8px;">
+                <div style="position: relative;">
+                  <div style="position: absolute; top: -8px; right: -6px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(54,167,245,0.15), transparent 70%);"></div>
+                  <div style="position: absolute; bottom: -6px; left: -8px; width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle, rgba(167,139,250,0.12), transparent 70%);"></div>
+                  <img src="./images/varun.jpeg" alt="Varun" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(54,167,245,0.2); position: relative; z-index: 1;">
+                </div>
+              </div>
+              <div>
+                <div style="font-size: 19px; color: var(--text-bright); line-height: 1.7; border-left: 3px solid var(--accent); padding-left: 20px;">
+                  Every hack I showed you today started the same way: a small annoyance I refused to accept. A captcha. A paper diary. A mute button. None of them were meant to become anything.<br><br>
+                  <span style="opacity: 0.7;">But small hacks compound. The captcha cracker made me a blogger. The blogger won hackathons. The hackathons taught me to build fast. Building fast gave me agents. Now the agents build for me.</span>
+                </div>
+                <p style="font-size: 26px; color: var(--accent); font-family: 'Space Mono', monospace; margin-top: 28px;">Start small. Stay curious.<br>The compounding takes care of itself.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 27 - Thank You -->
+        <div class="slide reduced">
+          <section class="middle">
+            <h1>Thank You!</h1>
+            <p>Varunkumar Nagarajan</p>
+          </section>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- presentation -->
+
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script>
+      (function () {
+        var doc = document;
+        var disableBuilds = true;
+
+        var ctr = 0;
+        var spaces = /\s+/,
+          a1 = [''];
+
+        var toArray = function (list) {
+          return Array.prototype.slice.call(list || [], 0);
+        };
+
+        var byId = function (id) {
+          if (typeof id == 'string') {
+            return doc.getElementById(id);
+          }
+          return id;
+        };
+
+        var query = function (query, root) {
+          if (!query) {
+            return [];
+          }
+          if (typeof query != 'string') {
+            return toArray(query);
+          }
+          if (typeof root == 'string') {
+            root = byId(root);
+            if (!root) {
+              return [];
+            }
+          }
+
+          root = root || document;
+          var rootIsDoc = root.nodeType == 9;
+          var doc = rootIsDoc ? root : root.ownerDocument || document;
+
+          if (!rootIsDoc || '>~+'.indexOf(query.charAt(0)) >= 0) {
+            root.id = root.id || 'qUnique' + ctr++;
+            query = '#' + root.id + ' ' + query;
+          }
+          if ('>~+'.indexOf(query.slice(-1)) >= 0) {
+            query += ' *';
+          }
+
+          return toArray(doc.querySelectorAll(query));
+        };
+
+        var strToArray = function (s) {
+          if (typeof s == 'string' || s instanceof String) {
+            if (s.indexOf(' ') < 0) {
+              a1[0] = s;
+              return a1;
+            } else {
+              return s.split(spaces);
+            }
+          }
+          return s;
+        };
+
+        var addClass = function (node, classStr) {
+          classStr = strToArray(classStr);
+          var cls = ' ' + node.className + ' ';
+          for (var i = 0, len = classStr.length, c; i < len; ++i) {
+            c = classStr[i];
+            if (c && cls.indexOf(' ' + c + ' ') < 0) {
+              cls += c + ' ';
+            }
+          }
+          node.className = cls.trim();
+        };
+
+        var removeClass = function (node, classStr) {
+          var cls;
+          if (classStr !== undefined) {
+            classStr = strToArray(classStr);
+            cls = ' ' + node.className + ' ';
+            for (var i = 0, len = classStr.length; i < len; ++i) {
+              cls = cls.replace(' ' + classStr[i] + ' ', ' ');
+            }
+            cls = cls.trim();
+          } else {
+            cls = '';
+          }
+          if (node.className != cls) {
+            node.className = cls;
+          }
+        };
+
+        var toggleClass = function (node, classStr) {
+          var cls = ' ' + node.className + ' ';
+          if (cls.indexOf(' ' + classStr.trim() + ' ') >= 0) {
+            removeClass(node, classStr);
+          } else {
+            addClass(node, classStr);
+          }
+        };
+
+        var ua = navigator.userAgent;
+        var isFF = parseFloat(ua.split('Firefox/')[1]) || undefined;
+        var isWK = parseFloat(ua.split('WebKit/')[1]) || undefined;
+        var isOpera = parseFloat(ua.split('Opera/')[1]) || undefined;
+
+        var canTransition = (function () {
+          var ver = parseFloat(ua.split('Version/')[1]) || undefined;
+          var cachedCanTransition =
+            isWK || (isFF && isFF > 3.6) || (isOpera && ver >= 10.5);
+          return function () {
+            return cachedCanTransition;
+          };
+        })();
+
+        //
+        // Slide class
+        //
+        var Slide = function (node, idx) {
+          this._node = node;
+          if (idx >= 0) {
+            this._count = idx + 1;
+          }
+          if (this._node) {
+            addClass(this._node, 'slide distant-slide');
+          }
+          this._makeCounter();
+          this._makeBuildList();
+        };
+
+        Slide.prototype = {
+          _node: null,
+          _count: 0,
+          _buildList: [],
+          _visited: false,
+          _currentState: '',
+          _states: [
+            'distant-slide',
+            'far-past',
+            'past',
+            'current',
+            'future',
+            'far-future',
+            'distant-slide',
+          ],
+          setState: function (state) {
+            if (typeof state != 'string') {
+              state = this._states[state];
+            }
+            if (state == 'current' && !this._visited) {
+              this._visited = true;
+              this._makeBuildList();
+            }
+            removeClass(this._node, this._states);
+            addClass(this._node, state);
+            this._currentState = state;
+
+            var _t = this;
+            setTimeout(function () {
+              _t._runAutos();
+            }, 400);
+          },
+          _makeCounter: function () {
+            if (!this._count || !this._node) {
+              return;
+            }
+            var c = doc.createElement('span');
+            c.innerHTML = this._count;
+            c.className = 'counter';
+            this._node.appendChild(c);
+          },
+          _makeBuildList: function () {
+            this._buildList = [];
+            if (disableBuilds) {
+              return;
+            }
+            if (this._node) {
+              this._buildList = query('[data-build] > *', this._node);
+            }
+            this._buildList.forEach(function (el) {
+              addClass(el, 'to-build');
+            });
+          },
+          _runAutos: function () {
+            if (this._currentState != 'current') {
+              return;
+            }
+            var idx = -1;
+            this._buildList.some(function (n, i) {
+              if (n.hasAttribute('data-auto')) {
+                idx = i;
+                return true;
+              }
+              return false;
+            });
+            if (idx >= 0) {
+              var elem = this._buildList.splice(idx, 1)[0];
+              var transitionEnd = isWK
+                ? 'webkitTransitionEnd'
+                : isFF
+                ? 'mozTransitionEnd'
+                : 'oTransitionEnd';
+              var _t = this;
+              if (canTransition()) {
+                var l = function (evt) {
+                  elem.parentNode.removeEventListener(transitionEnd, l, false);
+                  _t._runAutos();
+                };
+                elem.parentNode.addEventListener(transitionEnd, l, false);
+                removeClass(elem, 'to-build');
+              } else {
+                setTimeout(function () {
+                  removeClass(elem, 'to-build');
+                  _t._runAutos();
+                }, 400);
+              }
+            }
+          },
+          buildNext: function () {
+            if (!this._buildList.length) {
+              return false;
+            }
+            removeClass(this._buildList.shift(), 'to-build');
+            return true;
+          },
+        };
+
+        //
+        // SlideShow class
+        //
+        var SlideShow = function (slides) {
+          this._slides = (slides || []).map(function (el, idx) {
+            return new Slide(el, idx);
+          });
+
+          var h = window.location.hash;
+          try {
+            this.current = parseInt(h.split('#slide')[1], 10);
+          } catch (e) {
+            /* squeltch */
+          }
+          this.current = isNaN(this.current) ? 1 : this.current;
+          var _t = this;
+          doc.addEventListener(
+            'keydown',
+            function (e) {
+              _t.handleKeys(e);
+            },
+            false
+          );
+          doc.addEventListener(
+            'mousewheel',
+            function (e) {
+              _t.handleWheel(e);
+            },
+            false
+          );
+          doc.addEventListener(
+            'DOMMouseScroll',
+            function (e) {
+              _t.handleWheel(e);
+            },
+            false
+          );
+          doc.addEventListener(
+            'touchstart',
+            function (e) {
+              _t.handleTouchStart(e);
+            },
+            false
+          );
+          doc.addEventListener(
+            'touchend',
+            function (e) {
+              _t.handleTouchEnd(e);
+            },
+            false
+          );
+          window.addEventListener(
+            'popstate',
+            function (e) {
+              _t.go(e.state);
+            },
+            false
+          );
+          this._update();
+        };
+
+        SlideShow.prototype = {
+          _slides: [],
+          _update: function (dontPush) {
+            if (this.current === null) return;
+
+            document.querySelector('#presentation-counter').innerText =
+              this.current;
+            if (history.pushState) {
+              if (!dontPush) {
+                history.pushState(
+                  this.current,
+                  'Slide ' + this.current,
+                  '#slide' + this.current
+                );
+              }
+            } else {
+              window.location.hash = 'slide' + this.current;
+            }
+            // Clear all slides first, then set the visible window
+            for (var i = 0; i < this._slides.length; i++) {
+              this._slides[i].setState('distant-slide');
+            }
+            for (var x = this.current - 1; x < this.current + 7; x++) {
+              if (this._slides[x - 4]) {
+                this._slides[x - 4].setState(Math.max(0, x - this.current));
+              }
+            }
+          },
+
+          next: function () {
+            if (this.current == null) {
+              var h = window.location.hash;
+              try {
+                this.current = parseInt(h.split('#slide')[1], 10);
+              } catch (e) {
+                /* squeltch */
+              }
+              this.current = isNaN(this.current) ? 1 : this.current;
+            }
+            if (!this._slides[this.current - 1].buildNext()) {
+              this.current = Math.min(this.current + 1, this._slides.length);
+              this._update();
+            }
+          },
+          prev: function () {
+            if (this.current == null) {
+              var h = window.location.hash;
+              try {
+                this.current = parseInt(h.split('#slide')[1], 10);
+              } catch (e) {
+                /* squeltch */
+              }
+              this.current = isNaN(this.current) ? 1 : this.current;
+            }
+
+            this.current = Math.max(this.current - 1, 1);
+            this._update();
+          },
+          go: function (num) {
+            this.current = num;
+            this._update();
+          },
+
+          _notesOn: false,
+          showNotes: function () {
+            var isOn = (this._notesOn = !this._notesOn);
+            query('.notes').forEach(function (el) {
+              el.style.display = isOn ? 'block' : 'none';
+            });
+          },
+          switch3D: function () {
+            toggleClass(document.body, 'three-d');
+          },
+          handleWheel: function (e) {
+            var delta = 0;
+            if (e.wheelDelta) {
+              delta = e.wheelDelta / 120;
+              if (isOpera) {
+                delta = -delta;
+              }
+            } else if (e.detail) {
+              delta = -e.detail / 3;
+            }
+
+            if (delta > 0) {
+              this.prev();
+              return;
+            }
+            if (delta < 0) {
+              this.next();
+              return;
+            }
+          },
+          handleKeys: function (e) {
+            if (
+              /^(input|textarea)$/i.test(e.target.nodeName) ||
+              e.target.isContentEditable
+            ) {
+              return;
+            }
+            switch (e.keyCode) {
+              case 37: // left arrow
+                this.prev();
+                break;
+              case 39: // right arrow
+              case 32: // space
+                this.next();
+                break;
+              case 50: // 2
+                this.showNotes();
+                break;
+              case 51: // 3
+                this.switch3D();
+                break;
+            }
+          },
+          _touchStartX: 0,
+          handleTouchStart: function (e) {
+            this._touchStartX = e.touches[0].pageX;
+          },
+          handleTouchEnd: function (e) {
+            var delta = this._touchStartX - e.changedTouches[0].pageX;
+            var SWIPE_SIZE = 150;
+            if (delta > SWIPE_SIZE) {
+              this.next();
+            } else if (delta < -SWIPE_SIZE) {
+              this.prev();
+            }
+          },
+        };
+
+        // Initialize
+        var slideshow = new SlideShow(query('.slide'));
+        window._slideshow = slideshow;
+
+        var counters = document.querySelectorAll('.counter');
+        var slides = document.querySelectorAll('.slide');
+
+        function toggleCounter() {
+          toArray(counters).forEach(function (el) {
+            el.style.display = el.offsetHeight ? 'none' : 'block';
+          });
+        }
+
+        function toggleSize() {
+          toArray(slides).forEach(function (el) {
+            if (!/reduced/.test(el.className)) {
+              addClass(el, 'reduced');
+            } else {
+              removeClass(el, 'reduced');
+            }
+          });
+        }
+
+        function toggleTransitions() {
+          toArray(slides).forEach(function (el) {
+            if (!/no-transitions/.test(el.className)) {
+              addClass(el, 'no-transitions');
+            } else {
+              removeClass(el, 'no-transitions');
+            }
+          });
+        }
+
+        function toggleGradients() {
+          toArray(slides).forEach(function (el) {
+            if (!/no-gradients/.test(el.className)) {
+              addClass(el, 'no-gradients');
+            } else {
+              removeClass(el, 'no-gradients');
+            }
+          });
+        }
+
+        // Drawing functionality
+        function initDrawing() {
+          const slides = document.querySelectorAll('.slide');
+          slides.forEach(slide => {
+            const canvas = document.createElement('canvas');
+            canvas.className = 'drawing-canvas';
+            slide.appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+
+            function resizeCanvas() {
+              canvas.width = slide.offsetWidth;
+              canvas.height = slide.offsetHeight;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+
+            function startDrawing(e) {
+              isDrawing = true;
+              [lastX, lastY] = [e.offsetX, e.offsetY];
+            }
+
+            function draw(e) {
+              if (!isDrawing) return;
+              ctx.beginPath();
+              ctx.moveTo(lastX, lastY);
+              ctx.lineTo(e.offsetX, e.offsetY);
+              ctx.strokeStyle = canvas.getAttribute('data-stroke') || '#36a7f5';
+              ctx.lineWidth = 2;
+              ctx.lineCap = 'round';
+              ctx.stroke();
+              [lastX, lastY] = [e.offsetX, e.offsetY];
+            }
+
+            function stopDrawing() {
+              isDrawing = false;
+            }
+          });
+
+          // Toggle drawing mode with 'D' key, light theme with 'L'
+          document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'd') {
+              document.body.classList.toggle('drawing-active');
+            } else if (e.key.toLowerCase() === 'c') {
+              const currentSlide = document.querySelector('.slide.current');
+              if (currentSlide) {
+                const canvas = currentSlide.querySelector('.drawing-canvas');
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+              }
+            } else if (e.key.toLowerCase() === 'l') {
+              document.body.classList.toggle('light-theme');
+              var indicator = document.getElementById('theme-indicator');
+              var isLight = document.body.classList.contains('light-theme');
+              indicator.textContent = isLight ? 'Light Mode' : 'Dark Mode';
+              indicator.classList.add('visible');
+              setTimeout(function() { indicator.classList.remove('visible'); }, 1500);
+              // Update drawing color for visibility
+              var canvases = document.querySelectorAll('.drawing-canvas');
+              canvases.forEach(function(c) {
+                c.setAttribute('data-stroke', isLight ? '#0f5a96' : '#36a7f5');
+              });
+            } else if (e.key.toLowerCase() === 'a') {
+              // Jump to agenda slide
+              var agendaSlide = document.getElementById('agenda-slide');
+              if (agendaSlide && window._slideshow) {
+                var slides = document.querySelectorAll('.slide');
+                for (var i = 0; i < slides.length; i++) {
+                  if (slides[i] === agendaSlide) {
+                    window._slideshow.go(i + 1);
+                    break;
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        // Timer functionality
+        function initTimer() {
+          var timerContainer = document.createElement('div');
+          timerContainer.className = 'timer';
+          var progressBar = document.createElement('div');
+          progressBar.className = 'progress';
+          timerContainer.appendChild(progressBar);
+          document.body.appendChild(timerContainer);
+
+          var currentTimer = null;
+          var visitedSlides = new Set();
+          var lastSlideTime = 0;
+
+          // Radial slide-count progress
+          var radial = document.getElementById('radial-progress');
+          var radialFill = radial.querySelector('.fill');
+          var radialLabel = document.getElementById('radial-label');
+          var circumference = 2 * Math.PI * 18;
+          var allSlides = document.querySelectorAll('.slide');
+          var totalSlides = allSlides.length;
+
+          radialFill.style.strokeDasharray = circumference;
+          radialFill.style.strokeDashoffset = circumference;
+
+          function updateSlideProgress(slideIndex) {
+            var progress = slideIndex / totalSlides;
+            radialFill.style.strokeDashoffset = circumference * (1 - progress);
+            radialLabel.textContent = slideIndex + '/' + totalSlides;
+          }
+
+          // Set initial state
+          updateSlideProgress(1);
+
+          function startTimer(slide) {
+            var allocatedTime = slide.getAttribute('data-time');
+            if (!allocatedTime) {
+              timerContainer.classList.remove('active', 'warning', 'caution');
+              return;
+            }
+
+            if (visitedSlides.has(slide) && (Date.now() - lastSlideTime < 1000)) {
+              return;
+            }
+
+            lastSlideTime = Date.now();
+
+            if (currentTimer) {
+              clearTimeout(currentTimer.cautionTimeout);
+              clearTimeout(currentTimer.warningTimeout);
+            }
+
+            timerContainer.classList.remove('warning', 'caution');
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+            timerContainer.classList.add('active');
+
+            void progressBar.offsetWidth;
+
+            progressBar.style.transition = 'width ' + allocatedTime + 's linear';
+            requestAnimationFrame(function() {
+              progressBar.style.width = '100%';
+            });
+
+            var cautionTimeout = setTimeout(function() {
+              timerContainer.classList.add('caution');
+            }, allocatedTime * 750);
+
+            var warningTimeout = setTimeout(function() {
+              timerContainer.classList.remove('caution');
+              timerContainer.classList.add('warning');
+            }, allocatedTime * 1000);
+
+            currentTimer = {
+              cautionTimeout: cautionTimeout,
+              warningTimeout: warningTimeout
+            };
+
+            visitedSlides.add(slide);
+          }
+
+          allSlides.forEach(function(slide, idx) {
+            var observer = new MutationObserver(function(mutations) {
+              mutations.forEach(function(mutation) {
+                if (mutation.target.classList.contains('current')) {
+                  startTimer(slide);
+                  updateSlideProgress(idx + 1);
+                } else if (mutation.oldValue && mutation.oldValue.indexOf('current') >= 0) {
+                  timerContainer.classList.remove('active', 'warning', 'caution');
+                  if (currentTimer) {
+                    clearTimeout(currentTimer.cautionTimeout);
+                    clearTimeout(currentTimer.warningTimeout);
+                  }
+                }
+              });
+            });
+
+            observer.observe(slide, {
+              attributes: true,
+              attributeFilter: ['class'],
+              attributeOldValue: true
+            });
+          });
+        }
+
+        // Agenda slide up/down navigation
+        function initAgendaNav() {
+          var agendaSlide = document.getElementById('agenda-slide');
+          var agendaList = document.getElementById('agenda-list');
+          if (!agendaSlide || !agendaList) return;
+
+          var items = agendaList.querySelectorAll('.agenda-item');
+          var allSlides = document.querySelectorAll('.slide');
+          var focusIndex = -1;
+
+          function getSlideIndex(targetId) {
+            var target = document.getElementById(targetId);
+            if (!target) return -1;
+            for (var i = 0; i < allSlides.length; i++) {
+              if (allSlides[i] === target) return i + 1;
+            }
+            return -1;
+          }
+
+          var isScrolling = false;
+
+          function jumpToItem(item) {
+            var targetId = item.getAttribute('data-target');
+            if (!targetId || !window._slideshow || isScrolling) return;
+            var slideNum = getSlideIndex(targetId);
+            if (slideNum <= 0) return;
+
+            var ss = window._slideshow;
+            var current = ss.current;
+            if (current === slideNum) return;
+
+            isScrolling = true;
+            document.body.classList.add('fast-scroll');
+            var direction = slideNum > current ? 1 : -1;
+            var distance = Math.abs(slideNum - current);
+            var delay = Math.max(40, Math.min(100, 500 / distance));
+            var step = current;
+
+            function advance() {
+              step += direction;
+              ss.go(step);
+              if (step !== slideNum) {
+                setTimeout(advance, delay);
+              } else {
+                isScrolling = false;
+                document.body.classList.remove('fast-scroll');
+              }
+            }
+            setTimeout(advance, delay);
+          }
+
+          function setFocus(idx) {
+            items.forEach(function(item) { item.classList.remove('focused'); });
+            if (idx >= 0 && idx < items.length) {
+              focusIndex = idx;
+              items[idx].classList.add('focused');
+              agendaList.classList.add('has-focus');
+            } else {
+              focusIndex = -1;
+              agendaList.classList.remove('has-focus');
+            }
+          }
+
+          // Click to jump
+          items.forEach(function(item) {
+            item.addEventListener('click', function() {
+              jumpToItem(item);
+            });
+          });
+
+          // Reset when leaving agenda slide
+          var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+              if (mutation.oldValue && mutation.oldValue.indexOf('current') >= 0 &&
+                  !mutation.target.classList.contains('current')) {
+                setFocus(-1);
+              }
+            });
+          });
+          observer.observe(agendaSlide, {
+            attributes: true,
+            attributeFilter: ['class'],
+            attributeOldValue: true
+          });
+
+          document.addEventListener('keydown', function(e) {
+            if (!agendaSlide.classList.contains('current')) return;
+
+            if (e.keyCode === 38) { // up arrow
+              e.preventDefault();
+              e.stopPropagation();
+              if (focusIndex <= 0) {
+                setFocus(items.length - 1);
+              } else {
+                setFocus(focusIndex - 1);
+              }
+            } else if (e.keyCode === 40) { // down arrow
+              e.preventDefault();
+              e.stopPropagation();
+              if (focusIndex >= items.length - 1) {
+                setFocus(0);
+              } else {
+                setFocus(focusIndex + 1);
+              }
+            } else if (e.keyCode === 13) { // enter to jump
+              if (focusIndex >= 0) {
+                e.preventDefault();
+                e.stopPropagation();
+                jumpToItem(items[focusIndex]);
+              }
+            } else if (e.keyCode === 27) { // escape to clear focus
+              setFocus(-1);
+            }
+          }, true);
+        }
+
+        // Photo slideshows: crossfade through frames when parent slide is current
+        function initSlideshows() {
+          var slideshows = document.querySelectorAll('.photo-slideshow');
+          slideshows.forEach(function(ss) {
+            var frames = ss.querySelectorAll('.slide-frame');
+            var dots = ss.querySelectorAll('.dot');
+            if (frames.length < 2) return;
+
+            var current = 0;
+            var interval = null;
+            var parentSlide = ss.closest('.slide');
+
+            function showFrame(idx) {
+              frames.forEach(function(f) { f.classList.remove('active'); });
+              dots.forEach(function(d) { d.classList.remove('active'); });
+              frames[idx].classList.add('active');
+              if (dots[idx]) dots[idx].classList.add('active');
+              current = idx;
+            }
+
+            function advance() {
+              showFrame((current + 1) % frames.length);
+            }
+
+            function startCycle() {
+              if (interval) return;
+              interval = setInterval(advance, 3000);
+            }
+
+            function stopCycle() {
+              if (interval) {
+                clearInterval(interval);
+                interval = null;
+              }
+            }
+
+            // Click on dots to jump
+            dots.forEach(function(dot, idx) {
+              dot.addEventListener('click', function() {
+                stopCycle();
+                showFrame(idx);
+                startCycle();
+              });
+            });
+
+            // Pause on hover
+            ss.addEventListener('mouseenter', function() { stopCycle(); });
+            ss.addEventListener('mouseleave', function() {
+              if (parentSlide.classList.contains('current')) startCycle();
+            });
+
+            // Watch parent slide for current class
+            var observer = new MutationObserver(function(mutations) {
+              mutations.forEach(function(mutation) {
+                if (mutation.target.classList.contains('current')) {
+                  showFrame(0);
+                  startCycle();
+                } else if (mutation.oldValue && mutation.oldValue.indexOf('current') >= 0) {
+                  stopCycle();
+                }
+              });
+            });
+            observer.observe(parentSlide, {
+              attributes: true,
+              attributeFilter: ['class'],
+              attributeOldValue: true
+            });
+
+            // Start if already on this slide
+            if (parentSlide.classList.contains('current')) {
+              startCycle();
+            }
+          });
+        }
+
+        // Initialize features after SlideShow
+        document.addEventListener('DOMContentLoaded', () => {
+          initDrawing();
+          initTimer();
+          initAgendaNav();
+          initSlideshows();
+        });
+      })();
+    </script>
+  </body>
+</html>
