@@ -4,643 +4,628 @@ Author: Varunkumar Nagarajan <varunkumar.n@gmail.com>
 Google IO 2012 HTML5 Slide Template
 https://code.google.com/p/io-2012-slides
 -->
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>OpenStack</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-  <!--This one seems to work all the time, but really small on ipad-->
-  <!--<meta name="viewport" content="initial-scale=0.4">-->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <link rel="stylesheet" media="all" href="theme/css/default.css">
-  <link rel="stylesheet" media="all" href="theme/css/app.css">
-  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
-  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
-  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
-  <script src="/js-tools/js/jquery.min.js"></script>
+  <head>
+    <title>OpenStack</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--This one seems to work all the time, but really small on ipad-->
+    <!--<meta name="viewport" content="initial-scale=0.4">-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" media="all" href="theme/css/default.css" />
+    <link rel="stylesheet" media="all" href="theme/css/app.css" />
+    <link
+      rel="stylesheet"
+      media="only screen and (max-device-width: 480px)"
+      href="theme/css/phone.css"
+    />
+    <base target="_blank" />
+    <!-- This amazingness opens all links in a new tab. -->
+    <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+    <script src="/js-tools/js/jquery.min.js"></script>
 
-  <style>
-    @font-face {
-  font-family: 'Chango';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Chango Regular'), local('Chango-Regular'), url(fonts/chango.woff) format('woff');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(fonts/opensans.woff) format('woff');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(fonts/opensans_semibold.woff) format('woff');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(fonts/opensans_italic.woff) format('woff');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 600;
-  src: local('Open Sans Semibold Italic'), local('OpenSans-SemiboldItalic'), url(fonts/opensans_semibold_italic.woff) format('woff');
-}
-@font-face {
-  font-family: 'Source Code Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(fonts/sourcecodepro.woff) format('woff');
-}
-
-  </style>
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R3E62HPYLZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-R3E62HPYLZ');
-  </script>
-</head>
-<body style="opacity: 0">
-
-<slides class="layout-widescreen">
-
-<!-- <slide class="logoslide nobackground">
+    <style>
+      @font-face {
+        font-family: 'Chango';
+        font-style: normal;
+        font-weight: 400;
+        src:
+          local('Chango Regular'),
+          local('Chango-Regular'),
+          url(fonts/chango.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        src:
+          local('Open Sans'),
+          local('OpenSans'),
+          url(fonts/opensans.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 600;
+        src:
+          local('Open Sans Semibold'),
+          local('OpenSans-Semibold'),
+          url(fonts/opensans_semibold.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: italic;
+        font-weight: 400;
+        src:
+          local('Open Sans Italic'),
+          local('OpenSans-Italic'),
+          url(fonts/opensans_italic.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: italic;
+        font-weight: 600;
+        src:
+          local('Open Sans Semibold Italic'),
+          local('OpenSans-SemiboldItalic'),
+          url(fonts/opensans_semibold_italic.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Source Code Pro';
+        font-style: normal;
+        font-weight: 400;
+        src:
+          local('Source Code Pro'),
+          local('SourceCodePro-Regular'),
+          url(fonts/sourcecodepro.woff) format('woff');
+      }
+    </style>
+    <!-- Google Analytics 4 -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-R3E62HPYLZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-R3E62HPYLZ');
+    </script>
+  </head>
+  <body style="opacity: 0">
+    <slides class="layout-widescreen">
+      <!-- <slide class="logoslide nobackground">
   <article class="flexbox vcenter">
     <span><img src="images/google_developers_logo.png"></span>
   </article>
 </slide> -->
 
-<slide id="first-slide" class="nobackground">
-</slide>
+      <slide id="first-slide" class="nobackground"> </slide>
 
-<slide class="title-slide segue nobackground">
-  <!-- <aside class="gdbar"><img src="images/logos/webcomponents.png"></aside> -->
-  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
-  <article class="auto-fadein">
-    <img src="images/logos/openstack.png">
-    <hgroup>
-      <h1 data-config-title><!-- populated from slide_config.json --></h1>
-      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
-      <p data-config-presenter><!-- populated from slide_config.json --></p>
-    </hgroup>
-  </article>
-</slide>
+      <slide class="title-slide segue nobackground">
+        <!-- <aside class="gdbar"><img src="images/logos/webcomponents.png"></aside> -->
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+        <article class="auto-fadein">
+          <img src="images/logos/openstack.png" />
+          <hgroup>
+            <h1 data-config-title><!-- populated from slide_config.json --></h1>
+            <h2 data-config-subtitle>
+              <!-- populated from slide_config.json -->
+            </h2>
+            <p data-config-presenter>
+              <!-- populated from slide_config.json -->
+            </p>
+          </hgroup>
+        </article>
+      </slide>
 
-<slide id="who"  >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>/me</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><p><span class="build"><p class="avatar rounded"></p></span></p>
-<p>Varunkumar Nagarajan</p>
+      <slide id="who">
+        <hgroup>
+          <span> </span>
+          <h2>/me</h2>
+          <h3></h3>
+        </hgroup>
+        <article>
+          <p>
+            <span class="build"><p class="avatar rounded"></p></span>
+          </p>
+          <p>Varunkumar Nagarajan</p>
 
-<p style="margin-top:2em;">
-  <a rel="author" href="http://plus.varunkumar.me">
-    <img src="images/logos/gprofile_button-44.png" width="44" height="44"></a> <a rel="author" href="http://plus.varunkumar.me">plus.varunkumar.me</a>
-</p>
+          <p style="margin-top: 2em">
+            <a rel="author" href="http://plus.varunkumar.me">
+              <img
+                src="images/logos/gprofile_button-44.png"
+                width="44"
+                height="44"
+            /></a>
+            <a rel="author" href="http://plus.varunkumar.me"
+              >plus.varunkumar.me</a
+            >
+          </p>
 
-<p>
-  <a rel="author" style="margin-left:-8px;" href="http://twitter.com/varunkumar">
-    <img src="images/logos/twitter_newbird_blue.png" width="58" height="58"></a> <a rel="author" href="http://twitter.com/varunkumar" style="margin-left:-5px;">@varunkumar</a>
-</p>
+          <p>
+            <a
+              rel="author"
+              style="margin-left: -8px"
+              href="http://twitter.com/varunkumar"
+            >
+              <img
+                src="images/logos/twitter_newbird_blue.png"
+                width="58"
+                height="58"
+            /></a>
+            <a
+              rel="author"
+              href="http://twitter.com/varunkumar"
+              style="margin-left: -5px"
+              >@varunkumar</a
+            >
+          </p>
 
-<p><a rel="author" href="http://www.varunkumar.me">varunkumar.me</a></p>
-</article>
- 
-</slide>
+          <p>
+            <a rel="author" href="http://www.varunkumar.me">varunkumar.me</a>
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Objective?</h2>
-    </hgroup>
-    <article>
-    <p>Disclaimer: The contents in this presentation are only mine and it has got nothing to do with my employer</p>  
-<ul class="build">
-  <li>I am here to talk about Cloud</li>
-  <li>to take you through my journey on the cloud</li>
-  <li>to get you started with OpenStack</li>
-</ul>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>Objective?</h2>
+        </hgroup>
+        <article>
+          <p>
+            Disclaimer: The contents in this presentation are only mine and it
+            has got nothing to do with my employer
+          </p>
+          <ul class="build">
+            <li>I am here to talk about Cloud</li>
+            <li>to take you through my journey on the cloud</li>
+            <li>to get you started with OpenStack</li>
+          </ul>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>What is Cloud?</h2>
-    </hgroup>
-    <article class="build">
-<p>Cloud?</p>
-<p>As a developer, do we need to worry about it? Yes, we should.</p>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>What is Cloud?</h2>
+        </hgroup>
+        <article class="build">
+          <p>Cloud?</p>
+          <p>As a developer, do we need to worry about it? Yes, we should.</p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>My Journey through the cloud</h2>
-    </hgroup>
-    <article class="build">
-<p>VLike - Like button for Gmail status</p>
-<p class="centered"><img src="images/screenshots/like.png" /><br/>
-<img src="images/screenshots/like1.png" /></p>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>My Journey through the cloud</h2>
+        </hgroup>
+        <article class="build">
+          <p>VLike - Like button for Gmail status</p>
+          <p class="centered">
+            <img src="images/screenshots/like.png" /><br />
+            <img src="images/screenshots/like1.png" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>My Journey through the cloud</h2>
-    </hgroup>
-    <article class="build">
-<p>Facebook Filters</p>
-<p class="centered"><img src="images/screenshots/fb_filters.png" /><br/>
-</p>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>My Journey through the cloud</h2>
+        </hgroup>
+        <article class="build">
+          <p>Facebook Filters</p>
+          <p class="centered">
+            <img src="images/screenshots/fb_filters.png" /><br />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>My Journey through the cloud</h2>
-    </hgroup>
-    <article class="build">
-<p>Twitter Filters</p>
-<p class="centered"><img src="images/screenshots/twitter_filters.png" /><br/>
-</p>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>My Journey through the cloud</h2>
+        </hgroup>
+        <article class="build">
+          <p>Twitter Filters</p>
+          <p class="centered">
+            <img src="images/screenshots/twitter_filters.png" /><br />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>My Journey through the cloud</h2>
-    </hgroup>
-    <article class="build">
-<p>Stat Engine</p>
-<p class="centered"><img src="images/screenshots/stats.png" /><br/>
-</p>
-</article>
- 
-</slide>
-  
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>My Journey through the cloud</h2>
+        </hgroup>
+        <article class="build">
+          <p>Stat Engine</p>
+          <p class="centered">
+            <img src="images/screenshots/stats.png" /><br />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>My Journey through the cloud</h2>
-    </hgroup>
-    <article class="build">
-<p>Visual Comment Engine</p>
-<p class="centered"><img src="images/screenshots/VComment.png" /><br/>
-</p>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>My Journey through the cloud</h2>
+        </hgroup>
+        <article class="build">
+          <p>Visual Comment Engine</p>
+          <p class="centered">
+            <img src="images/screenshots/VComment.png" /><br />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>My Journey through the cloud</h2>
-    </hgroup>
-    <article class="build">
-<p>VServices</p>
-<p class="centered"><img src="images/screenshots/services.png" /><br/>
-</p>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>My Journey through the cloud</h2>
+        </hgroup>
+        <article class="build">
+          <p>VServices</p>
+          <p class="centered">
+            <img src="images/screenshots/services.png" /><br />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>My Journey through the cloud</h2>
-    </hgroup>
-    <article class="build">
-<p>Arduino Game Controller</p>
-<p class="centered"><img src="images/screenshots/helicopter.png" style="height: 400px"/><br/>
-</p>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>My Journey through the cloud</h2>
+        </hgroup>
+        <article class="build">
+          <p>Arduino Game Controller</p>
+          <p class="centered">
+            <img
+              src="images/screenshots/helicopter.png"
+              style="height: 400px"
+            /><br />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>My Journey through the cloud</h2>
-    </hgroup>
-    <article class="build">
-<p>VBot - Quadbot</p>
-<p class="centered"><img src="images/screenshots/vbot.jpg" style="height: 400px"/><br/>
-</p>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>My Journey through the cloud</h2>
+        </hgroup>
+        <article class="build">
+          <p>VBot - Quadbot</p>
+          <p class="centered">
+            <img
+              src="images/screenshots/vbot.jpg"
+              style="height: 400px"
+            /><br />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Enterprises are building clouds to...</h2>
-    </hgroup>
-    <article class="build">
-<ul>
-<li>Meet departmental resource needs &amp; timelines</li>
-<li>Control &amp; monitor the entire environment</li>
-</ul>
-<p class="centered"><img src="images/screenshots/screen-1.png" /></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>Enterprises are building clouds to...</h2>
+        </hgroup>
+        <article class="build">
+          <ul>
+            <li>Meet departmental resource needs &amp; timelines</li>
+            <li>Control &amp; monitor the entire environment</li>
+          </ul>
+          <p class="centered"><img src="images/screenshots/screen-1.png" /></p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Data centers are being virtualized, Servers are first...</h2>
-    </hgroup>
-    <article class="build">
-      <p>Hypervisors provide abstraction between the apps and the hardware</p>
-<ul>
-<li>Hardware abstraction for each server</li>
-<li>Better resource utilization for each server</li>
-</ul>
-<p class="centered"><img src="images/screenshots/screen-2.png" /></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>Data centers are being virtualized, Servers are first...</h2>
+        </hgroup>
+        <article class="build">
+          <p>
+            Hypervisors provide abstraction between the apps and the hardware
+          </p>
+          <ul>
+            <li>Hardware abstraction for each server</li>
+            <li>Better resource utilization for each server</li>
+          </ul>
+          <p class="centered"><img src="images/screenshots/screen-2.png" /></p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Next: Storage and the Network layers</h2>
-    </hgroup>
-    <article class="build">
-<ul>
-<li>Flexibility and efficiency are the key drivers</li>
-<li>Resource pools for apps</li>
-</ul>
-<p class="centered"><img src="images/screenshots/screen-3.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>Next: Storage and the Network layers</h2>
+        </hgroup>
+        <article class="build">
+          <ul>
+            <li>Flexibility and efficiency are the key drivers</li>
+            <li>Resource pools for apps</li>
+          </ul>
+          <p class="centered">
+            <img src="images/screenshots/screen-3.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>But, questions arise as the environment grows...</h2>
-    </hgroup>
-    <article class="build">
-<p>"VM Sprawl" can make things unmanageable very quickly</p>
-<p class="centered"><img src="images/screenshots/screen-4.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>But, questions arise as the environment grows...</h2>
+        </hgroup>
+        <article class="build">
+          <p>"VM Sprawl" can make things unmanageable very quickly</p>
+          <p class="centered">
+            <img src="images/screenshots/screen-4.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>But, questions arise as the environment grows...</h2>
-    </hgroup>
-    <article>
-<p>"VM Sprawl" can make things unmanageable very quickly</p>
-<p class="centered"><img src="images/screenshots/screen-5.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>But, questions arise as the environment grows...</h2>
+        </hgroup>
+        <article>
+          <p>"VM Sprawl" can make things unmanageable very quickly</p>
+          <p class="centered">
+            <img src="images/screenshots/screen-5.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Solution: OpenStack, the Cloud OS</h2>
-    </hgroup>
-    <article>
-<p>A new management layer which adds automation and control</p>
-<p class="centered"><img src="images/screenshots/screen-6.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>Solution: OpenStack, the Cloud OS</h2>
+        </hgroup>
+        <article>
+          <p>A new management layer which adds automation and control</p>
+          <p class="centered">
+            <img src="images/screenshots/screen-6.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Cloud OS enables enterprises to:</h2>
-    </hgroup>
-    <article>
-<ul class="build">
-<li>Control and automate pools of resources</li>
-<li>Efficiently allocate resources</li>
-<li>Empower admins and users via self-service portals</li>
-<li>Empower developers to build cloud aware apps via APIs</li>
-</ul>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>Cloud OS enables enterprises to:</h2>
+        </hgroup>
+        <article>
+          <ul class="build">
+            <li>Control and automate pools of resources</li>
+            <li>Efficiently allocate resources</li>
+            <li>Empower admins and users via self-service portals</li>
+            <li>Empower developers to build cloud aware apps via APIs</li>
+          </ul>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2></h2>
-    </hgroup>
-    <article>
-<p class="centered"><img src="images/screenshots/screen-7.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2></h2>
+        </hgroup>
+        <article>
+          <p class="centered">
+            <img src="images/screenshots/screen-7.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2></h2>
-    </hgroup>
-    <article>
-<p class="centered"><img src="images/screenshots/screen-8.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2></h2>
+        </hgroup>
+        <article>
+          <p class="centered">
+            <img src="images/screenshots/screen-8.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>A common platform is here.</h2>
-    </hgroup>
-    <article>
-<p>OpenStack is Open source software powering Private and Public Clouds</p>
-<p class="centered"><img src="images/screenshots/screen-9.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>A common platform is here.</h2>
+        </hgroup>
+        <article>
+          <p>
+            OpenStack is Open source software powering Private and Public Clouds
+          </p>
+          <p class="centered">
+            <img src="images/screenshots/screen-9.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Benefits of a common platform</h2>
-    </hgroup>
-    <article>
-<ul class="build">
-<li>Easy to migrate data and applications to public cloud when conditions are right</li>
-<li>No longer locked in with major investments in any vendor</li>
-<li>Disaster recovery</li>
-</ul>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>Benefits of a common platform</h2>
+        </hgroup>
+        <article>
+          <ul class="build">
+            <li>
+              Easy to migrate data and applications to public cloud when
+              conditions are right
+            </li>
+            <li>No longer locked in with major investments in any vendor</li>
+            <li>Disaster recovery</li>
+          </ul>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>OpenStack enables cloud federation</h2>
-    </hgroup>
-    <article>
-<p>Connecting resources to create global resource pools</p>
-<p class="centered"><img src="images/screenshots/screen-10.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>OpenStack enables cloud federation</h2>
+        </hgroup>
+        <article>
+          <p>Connecting resources to create global resource pools</p>
+          <p class="centered">
+            <img src="images/screenshots/screen-10.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>OpenStack: Definition and mission</h2>
-    </hgroup>
-    <article class="build">
-<p><strong>Definition: </strong>OpenStack is a Cloud Operating System, that takes resources such as compute, storage, network, virtualization technologies and controls those resources at a data center level.</p>
-<p><strong>Mission: </strong>To produce the <i>ubiquitous</i> open source cloud operating system that will meet the needs of public and private cloud providers regardless of size, by being simple to implement and massively scalable.</p>
-<p class="centered"><img src="images/screenshots/screen-18.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>OpenStack: Definition and mission</h2>
+        </hgroup>
+        <article class="build">
+          <p>
+            <strong>Definition: </strong>OpenStack is a Cloud Operating System,
+            that takes resources such as compute, storage, network,
+            virtualization technologies and controls those resources at a data
+            center level.
+          </p>
+          <p>
+            <strong>Mission: </strong>To produce the <i>ubiquitous</i> open
+            source cloud operating system that will meet the needs of public and
+            private cloud providers regardless of size, by being simple to
+            implement and massively scalable.
+          </p>
+          <p class="centered">
+            <img src="images/screenshots/screen-18.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>OpenStack Genesis</h2>
-    </hgroup>
-    <article>
-<p class="centered"><img src="images/screenshots/screen-17.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>OpenStack Genesis</h2>
+        </hgroup>
+        <article>
+          <p class="centered">
+            <img src="images/screenshots/screen-17.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>OpenStack community</h2>
-    </hgroup>
-    <article>
-<p class="centered"><img src="images/screenshots/screen-14.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>OpenStack community</h2>
+        </hgroup>
+        <article>
+          <p class="centered">
+            <img src="images/screenshots/screen-14.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>OpenStack Components</h2>
-    </hgroup>
-    <article>
-<p class="centered"><img src="images/screenshots/screen-15.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>OpenStack Components</h2>
+        </hgroup>
+        <article>
+          <p class="centered">
+            <img src="images/screenshots/screen-15.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>OpenStack Components</h2>
-    </hgroup>
-    <article>
-<ul class="build">
-<li>Compute: Provision and manage large network of virtual machines</li>
-<li>Object / Block Store: Create PetaBytes of reliable storage</li>
-<li>Image Service: Catalog and manage large libraries of server images</li>
-<li>Dashboard: Self-service portal of admins and users</li>
-<li>Other components: Load Balancing, Authentication...</li>
-</ul>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>OpenStack Components</h2>
+        </hgroup>
+        <article>
+          <ul class="build">
+            <li>
+              Compute: Provision and manage large network of virtual machines
+            </li>
+            <li>Object / Block Store: Create PetaBytes of reliable storage</li>
+            <li>
+              Image Service: Catalog and manage large libraries of server images
+            </li>
+            <li>Dashboard: Self-service portal of admins and users</li>
+            <li>Other components: Load Balancing, Authentication...</li>
+          </ul>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>OpenStack Compute</h2>
-    </hgroup>
-    <article>
-<p class="centered"><img src="images/screenshots/screen-11.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>OpenStack Compute</h2>
+        </hgroup>
+        <article>
+          <p class="centered">
+            <img src="images/screenshots/screen-11.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>OpenStack Storage</h2>
-    </hgroup>
-    <article>
-<p class="centered"><img src="images/screenshots/screen-12.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>OpenStack Storage</h2>
+        </hgroup>
+        <article>
+          <p class="centered">
+            <img src="images/screenshots/screen-12.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide>
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>OpenStack Image Service</h2>
-    </hgroup>
-    <article>
-<p class="centered"><img src="images/screenshots/screen-13.png" style="width: 800px"/></p>
-</article>
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>OpenStack Image Service</h2>
+        </hgroup>
+        <article>
+          <p class="centered">
+            <img src="images/screenshots/screen-13.png" style="width: 800px" />
+          </p>
+        </article>
+      </slide>
 
-<slide   >
-  
-    <hgroup>
-      <span>
-        
-        
-      </span>
-      <h2>Resources</h2>
-      <h3></h3>
-    </hgroup>
-    <article class="smaller">
-<ul>
-  <li><a href="http://trystack.org">Test sandbox</a></li>
-  <li><a href="http://devstack.org">Dev environment</a></li>
-  <li><a href="http://openstack.org/events">Join the community</a></li>
-</ul>
-<p>For latest info:</p>
-<ul>
-  <li><a href="http://twitter.com/openstack">@openstack</a> on twitter</li>
-  <li><a href="http://openstack.org/blog">OpenStack Blog</a></li>
-  <li><a href="http://wiki.openstack.org">OpenStack Wiki</a></li>
-  <li>#openstack on freenode IRC</li>
-</ul>
-</article>
- 
-</slide>
+      <slide>
+        <hgroup>
+          <span> </span>
+          <h2>Resources</h2>
+          <h3></h3>
+        </hgroup>
+        <article class="smaller">
+          <ul>
+            <li><a href="http://trystack.org">Test sandbox</a></li>
+            <li><a href="http://devstack.org">Dev environment</a></li>
+            <li>
+              <a href="http://openstack.org/events">Join the community</a>
+            </li>
+          </ul>
+          <p>For latest info:</p>
+          <ul>
+            <li>
+              <a href="http://twitter.com/openstack">@openstack</a> on twitter
+            </li>
+            <li><a href="http://openstack.org/blog">OpenStack Blog</a></li>
+            <li><a href="http://wiki.openstack.org">OpenStack Wiki</a></li>
+            <li>#openstack on freenode IRC</li>
+          </ul>
+        </article>
+      </slide>
 
-
-<!-- <slide class="thank-you-slide segue nobackground">
+      <!-- <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
   <article class="flexbox vleft auto-fadein">
     <h2>&lt;Thank You!&gt;</h2>
@@ -648,25 +633,27 @@ https://code.google.com/p/io-2012-slides
   <p class="auto-fadein" data-config-contact></p>
 </slide> -->
 
+      <slide class="thank-you-slide segue nobackground">
+        <article>
+          <p class="centered topmargin" style="font-size: 36pt">
+            Thank you<br /><a href="http://twitter.com/varunkumar"
+              >@varunkumar</a
+            >
+          </p>
+          <!-- <p>PRESENTATION LINK</p> -->
+        </article>
+      </slide>
 
-<slide class="thank-you-slide segue nobackground">
-  <article>
-    <p class="centered topmargin" style="font-size: 36pt">Thank you<br/><a href="http://twitter.com/varunkumar">@varunkumar</a></p>
-    <!-- <p>PRESENTATION LINK</p> -->
-  </article>
-</slide>
-
-<!-- <slide class="logoslide dark nobackground">
+      <!-- <slide class="logoslide dark nobackground">
   <article class="flexbox vcenter">
     <span><img src="images/google_developers_logo_white.png"></span>
   </article>
 </slide> -->
 
-<slide class="backdrop"></slide>
+      <slide class="backdrop"></slide>
+    </slides>
 
-</slides>
-
-<!--script>
+    <!--script>
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-3626417-6']);
 _gaq.push(['_trackPageview']);
@@ -678,9 +665,11 @@ _gaq.push(['_trackPageview']);
 })();
 </script-->
 
-<!--[if IE]>
-  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
-  <script>CFInstall.check({mode: 'overlay'});</script>
-<![endif]-->
-</body>
+    <!--[if IE]>
+      <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+      <script>
+        CFInstall.check({ mode: 'overlay' });
+      </script>
+    <![endif]-->
+  </body>
 </html>

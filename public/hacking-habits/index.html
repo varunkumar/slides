@@ -1,14 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
-    <meta content="The Hacking Habits: From cracking captchas to commanding AI agents" name="description" />
+    <meta
+      content="The Hacking Habits: From cracking captchas to commanding AI agents"
+      name="description"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="Varunkumar Nagarajan" name="author" />
     <title>The Hacking Habits</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M9 3h6v2H9V3z' fill='%2336a7f5' opacity='.5'/><path d='M9 5V11.5L5.5 19.5C5.1 20.4 5.8 21.5 6.8 21.5H17.2C18.2 21.5 18.9 20.4 18.5 19.5L15 11.5V5' stroke='%2336a7f5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='10.5' cy='17' r='1' fill='%2336a7f5' opacity='.6'/><circle cx='14' cy='18.5' r='.7' fill='%2336a7f5' opacity='.4'/></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M9 3h6v2H9V3z' fill='%2336a7f5' opacity='.5'/><path d='M9 5V11.5L5.5 19.5C5.1 20.4 5.8 21.5 6.8 21.5H17.2C18.2 21.5 18.9 20.4 18.5 19.5L15 11.5V5' stroke='%2336a7f5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='10.5' cy='17' r='1' fill='%2336a7f5' opacity='.6'/><circle cx='14' cy='18.5' r='.7' fill='%2336a7f5' opacity='.4'/></svg>"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --accent: #36a7f5;
@@ -25,7 +34,12 @@
       }
 
       body {
-        font: 18px 'DM Sans', 'Lucida Grande', 'Trebuchet MS', Verdana, sans-serif;
+        font:
+          18px 'DM Sans',
+          'Lucida Grande',
+          'Trebuchet MS',
+          Verdana,
+          sans-serif;
         padding: 0;
         margin: 0;
         width: 100%;
@@ -611,10 +625,18 @@
         margin: 0 0 8px 0;
       }
 
-      .habit-card.spot-card h4 { color: #f59e0b; }
-      .habit-card.automate-card h4 { color: var(--green); }
-      .habit-card.share-card h4 { color: var(--blue); }
-      .habit-card.levelup-card h4 { color: var(--purple); }
+      .habit-card.spot-card h4 {
+        color: #f59e0b;
+      }
+      .habit-card.automate-card h4 {
+        color: var(--green);
+      }
+      .habit-card.share-card h4 {
+        color: var(--blue);
+      }
+      .habit-card.levelup-card h4 {
+        color: var(--purple);
+      }
 
       .habit-card p {
         font-size: 14px;
@@ -863,8 +885,12 @@
       }
 
       @keyframes collageScroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
       }
 
       /* Video grid */
@@ -1155,9 +1181,18 @@
       }
 
       @keyframes iconBounce {
-        0% { opacity: 0; transform: scale(0); }
-        60% { opacity: 1; transform: scale(1.2); }
-        100% { opacity: 1; transform: scale(1); }
+        0% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        60% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
 
       /* Drawing canvas */
@@ -1173,7 +1208,10 @@
 
       .drawing-active .drawing-canvas {
         pointer-events: all;
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%2336a7f5"><path d="M12.9 3.1c.4-.4.4-1 0-1.4l-1.6-1.6c-.4-.4-1-.4-1.4 0L1 9v3h3L12.9 3.1z"/></svg>') 0 16, auto;
+        cursor:
+          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%2336a7f5"><path d="M12.9 3.1c.4-.4.4-1 0-1.4l-1.6-1.6c-.4-.4-1-.4-1.4 0L1 9v3h3L12.9 3.1z"/></svg>')
+            0 16,
+          auto;
       }
 
       /* Timer */
@@ -1329,7 +1367,9 @@
         animation-delay: 0.8s;
       }
 
-      .spark-1, .spark-2, .spark-3 {
+      .spark-1,
+      .spark-2,
+      .spark-3 {
         position: absolute;
         border-radius: 50%;
         background: var(--accent);
@@ -1362,10 +1402,23 @@
       }
 
       @keyframes spark {
-        0%, 100% { opacity: 0; transform: scale(0) translateY(0); }
-        20% { opacity: 1; transform: scale(1.2) translateY(-3px); }
-        40% { opacity: 0.8; transform: scale(1) translateY(-6px); }
-        60% { opacity: 0; transform: scale(0.5) translateY(-10px); }
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0) translateY(0);
+        }
+        20% {
+          opacity: 1;
+          transform: scale(1.2) translateY(-3px);
+        }
+        40% {
+          opacity: 0.8;
+          transform: scale(1) translateY(-6px);
+        }
+        60% {
+          opacity: 0;
+          transform: scale(0.5) translateY(-10px);
+        }
       }
 
       /* ======================== */
@@ -1460,35 +1513,74 @@
         opacity: 0.7;
       }
     </style>
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R3E62HPYLZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-R3E62HPYLZ');
-  </script>
+    <!-- Google Analytics 4 -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-R3E62HPYLZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-R3E62HPYLZ');
+    </script>
   </head>
   <body>
     <div class="drawing-indicator">Drawing Mode (Press 'C' to clear)</div>
-    <div class="event-badge"><svg class="beaker-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 3h6v2H9V3z" fill="currentColor" opacity="0.5"/><path d="M9 5V11.5L5.5 19.5C5.1 20.4 5.8 21.5 6.8 21.5H17.2C18.2 21.5 18.9 20.4 18.5 19.5L15 11.5V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 14h7" stroke="currentColor" stroke-width="1" opacity="0.4"/><circle cx="10.5" cy="17" r="1" fill="currentColor" opacity="0.6"/><circle cx="14" cy="18.5" r="0.7" fill="currentColor" opacity="0.4"/></svg>Spark Lab<span class="spark-1"></span><span class="spark-2"></span><span class="spark-3"></span></div>
+    <div class="event-badge">
+      <svg
+        class="beaker-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M9 3h6v2H9V3z" fill="currentColor" opacity="0.5" />
+        <path
+          d="M9 5V11.5L5.5 19.5C5.1 20.4 5.8 21.5 6.8 21.5H17.2C18.2 21.5 18.9 20.4 18.5 19.5L15 11.5V5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.5 14h7"
+          stroke="currentColor"
+          stroke-width="1"
+          opacity="0.4"
+        />
+        <circle cx="10.5" cy="17" r="1" fill="currentColor" opacity="0.6" />
+        <circle
+          cx="14"
+          cy="18.5"
+          r="0.7"
+          fill="currentColor"
+          opacity="0.4"
+        /></svg
+      >Spark Lab<span class="spark-1"></span><span class="spark-2"></span
+      ><span class="spark-3"></span>
+    </div>
     <div class="theme-indicator" id="theme-indicator"></div>
     <div class="radial-progress" id="radial-progress">
-      <svg viewBox="0 0 40 40"><circle class="track" cx="20" cy="20" r="18"/><circle class="fill" cx="20" cy="20" r="18"/></svg>
+      <svg viewBox="0 0 40 40">
+        <circle class="track" cx="20" cy="20" r="18" />
+        <circle class="fill" cx="20" cy="20" r="18" />
+      </svg>
       <span class="label" id="radial-label"></span>
     </div>
 
     <div class="presentation">
       <div id="presentation-counter"></div>
       <div class="slides">
-
         <!-- Slide 1 - Title -->
         <div class="slide reduced" data-time="30">
           <section class="middle">
-
             <div class="segue-label">Spark Lab Meetup</div>
             <h1>The Hacking Habits</h1>
-            <h3 class="borderless">From cracking captchas to commanding AI agents</h3>
+            <h3 class="borderless">
+              From cracking captchas to commanding AI agents
+            </h3>
             <p>Varunkumar Nagarajan</p>
           </section>
         </div>
@@ -1497,7 +1589,13 @@
         <div class="slide reduced" id="agenda-slide" data-time="90">
           <section>
             <h2>Agenda</h2>
-            <div class="quote-block" style="font-size: 17px; margin: 0 0 20px 0;">"By the end of this talk, I want you to go home and hack something."</div>
+            <div
+              class="quote-block"
+              style="font-size: 17px; margin: 0 0 20px 0"
+            >
+              "By the end of this talk, I want you to go home and hack
+              something."
+            </div>
             <div class="agenda-list" id="agenda-list">
               <div class="agenda-item" data-target="ch-about">
                 <span class="agenda-num">01</span>
@@ -1507,7 +1605,9 @@
               <div class="agenda-item" data-target="ch-early">
                 <span class="agenda-num">02</span>
                 <span class="agenda-title">The Early Days</span>
-                <span class="agenda-desc">Blogging, captchas, hackathons, robots</span>
+                <span class="agenda-desc"
+                  >Blogging, captchas, hackathons, robots</span
+                >
               </div>
               <div class="agenda-item" data-target="ch-life">
                 <span class="agenda-num">03</span>
@@ -1517,17 +1617,23 @@
               <div class="agenda-item" data-target="ch-covid">
                 <span class="agenda-num">04</span>
                 <span class="agenda-title">The Covid Era</span>
-                <span class="agenda-desc">Mute buttons and hackathon highlights</span>
+                <span class="agenda-desc"
+                  >Mute buttons and hackathon highlights</span
+                >
               </div>
               <div class="agenda-item" data-target="ch-ai">
                 <span class="agenda-num">05</span>
                 <span class="agenda-title">The AI Era</span>
-                <span class="agenda-desc">Hacking my kids' school experience</span>
+                <span class="agenda-desc"
+                  >Hacking my kids' school experience</span
+                >
               </div>
               <div class="agenda-item" data-target="ch-agents">
                 <span class="agenda-num">06</span>
                 <span class="agenda-title">Enter the Agents</span>
-                <span class="agenda-desc">From scripts to autonomous AI teammates</span>
+                <span class="agenda-desc"
+                  >From scripts to autonomous AI teammates</span
+                >
               </div>
               <div class="agenda-item" data-target="ch-closing">
                 <span class="agenda-num">07</span>
@@ -1544,18 +1650,23 @@
             <h2>/me</h2>
             <div class="two-column">
               <div>
-                <h2 style="font-size: 18px;">Career Timeline</h2>
+                <h2 style="font-size: 18px">Career Timeline</h2>
                 <div class="timeline-item">
                   <span class="year">2008</span>
                   <span class="desc">Joined D. E. Shaw India, Recon team</span>
                 </div>
                 <div class="timeline-item">
                   <span class="year">2008-15</span>
-                  <span class="desc">Backoffice systems - Prism, GLO, MEWB</span>
+                  <span class="desc"
+                    >Backoffice systems - Prism, GLO, MEWB</span
+                  >
                 </div>
                 <div class="timeline-item">
                   <span class="year">2015</span>
-                  <span class="desc">Arcesium spinoff, started UI/UX team, built Report Manager &amp; Iris</span>
+                  <span class="desc"
+                    >Arcesium spinoff, started UI/UX team, built Report Manager
+                    &amp; Iris</span
+                  >
                 </div>
                 <div class="timeline-item">
                   <span class="year">2019</span>
@@ -1567,24 +1678,141 @@
                 </div>
               </div>
               <div>
-                <h2 style="font-size: 18px;">Personal</h2>
+                <h2 style="font-size: 18px">Personal</h2>
                 <ul class="bulleted">
                   <li>Married, two kids</li>
                   <li>Wildlife photographer</li>
                   <li>Loves Hackathon</li>
                 </ul>
-                <div class="profile-photo-frame" style="position: relative; margin-top: 16px; display: flex; justify-content: center;">
+                <div
+                  class="profile-photo-frame"
+                  style="
+                    position: relative;
+                    margin-top: 16px;
+                    display: flex;
+                    justify-content: center;
+                  "
+                >
                   <!-- Decorative blobs -->
-                  <div style="position: absolute; top: -12px; right: -8px; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle, rgba(54,167,245,0.15), transparent 70%); z-index: 0;"></div>
-                  <div style="position: absolute; bottom: -10px; left: -10px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(167,139,250,0.12), transparent 70%); z-index: 0;"></div>
-                  <div style="position: absolute; top: 30%; left: -16px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(34,197,94,0.1), transparent 70%); z-index: 0;"></div>
-                  <div style="position: absolute; bottom: 20%; right: -12px; width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,11,0.1), transparent 70%); z-index: 0;"></div>
+                  <div
+                    style="
+                      position: absolute;
+                      top: -12px;
+                      right: -8px;
+                      width: 60px;
+                      height: 60px;
+                      border-radius: 50%;
+                      background: radial-gradient(
+                        circle,
+                        rgba(54, 167, 245, 0.15),
+                        transparent 70%
+                      );
+                      z-index: 0;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      position: absolute;
+                      bottom: -10px;
+                      left: -10px;
+                      width: 80px;
+                      height: 80px;
+                      border-radius: 50%;
+                      background: radial-gradient(
+                        circle,
+                        rgba(167, 139, 250, 0.12),
+                        transparent 70%
+                      );
+                      z-index: 0;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      position: absolute;
+                      top: 30%;
+                      left: -16px;
+                      width: 40px;
+                      height: 40px;
+                      border-radius: 50%;
+                      background: radial-gradient(
+                        circle,
+                        rgba(34, 197, 94, 0.1),
+                        transparent 70%
+                      );
+                      z-index: 0;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      position: absolute;
+                      bottom: 20%;
+                      right: -12px;
+                      width: 50px;
+                      height: 50px;
+                      border-radius: 50%;
+                      background: radial-gradient(
+                        circle,
+                        rgba(245, 158, 11, 0.1),
+                        transparent 70%
+                      );
+                      z-index: 0;
+                    "
+                  ></div>
                   <!-- Accent ring -->
-                  <div style="position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: calc(100% + 12px); height: calc(100% + 12px); border-radius: 12px; border: 1px solid rgba(54,167,245,0.1); z-index: 0;"></div>
+                  <div
+                    style="
+                      position: absolute;
+                      top: -6px;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      width: calc(100% + 12px);
+                      height: calc(100% + 12px);
+                      border-radius: 12px;
+                      border: 1px solid rgba(54, 167, 245, 0.1);
+                      z-index: 0;
+                    "
+                  ></div>
                   <!-- Corner accents -->
-                  <div style="position: absolute; top: -3px; left: -3px; width: 16px; height: 16px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); border-radius: 4px 0 0 0; opacity: 0.4; z-index: 1;"></div>
-                  <div style="position: absolute; bottom: -3px; right: -3px; width: 16px; height: 16px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); border-radius: 0 0 4px 0; opacity: 0.4; z-index: 1;"></div>
-                  <img src="./images/varun.jpeg" alt="Varunkumar Nagarajan" style="width: 100%; max-height: 360px; object-fit: contain; border-radius: 8px; position: relative; z-index: 1;">
+                  <div
+                    style="
+                      position: absolute;
+                      top: -3px;
+                      left: -3px;
+                      width: 16px;
+                      height: 16px;
+                      border-top: 2px solid var(--accent);
+                      border-left: 2px solid var(--accent);
+                      border-radius: 4px 0 0 0;
+                      opacity: 0.4;
+                      z-index: 1;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      position: absolute;
+                      bottom: -3px;
+                      right: -3px;
+                      width: 16px;
+                      height: 16px;
+                      border-bottom: 2px solid var(--accent);
+                      border-right: 2px solid var(--accent);
+                      border-radius: 0 0 4px 0;
+                      opacity: 0.4;
+                      z-index: 1;
+                    "
+                  ></div>
+                  <img
+                    src="./images/varun.jpeg"
+                    alt="Varunkumar Nagarajan"
+                    style="
+                      width: 100%;
+                      max-height: 360px;
+                      object-fit: contain;
+                      border-radius: 8px;
+                      position: relative;
+                      z-index: 1;
+                    "
+                  />
                 </div>
               </div>
             </div>
@@ -1609,51 +1837,100 @@
             </div>
             <h2>The Early Days</h2>
             <div class="year-badge">2008 - 2014</div>
-            <div class="hack-grid" style="margin-top: 8px;">
+            <div class="hack-grid" style="margin-top: 8px">
               <div class="hack-card">
                 <h4>Blogging &amp; IRCTC Captcha</h4>
-                <p>Started a tech blog. Featured as a top tech blogger. Cracked the IRCTC captcha for faster bookings.</p>
+                <p>
+                  Started a tech blog. Featured as a top tech blogger. Cracked
+                  the IRCTC captcha for faster bookings.
+                </p>
               </div>
               <div class="hack-card">
                 <h4>PlanMan</h4>
-                <p>SMS/missed-call based workflow management. Won Yahoo! Hackathon.</p>
-                <a href="https://github.com/varunkumar/plan-man" target="_blank" style="font-size: 12px;">github.com/varunkumar/plan-man</a>
+                <p>
+                  SMS/missed-call based workflow management. Won Yahoo!
+                  Hackathon.
+                </p>
+                <a
+                  href="https://github.com/varunkumar/plan-man"
+                  target="_blank"
+                  style="font-size: 12px"
+                  >github.com/varunkumar/plan-man</a
+                >
               </div>
               <div class="hack-card">
                 <h4>filter-fb &amp; filter-twitter</h4>
-                <p>Userscripts to clean up social media feeds. Filter keywords, hide likes. Before apps were a thing.</p>
-                <a href="https://github.com/varunkumar/filter-fb" target="_blank" style="font-size: 12px;">github.com/varunkumar/filter-fb</a>
+                <p>
+                  Userscripts to clean up social media feeds. Filter keywords,
+                  hide likes. Before apps were a thing.
+                </p>
+                <a
+                  href="https://github.com/varunkumar/filter-fb"
+                  target="_blank"
+                  style="font-size: 12px"
+                  >github.com/varunkumar/filter-fb</a
+                >
               </div>
               <div class="hack-card">
                 <h4>VBot &amp; WebUSB Snake</h4>
-                <p>A quadbot that walks and dances. Snake game on Arduino via WebUSB from Chrome.</p>
-                <a href="https://github.com/varunkumar/vbot" target="_blank" style="font-size: 12px;">github.com/varunkumar/vbot</a>
+                <p>
+                  A quadbot that walks and dances. Snake game on Arduino via
+                  WebUSB from Chrome.
+                </p>
+                <a
+                  href="https://github.com/varunkumar/vbot"
+                  target="_blank"
+                  style="font-size: 12px"
+                  >github.com/varunkumar/vbot</a
+                >
               </div>
               <div class="hack-card">
                 <h4>TrackR</h4>
-                <p>Hack at Sequoia::Hack 2014. One of many hackathon entries over the years.</p>
-                <a href="https://github.com/varunkumar/TrackR" target="_blank" style="font-size: 12px;">github.com/varunkumar/TrackR</a>
+                <p>
+                  Hack at Sequoia::Hack 2014. One of many hackathon entries over
+                  the years.
+                </p>
+                <a
+                  href="https://github.com/varunkumar/TrackR"
+                  target="_blank"
+                  style="font-size: 12px"
+                  >github.com/varunkumar/TrackR</a
+                >
               </div>
               <div class="hack-card">
                 <h4>70+ Open Source Repos</h4>
-                <p>Chrome extensions, VS Code plugins, web experiments. Contributing and learning in public.</p>
-                <a href="https://github.com/varunkumar" target="_blank" style="font-size: 12px;">github.com/varunkumar</a>
+                <p>
+                  Chrome extensions, VS Code plugins, web experiments.
+                  Contributing and learning in public.
+                </p>
+                <a
+                  href="https://github.com/varunkumar"
+                  target="_blank"
+                  style="font-size: 12px"
+                  >github.com/varunkumar</a
+                >
               </div>
             </div>
             <div class="collage-strip">
               <div class="collage-track">
                 <!-- First set -->
-                <img src="./images/blog.png" alt="Blog">
-                <img src="./images/yahoo.JPG" alt="Yahoo! Hackathon win">
-                <img src="./images/irctc_captcha_cracking.svg" alt="IRCTC captcha">
-                <img src="./images/vbot.png" alt="VBot quadbot">
-                <img src="./images/board.png" alt="WebUSB Snake">
+                <img src="./images/blog.png" alt="Blog" />
+                <img src="./images/yahoo.JPG" alt="Yahoo! Hackathon win" />
+                <img
+                  src="./images/irctc_captcha_cracking.svg"
+                  alt="IRCTC captcha"
+                />
+                <img src="./images/vbot.png" alt="VBot quadbot" />
+                <img src="./images/board.png" alt="WebUSB Snake" />
                 <!-- Duplicate for seamless loop -->
-                <img src="./images/blog.png" alt="Blog">
-                <img src="./images/yahoo.JPG" alt="Yahoo! Hackathon win">
-                <img src="./images/irctc_captcha_cracking.svg" alt="IRCTC captcha">
-                <img src="./images/vbot.png" alt="VBot quadbot">
-                <img src="./images/board.png" alt="WebUSB Snake">
+                <img src="./images/blog.png" alt="Blog" />
+                <img src="./images/yahoo.JPG" alt="Yahoo! Hackathon win" />
+                <img
+                  src="./images/irctc_captcha_cracking.svg"
+                  alt="IRCTC captcha"
+                />
+                <img src="./images/vbot.png" alt="VBot quadbot" />
+                <img src="./images/board.png" alt="WebUSB Snake" />
               </div>
             </div>
           </section>
@@ -1679,10 +1956,28 @@
             <div class="two-column">
               <div>
                 <ul class="bulleted">
-                  <li>Named kids after checking domain availability: <a href="https://adhiyan.in" target="_blank">adhiyan.in</a> &amp; <a href="https://aganvee.in" target="_blank">aganvee.in</a></li>
-                  <li><a href="https://github.com/varunkumar/wedding-invite" target="_blank">Wedding invite</a> with CSS3 animations &amp; JS mouse tracking</li>
+                  <li>
+                    Named kids after checking domain availability:
+                    <a href="https://adhiyan.in" target="_blank">adhiyan.in</a>
+                    &amp;
+                    <a href="https://aganvee.in" target="_blank">aganvee.in</a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/varunkumar/wedding-invite"
+                      target="_blank"
+                      >Wedding invite</a
+                    >
+                    with CSS3 animations &amp; JS mouse tracking
+                  </li>
                   <li>Baby announcement sites for both kids</li>
-                  <li><a href="https://github.com/varunkumar/baby-track" target="_blank">baby-track</a>: Raspberry Pi + AWS IoT baby monitor</li>
+                  <li>
+                    <a
+                      href="https://github.com/varunkumar/baby-track"
+                      target="_blank"
+                      >baby-track</a
+                    >: Raspberry Pi + AWS IoT baby monitor
+                  </li>
                 </ul>
                 <div class="prompt">
                   <div class="cmd">$ whois adhiyan.in</div>
@@ -1694,19 +1989,19 @@
               <div>
                 <div class="photo-slideshow" id="life-hacks-slideshow">
                   <div class="slide-frame active" data-idx="0">
-                    <img src="./images/aganvee.png" alt="Aganvee">
+                    <img src="./images/aganvee.png" alt="Aganvee" />
                     <div class="slide-caption">aganvee.in</div>
                   </div>
                   <div class="slide-frame" data-idx="1">
-                    <img src="./images/adhiyan.png" alt="Adhiyan">
+                    <img src="./images/adhiyan.png" alt="Adhiyan" />
                     <div class="slide-caption">adhiyan.in</div>
                   </div>
                   <div class="slide-frame" data-idx="2">
-                    <img src="./images/divvy.png" alt="Wedding Invite">
+                    <img src="./images/divvy.png" alt="Wedding Invite" />
                     <div class="slide-caption">divvy.varunkumar.me</div>
                   </div>
                   <div class="slide-frame" data-idx="3">
-                    <img src="./images/baby-trackpad.JPG" alt="Baby Track">
+                    <img src="./images/baby-trackpad.JPG" alt="Baby Track" />
                     <div class="slide-caption">Raspberry Pi + AWS IoT</div>
                   </div>
                   <div class="slide-dots">
@@ -1726,7 +2021,9 @@
           <section class="middle">
             <div class="segue-label">Chapter 3</div>
             <div class="segue-title">The Covid Era</div>
-            <div class="segue-subtitle">Lockdowns, online school, and a burst of creativity</div>
+            <div class="segue-subtitle">
+              Lockdowns, online school, and a burst of creativity
+            </div>
           </section>
         </div>
 
@@ -1740,13 +2037,45 @@
             <div class="year-badge">2020</div>
             <div class="two-column">
               <div>
-                <p>School went virtual overnight. My son was struggling with mute/unmute on video calls.</p>
-                <p style="margin-top: 12px;">Built <a href="https://github.com/varunkumar/pup-pad" target="_blank">Pup Pad</a>: an Arduino Leonardo with physical buttons for mute, video toggle, and posting attendance in chat.</p>
-                <p style="margin-top: 8px; font-size: 15px; opacity: 0.6;">Works with Google Meet, Zoom, Teams, BlueJeans. The Arduino acts as a USB keyboard sending shortcuts.</p>
-                <p style="margin-top: 16px; color: var(--accent); font-family: 'Space Mono', monospace; font-size: 15px;">Problem solved. Kid happy.</p>
+                <p>
+                  School went virtual overnight. My son was struggling with
+                  mute/unmute on video calls.
+                </p>
+                <p style="margin-top: 12px">
+                  Built
+                  <a
+                    href="https://github.com/varunkumar/pup-pad"
+                    target="_blank"
+                    >Pup Pad</a
+                  >: an Arduino Leonardo with physical buttons for mute, video
+                  toggle, and posting attendance in chat.
+                </p>
+                <p style="margin-top: 8px; font-size: 15px; opacity: 0.6">
+                  Works with Google Meet, Zoom, Teams, BlueJeans. The Arduino
+                  acts as a USB keyboard sending shortcuts.
+                </p>
+                <p
+                  style="
+                    margin-top: 16px;
+                    color: var(--accent);
+                    font-family: 'Space Mono', monospace;
+                    font-size: 15px;
+                  "
+                >
+                  Problem solved. Kid happy.
+                </p>
               </div>
               <div>
-                <img src="./images/pup-pad-board.png" alt="Pup Pad" style="width: 100%; max-height: 320px; object-fit: contain; border-radius: 8px;">
+                <img
+                  src="./images/pup-pad-board.png"
+                  alt="Pup Pad"
+                  style="
+                    width: 100%;
+                    max-height: 320px;
+                    object-fit: contain;
+                    border-radius: 8px;
+                  "
+                />
               </div>
             </div>
           </section>
@@ -1764,34 +2093,90 @@
             <div class="video-grid">
               <div class="video-card">
                 <div class="video-embed">
-                  <iframe src="https://www.youtube.com/embed/LInf2HsHRrk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe
+                    src="https://www.youtube.com/embed/LInf2HsHRrk"
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  ></iframe>
                 </div>
                 <div class="video-info">
                   <h4>BringBackMyWorkspace</h4>
-                  <p>Spatial audio office. Won "Mind Boggling Hackers" at Arcesium Hackathon 2020.</p>
+                  <p>
+                    Spatial audio office. Won "Mind Boggling Hackers" at
+                    Arcesium Hackathon 2020.
+                  </p>
                 </div>
               </div>
               <div class="video-card">
                 <div class="video-embed">
-                  <iframe src="https://www.youtube.com/embed/kov5EL8xpX0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe
+                    src="https://www.youtube.com/embed/kov5EL8xpX0"
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  ></iframe>
                 </div>
                 <div class="video-info">
                   <h4>Squasher.pro</h4>
-                  <p>"Most Creative Hack" 2021. GPT-2 + BERT summarizer, before ChatGPT existed.</p>
+                  <p>
+                    "Most Creative Hack" 2021. GPT-2 + BERT summarizer, before
+                    ChatGPT existed.
+                  </p>
                 </div>
               </div>
               <div class="video-card">
-                <div class="video-embed" style="background: #000;">
-                  <img src="./images/camlio.png" alt="Camlio" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                <div class="video-embed" style="background: #000">
+                  <img
+                    src="./images/camlio.png"
+                    alt="Camlio"
+                    style="
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                    "
+                  />
                 </div>
                 <div class="video-info">
                   <h4>Camlio</h4>
-                  <p>Real-time background removal via OpenCV + TensorFlow. Grand prize, Arcesium Hackathon 2019.</p>
+                  <p>
+                    Real-time background removal via OpenCV + TensorFlow. Grand
+                    prize, Arcesium Hackathon 2019.
+                  </p>
                 </div>
               </div>
               <div class="video-card">
                 <div class="video-embed">
-                  <iframe src="https://www.youtube.com/embed/yfhf-txmPvQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe
+                    src="https://www.youtube.com/embed/yfhf-txmPvQ"
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  ></iframe>
                 </div>
                 <div class="video-info">
                   <h4>Nemo</h4>
@@ -1807,7 +2192,9 @@
           <section class="middle">
             <div class="segue-label">Chapter 4</div>
             <div class="segue-title">The AI Era</div>
-            <div class="segue-subtitle">Leveraging AI to hack my kids' school experience</div>
+            <div class="segue-subtitle">
+              Leveraging AI to hack my kids' school experience
+            </div>
           </section>
         </div>
 
@@ -1821,21 +2208,59 @@
             </div>
             <h2>Digitizing the School Diary</h2>
             <div class="year-badge">2025</div>
-            <p style="font-size: 15px; margin-bottom: 10px;">School issues a physical paper diary. In 2025.</p>
+            <p style="font-size: 15px; margin-bottom: 10px">
+              School issues a physical paper diary. In 2025.
+            </p>
             <ul class="workflow-list">
               <li>Photographed every page of the diary</li>
               <li>AI extracted all events, holidays, assemblies</li>
-              <li>Built <a href="https://github.com/varunkumar/school-calendar" target="_blank">school-calendar</a>: React + Tailwind, filterable by category</li>
-              <li>Deployed at <a href="https://calendar.adhiyan.in" target="_blank">calendar.adhiyan.in</a>. Shared with parents. Overnight hit.</li>
+              <li>
+                Built
+                <a
+                  href="https://github.com/varunkumar/school-calendar"
+                  target="_blank"
+                  >school-calendar</a
+                >: React + Tailwind, filterable by category
+              </li>
+              <li>
+                Deployed at
+                <a href="https://calendar.adhiyan.in" target="_blank"
+                  >calendar.adhiyan.in</a
+                >. Shared with parents. Overnight hit.
+              </li>
             </ul>
-            <p style="font-size: 14px; margin-top: 4px; opacity: 0.5;">Built the whole site in under an hour. June 2025.</p>
-            <p style="font-size: 15px; margin-top: 4px; color: var(--accent); font-family: 'Space Mono', monospace;">My kids became superstars overnight.</p>
+            <p style="font-size: 14px; margin-top: 4px; opacity: 0.5">
+              Built the whole site in under an hour. June 2025.
+            </p>
+            <p
+              style="
+                font-size: 15px;
+                margin-top: 4px;
+                color: var(--accent);
+                font-family: 'Space Mono', monospace;
+              "
+            >
+              My kids became superstars overnight.
+            </p>
           </section>
         </div>
 
         <!-- Slide - Calendar Screenshot -->
         <div class="slide reduced">
-          <img src="./images/calendar.png" alt="School Calendar" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; z-index: 1;">
+          <img
+            src="./images/calendar.png"
+            alt="School Calendar"
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top center;
+              z-index: 1;
+            "
+          />
         </div>
 
         <!-- Slide 13 - The School Portal -->
@@ -1847,27 +2272,52 @@
               <span class="habit-tag share">SHARE &amp; MULTIPLY</span>
             </div>
             <h2>Fixing the School Portal</h2>
-            <div class="two-column" style="margin-top: 8px;">
+            <div class="two-column" style="margin-top: 8px">
               <div>
-                <p style="font-size: 16px; color: var(--text-bright); margin-bottom: 8px;">The portal is terrible.</p>
-                <ul class="problem-list" style="font-size: 14px;">
+                <p
+                  style="
+                    font-size: 16px;
+                    color: var(--text-bright);
+                    margin-bottom: 8px;
+                  "
+                >
+                  The portal is terrible.
+                </p>
+                <ul class="problem-list" style="font-size: 14px">
                   <li>No notifications</li>
                   <li>Unstable, frequently down</li>
                   <li>Notices, homework buried deep</li>
                   <li>Parents miss everything</li>
                 </ul>
-                <p style="font-size: 14px; margin-top: 8px; opacity: 0.6;">Wrote to the school. Wrote to the developers. Got nowhere.</p>
+                <p style="font-size: 14px; margin-top: 8px; opacity: 0.6">
+                  Wrote to the school. Wrote to the developers. Got nowhere.
+                </p>
               </div>
               <div>
-                <p style="font-size: 16px; color: var(--accent); margin-bottom: 8px;">Built <a href="https://github.com/varunkumar/parentsalarm-alert" target="_blank">parentsalarm-alert</a>:</p>
-                <ul class="workflow-list" style="font-size: 14px;">
+                <p
+                  style="
+                    font-size: 16px;
+                    color: var(--accent);
+                    margin-bottom: 8px;
+                  "
+                >
+                  Built
+                  <a
+                    href="https://github.com/varunkumar/parentsalarm-alert"
+                    target="_blank"
+                    >parentsalarm-alert</a
+                  >:
+                </p>
+                <ul class="workflow-list" style="font-size: 14px">
                   <li>Puppeteer auto-logs in</li>
                   <li>Extracts notices, homework, stationery</li>
                   <li>Watermark storage, no duplicates</li>
                   <li>Slack channels per child</li>
                   <li>GitHub Actions cron</li>
                 </ul>
-                <p style="font-size: 13px; margin-top: 4px; opacity: 0.5;">Both Adhiyan's and Aganvee's feeds are live.</p>
+                <p style="font-size: 13px; margin-top: 4px; opacity: 0.5">
+                  Both Adhiyan's and Aganvee's feeds are live.
+                </p>
               </div>
             </div>
           </section>
@@ -1875,7 +2325,20 @@
 
         <!-- Slide - Portal Screenshot -->
         <div class="slide reduced">
-          <img src="./images/slack.png" alt="Slack Notifications" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; z-index: 1;">
+          <img
+            src="./images/slack.png"
+            alt="Slack Notifications"
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top left;
+              z-index: 1;
+            "
+          />
         </div>
 
         <!-- Slide 15 - The Pivot Moment -->
@@ -1884,8 +2347,12 @@
             <div class="centered-text">
               <p>Scripts worked. Automation worked.</p>
               <p>But the world was changing.</p>
-              <p style="margin-top: 20px;">Coding agents were becoming autonomous.</p>
-              <p style="margin-top: 20px;">I wanted to build something more intelligent.</p>
+              <p style="margin-top: 20px">
+                Coding agents were becoming autonomous.
+              </p>
+              <p style="margin-top: 20px">
+                I wanted to build something more intelligent.
+              </p>
             </div>
           </section>
         </div>
@@ -1895,7 +2362,9 @@
           <section class="middle">
             <div class="segue-label">Chapter 5</div>
             <div class="segue-title">Enter the Agents</div>
-            <div class="segue-subtitle">From scripts to autonomous AI teammates</div>
+            <div class="segue-subtitle">
+              From scripts to autonomous AI teammates
+            </div>
           </section>
         </div>
 
@@ -1905,9 +2374,13 @@
             <div class="habit-tags">
               <span class="habit-tag levelup">LEVEL UP THE TOOLS</span>
             </div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <img src="./images/openclaw.png" alt="OpenClaw" style="width: 40px; height: 40px; border-radius: 8px;">
-              <h2 style="margin: 0;">OpenClaw</h2>
+            <div style="display: flex; align-items: center; gap: 12px">
+              <img
+                src="./images/openclaw.png"
+                alt="OpenClaw"
+                style="width: 40px; height: 40px; border-radius: 8px"
+              />
+              <h2 style="margin: 0">OpenClaw</h2>
             </div>
             <div class="evolution-line">
               <span class="dim">Clawdbot</span>
@@ -1935,19 +2408,29 @@
               </div>
               <div class="hack-card">
                 <h4>Skills &amp; Agent Ecosystem</h4>
-                <p>Pluggable skills and agents that can be composed and shared across workflows</p>
+                <p>
+                  Pluggable skills and agents that can be composed and shared
+                  across workflows
+                </p>
               </div>
               <div class="hack-card">
                 <h4>Self-Upskilling</h4>
-                <p>Agents learn from interactions and improve their capabilities over time</p>
+                <p>
+                  Agents learn from interactions and improve their capabilities
+                  over time
+                </p>
               </div>
-              <div class="hack-card" style="grid-column: 1 / -1;">
+              <div class="hack-card" style="grid-column: 1 / -1">
                 <h4>Channel Integrations</h4>
-                <p>Slack, WhatsApp, Telegram, email, web. Interact with agents wherever you already are.</p>
+                <p>
+                  Slack, WhatsApp, Telegram, email, web. Interact with agents
+                  wherever you already are.
+                </p>
               </div>
             </div>
-            <div class="quote-block" style="font-size: 16px; margin-top: 12px;">
-              "Think Jarvis from Iron Man. Ask it anything. It learns. It delivers."
+            <div class="quote-block" style="font-size: 16px; margin-top: 12px">
+              "Think Jarvis from Iron Man. Ask it anything. It learns. It
+              delivers."
             </div>
           </section>
         </div>
@@ -1956,85 +2439,426 @@
         <div class="slide reduced" data-time="120">
           <section>
             <h2>The Setup &amp; Security</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 8px;">
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 16px;
+                margin-top: 8px;
+              "
+            >
               <div>
-                <h3 style="font-size: 14px; margin: 0 0 6px 0; color: var(--accent); opacity: 0.7;">THE SETUP</h3>
-                <ul class="bulleted" style="line-height: 32px; font-size: 14px;">
+                <h3
+                  style="
+                    font-size: 14px;
+                    margin: 0 0 6px 0;
+                    color: var(--accent);
+                    opacity: 0.7;
+                  "
+                >
+                  THE SETUP
+                </h3>
+                <ul class="bulleted" style="line-height: 32px; font-size: 14px">
                   <li>Mac Studio as the workhorse</li>
                   <li>macOS VM for isolation</li>
                   <li>Slack &amp; Telegram integration</li>
                   <li>LLMs via GitHub provider</li>
                 </ul>
-                <h3 style="font-size: 14px; margin: 14px 0 6px 0; color: var(--accent); opacity: 0.7;">SECURITY</h3>
-                <p style="font-size: 13px; color: var(--text-bright); margin-bottom: 6px;">Agents have access to email, GitHub, APIs, school data.</p>
-                <ul class="bulleted" style="line-height: 32px; font-size: 14px;">
+                <h3
+                  style="
+                    font-size: 14px;
+                    margin: 14px 0 6px 0;
+                    color: var(--accent);
+                    opacity: 0.7;
+                  "
+                >
+                  SECURITY
+                </h3>
+                <p
+                  style="
+                    font-size: 13px;
+                    color: var(--text-bright);
+                    margin-bottom: 6px;
+                  "
+                >
+                  Agents have access to email, GitHub, APIs, school data.
+                </p>
+                <ul class="bulleted" style="line-height: 32px; font-size: 14px">
                   <li>macOS VM sandboxing</li>
                   <li>Scoped permissions per agent</li>
                   <li>Full audit trail</li>
                 </ul>
               </div>
-              <div style="display: flex; align-items: center; justify-content: center;">
-                <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg
+                  viewBox="0 0 300 280"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="width: 100%; height: auto"
+                >
                   <!-- Desk -->
-                  <rect x="10" y="210" width="280" height="10" rx="3" fill="#2a2a30"/>
-                  <rect x="40" y="220" width="10" height="50" rx="2" fill="#222228"/>
-                  <rect x="250" y="220" width="10" height="50" rx="2" fill="#222228"/>
+                  <rect
+                    x="10"
+                    y="210"
+                    width="280"
+                    height="10"
+                    rx="3"
+                    fill="#2a2a30"
+                  />
+                  <rect
+                    x="40"
+                    y="220"
+                    width="10"
+                    height="50"
+                    rx="2"
+                    fill="#222228"
+                  />
+                  <rect
+                    x="250"
+                    y="220"
+                    width="10"
+                    height="50"
+                    rx="2"
+                    fill="#222228"
+                  />
                   <!-- Monitor -->
-                  <rect x="50" y="50" width="200" height="130" rx="6" fill="#1a1a1e" stroke="#333" stroke-width="1.5"/>
-                  <rect x="58" y="58" width="184" height="108" rx="3" fill="#0c0c10"/>
+                  <rect
+                    x="50"
+                    y="50"
+                    width="200"
+                    height="130"
+                    rx="6"
+                    fill="#1a1a1e"
+                    stroke="#333"
+                    stroke-width="1.5"
+                  />
+                  <rect
+                    x="58"
+                    y="58"
+                    width="184"
+                    height="108"
+                    rx="3"
+                    fill="#0c0c10"
+                  />
                   <!-- Screen content -->
-                  <text x="68" y="76" font-family="monospace" font-size="8" fill="#36a7f5">~ $ openclaw status</text>
-                  <text x="68" y="88" font-family="monospace" font-size="7" fill="#22c55e">Naga   ● online</text>
-                  <text x="68" y="99" font-family="monospace" font-size="7" fill="#22c55e">Cobra  ● online</text>
-                  <text x="68" y="110" font-family="monospace" font-size="7" fill="#22c55e">Boa    ● online</text>
-                  <text x="68" y="121" font-family="monospace" font-size="7" fill="#22c55e">Viper  ● online</text>
-                  <text x="68" y="132" font-family="monospace" font-size="7" fill="#22c55e">Krait  ● online</text>
-                  <text x="68" y="143" font-family="monospace" font-size="7" fill="#22c55e">Momba  ● online</text>
-                  <text x="68" y="157" font-family="monospace" font-size="7" fill="#666">6 agents ready.</text>
+                  <text
+                    x="68"
+                    y="76"
+                    font-family="monospace"
+                    font-size="8"
+                    fill="#36a7f5"
+                  >
+                    ~ $ openclaw status
+                  </text>
+                  <text
+                    x="68"
+                    y="88"
+                    font-family="monospace"
+                    font-size="7"
+                    fill="#22c55e"
+                  >
+                    Naga ● online
+                  </text>
+                  <text
+                    x="68"
+                    y="99"
+                    font-family="monospace"
+                    font-size="7"
+                    fill="#22c55e"
+                  >
+                    Cobra ● online
+                  </text>
+                  <text
+                    x="68"
+                    y="110"
+                    font-family="monospace"
+                    font-size="7"
+                    fill="#22c55e"
+                  >
+                    Boa ● online
+                  </text>
+                  <text
+                    x="68"
+                    y="121"
+                    font-family="monospace"
+                    font-size="7"
+                    fill="#22c55e"
+                  >
+                    Viper ● online
+                  </text>
+                  <text
+                    x="68"
+                    y="132"
+                    font-family="monospace"
+                    font-size="7"
+                    fill="#22c55e"
+                  >
+                    Krait ● online
+                  </text>
+                  <text
+                    x="68"
+                    y="143"
+                    font-family="monospace"
+                    font-size="7"
+                    fill="#22c55e"
+                  >
+                    Momba ● online
+                  </text>
+                  <text
+                    x="68"
+                    y="157"
+                    font-family="monospace"
+                    font-size="7"
+                    fill="#666"
+                  >
+                    6 agents ready.
+                  </text>
                   <!-- Monitor stand -->
-                  <rect x="130" y="180" width="40" height="16" rx="2" fill="#2a2a30"/>
-                  <rect x="115" y="195" width="70" height="5" rx="3" fill="#2a2a30"/>
+                  <rect
+                    x="130"
+                    y="180"
+                    width="40"
+                    height="16"
+                    rx="2"
+                    fill="#2a2a30"
+                  />
+                  <rect
+                    x="115"
+                    y="195"
+                    width="70"
+                    height="5"
+                    rx="3"
+                    fill="#2a2a30"
+                  />
                   <!-- Mac Studio -->
-                  <rect x="230" y="180" width="50" height="24" rx="5" fill="#333338" stroke="#444" stroke-width="1"/>
-                  <circle cx="255" cy="192" r="2.5" fill="none" stroke="#555" stroke-width="0.7"/>
-                  <text x="255" y="212" font-family="monospace" font-size="5" fill="#555" text-anchor="middle">Mac Studio</text>
+                  <rect
+                    x="230"
+                    y="180"
+                    width="50"
+                    height="24"
+                    rx="5"
+                    fill="#333338"
+                    stroke="#444"
+                    stroke-width="1"
+                  />
+                  <circle
+                    cx="255"
+                    cy="192"
+                    r="2.5"
+                    fill="none"
+                    stroke="#555"
+                    stroke-width="0.7"
+                  />
+                  <text
+                    x="255"
+                    y="212"
+                    font-family="monospace"
+                    font-size="5"
+                    fill="#555"
+                    text-anchor="middle"
+                  >
+                    Mac Studio
+                  </text>
                   <!-- VM bubble -->
-                  <rect x="232" y="148" width="56" height="24" rx="3" fill="none" stroke="#36a7f5" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.5"/>
-                  <text x="260" y="159" font-family="monospace" font-size="6" fill="#36a7f5" text-anchor="middle" opacity="0.6">macOS VM</text>
-                  <text x="260" y="168" font-family="monospace" font-size="5" fill="#888" text-anchor="middle">OpenClaw</text>
-                  <line x1="255" y1="172" x2="255" y2="180" stroke="#36a7f5" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.4"/>
+                  <rect
+                    x="232"
+                    y="148"
+                    width="56"
+                    height="24"
+                    rx="3"
+                    fill="none"
+                    stroke="#36a7f5"
+                    stroke-width="0.7"
+                    stroke-dasharray="2,2"
+                    opacity="0.5"
+                  />
+                  <text
+                    x="260"
+                    y="159"
+                    font-family="monospace"
+                    font-size="6"
+                    fill="#36a7f5"
+                    text-anchor="middle"
+                    opacity="0.6"
+                  >
+                    macOS VM
+                  </text>
+                  <text
+                    x="260"
+                    y="168"
+                    font-family="monospace"
+                    font-size="5"
+                    fill="#888"
+                    text-anchor="middle"
+                  >
+                    OpenClaw
+                  </text>
+                  <line
+                    x1="255"
+                    y1="172"
+                    x2="255"
+                    y2="180"
+                    stroke="#36a7f5"
+                    stroke-width="0.7"
+                    stroke-dasharray="2,2"
+                    opacity="0.4"
+                  />
                   <!-- Cloud -->
-                  <ellipse cx="150" cy="25" rx="45" ry="14" fill="none" stroke="#555" stroke-width="0.7" stroke-dasharray="3,2"/>
-                  <text x="150" y="29" font-family="monospace" font-size="6" fill="#666" text-anchor="middle">GitHub LLM</text>
-                  <line x1="150" y1="39" x2="150" y2="50" stroke="#555" stroke-width="0.7" stroke-dasharray="2,2" opacity="0.4"/>
+                  <ellipse
+                    cx="150"
+                    cy="25"
+                    rx="45"
+                    ry="14"
+                    fill="none"
+                    stroke="#555"
+                    stroke-width="0.7"
+                    stroke-dasharray="3,2"
+                  />
+                  <text
+                    x="150"
+                    y="29"
+                    font-family="monospace"
+                    font-size="6"
+                    fill="#666"
+                    text-anchor="middle"
+                  >
+                    GitHub LLM
+                  </text>
+                  <line
+                    x1="150"
+                    y1="39"
+                    x2="150"
+                    y2="50"
+                    stroke="#555"
+                    stroke-width="0.7"
+                    stroke-dasharray="2,2"
+                    opacity="0.4"
+                  />
                 </svg>
               </div>
-              <div style="display: flex; align-items: center; justify-content: center;">
-                <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg
+                  viewBox="0 0 160 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="width: 100%; height: auto"
+                >
                   <!-- Shield -->
-                  <path d="M80 12 L140 38 L140 105 Q140 155 80 178 Q20 155 20 105 L20 38 Z" fill="none" stroke="#36a7f5" stroke-width="1.5" opacity="0.3"/>
-                  <path d="M80 25 L128 45 L128 100 Q128 142 80 162 Q32 142 32 100 L32 45 Z" fill="rgba(54,167,245,0.04)" stroke="#36a7f5" stroke-width="0.8" opacity="0.5"/>
+                  <path
+                    d="M80 12 L140 38 L140 105 Q140 155 80 178 Q20 155 20 105 L20 38 Z"
+                    fill="none"
+                    stroke="#36a7f5"
+                    stroke-width="1.5"
+                    opacity="0.3"
+                  />
+                  <path
+                    d="M80 25 L128 45 L128 100 Q128 142 80 162 Q32 142 32 100 L32 45 Z"
+                    fill="rgba(54,167,245,0.04)"
+                    stroke="#36a7f5"
+                    stroke-width="0.8"
+                    opacity="0.5"
+                  />
                   <!-- Lock body -->
-                  <rect x="58" y="78" width="44" height="34" rx="4" fill="#1a1a1e" stroke="#36a7f5" stroke-width="1.2" opacity="0.8"/>
+                  <rect
+                    x="58"
+                    y="78"
+                    width="44"
+                    height="34"
+                    rx="4"
+                    fill="#1a1a1e"
+                    stroke="#36a7f5"
+                    stroke-width="1.2"
+                    opacity="0.8"
+                  />
                   <!-- Lock shackle -->
-                  <path d="M65 78 L65 66 Q65 54 80 54 Q95 54 95 66 L95 78" fill="none" stroke="#36a7f5" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+                  <path
+                    d="M65 78 L65 66 Q65 54 80 54 Q95 54 95 66 L95 78"
+                    fill="none"
+                    stroke="#36a7f5"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    opacity="0.7"
+                  />
                   <!-- Keyhole -->
-                  <circle cx="80" cy="92" r="4" fill="#36a7f5" opacity="0.6"/>
-                  <rect x="78.5" y="94" width="3" height="8" rx="1" fill="#36a7f5" opacity="0.6"/>
+                  <circle cx="80" cy="92" r="4" fill="#36a7f5" opacity="0.6" />
+                  <rect
+                    x="78.5"
+                    y="94"
+                    width="3"
+                    height="8"
+                    rx="1"
+                    fill="#36a7f5"
+                    opacity="0.6"
+                  />
                   <!-- Orbiting dots -->
-                  <circle cx="80" cy="95" r="55" fill="none" stroke="#36a7f5" stroke-width="0.4" stroke-dasharray="3,5" opacity="0.15"/>
+                  <circle
+                    cx="80"
+                    cy="95"
+                    r="55"
+                    fill="none"
+                    stroke="#36a7f5"
+                    stroke-width="0.4"
+                    stroke-dasharray="3,5"
+                    opacity="0.15"
+                  />
                   <circle r="3" fill="#22c55e" opacity="0.6">
-                    <animateMotion dur="8s" repeatCount="indefinite" path="M80,40 A55,55 0 1,1 79.9,40" rotate="auto"/>
+                    <animateMotion
+                      dur="8s"
+                      repeatCount="indefinite"
+                      path="M80,40 A55,55 0 1,1 79.9,40"
+                      rotate="auto"
+                    />
                   </circle>
                   <circle r="2.5" fill="#a78bfa" opacity="0.5">
-                    <animateMotion dur="8s" repeatCount="indefinite" path="M80,40 A55,55 0 1,1 79.9,40" rotate="auto" begin="2.6s"/>
+                    <animateMotion
+                      dur="8s"
+                      repeatCount="indefinite"
+                      path="M80,40 A55,55 0 1,1 79.9,40"
+                      rotate="auto"
+                      begin="2.6s"
+                    />
                   </circle>
                   <circle r="3" fill="#36a7f5" opacity="0.5">
-                    <animateMotion dur="8s" repeatCount="indefinite" path="M80,40 A55,55 0 1,1 79.9,40" rotate="auto" begin="5.3s"/>
+                    <animateMotion
+                      dur="8s"
+                      repeatCount="indefinite"
+                      path="M80,40 A55,55 0 1,1 79.9,40"
+                      rotate="auto"
+                      begin="5.3s"
+                    />
                   </circle>
                   <!-- Label -->
-                  <text x="80" y="133" font-family="monospace" font-size="7" fill="#36a7f5" text-anchor="middle" opacity="0.5">VM ISOLATED</text>
-                  <text x="80" y="144" font-family="monospace" font-size="6" fill="#888" text-anchor="middle">scoped &bull; audited</text>
+                  <text
+                    x="80"
+                    y="133"
+                    font-family="monospace"
+                    font-size="7"
+                    fill="#36a7f5"
+                    text-anchor="middle"
+                    opacity="0.5"
+                  >
+                    VM ISOLATED
+                  </text>
+                  <text
+                    x="80"
+                    y="144"
+                    font-family="monospace"
+                    font-size="6"
+                    fill="#888"
+                    text-anchor="middle"
+                  >
+                    scoped &bull; audited
+                  </text>
                 </svg>
               </div>
             </div>
@@ -2050,31 +2874,69 @@
               <span class="habit-tag levelup">LEVEL UP THE TOOLS</span>
             </div>
             <h2>The Snake Squad</h2>
-            <p style="font-size: 14px; margin-bottom: 12px;">Each agent has a name, role, email, GitHub account, and X handle.</p>
+            <p style="font-size: 14px; margin-bottom: 12px">
+              Each agent has a name, role, email, GitHub account, and X handle.
+            </p>
             <div class="agent-grid">
               <div class="agent-card">
-                <img class="agent-avatar" src="./images/naga.png" alt="Naga">
-                <div class="agent-info"><h4>Naga</h4><p class="role">Chief of Staff. Delegates tasks.</p></div>
+                <img class="agent-avatar" src="./images/naga.png" alt="Naga" />
+                <div class="agent-info">
+                  <h4>Naga</h4>
+                  <p class="role">Chief of Staff. Delegates tasks.</p>
+                </div>
               </div>
               <div class="agent-card">
-                <img class="agent-avatar" src="./images/viper.png" alt="Viper">
-                <div class="agent-info"><h4>Viper</h4><p class="role">Principal Engineer. Architecture.</p></div>
+                <img
+                  class="agent-avatar"
+                  src="./images/viper.png"
+                  alt="Viper"
+                />
+                <div class="agent-info">
+                  <h4>Viper</h4>
+                  <p class="role">Principal Engineer. Architecture.</p>
+                </div>
               </div>
               <div class="agent-card">
-                <img class="agent-avatar" src="./images/vobra.png" alt="Cobra">
-                <div class="agent-info"><h4>Cobra</h4><p class="role">Frontend Engineer. UI and design.</p></div>
+                <img
+                  class="agent-avatar"
+                  src="./images/vobra.png"
+                  alt="Cobra"
+                />
+                <div class="agent-info">
+                  <h4>Cobra</h4>
+                  <p class="role">Frontend Engineer. UI and design.</p>
+                </div>
               </div>
               <div class="agent-card">
-                <img class="agent-avatar" src="./images/boa.png" alt="Boa">
-                <div class="agent-info"><h4>Boa</h4><p class="role">Backend Engineer. APIs and infra.</p></div>
+                <img class="agent-avatar" src="./images/boa.png" alt="Boa" />
+                <div class="agent-info">
+                  <h4>Boa</h4>
+                  <p class="role">Backend Engineer. APIs and infra.</p>
+                </div>
               </div>
               <div class="agent-card">
-                <img class="agent-avatar" src="./images/krait.png" alt="Krait">
-                <div class="agent-info"><h4>Krait</h4><p class="role">Test Engineer. Quality and validation.</p></div>
+                <img
+                  class="agent-avatar"
+                  src="./images/krait.png"
+                  alt="Krait"
+                />
+                <div class="agent-info">
+                  <h4>Krait</h4>
+                  <p class="role">Test Engineer. Quality and validation.</p>
+                </div>
               </div>
               <div class="agent-card">
-                <img class="agent-avatar" src="./images/momba.png" alt="Momba">
-                <div class="agent-info"><h4>Momba</h4><p class="role">Study Buddy. Helps kids with school and homework.</p></div>
+                <img
+                  class="agent-avatar"
+                  src="./images/momba.png"
+                  alt="Momba"
+                />
+                <div class="agent-info">
+                  <h4>Momba</h4>
+                  <p class="role">
+                    Study Buddy. Helps kids with school and homework.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -2087,7 +2949,10 @@
               <span class="habit-tag automate">AUTOMATE THE TEDIOUS</span>
             </div>
             <h2>My Workflow</h2>
-            <div class="flow-text">Assign to Naga &rarr; Breaks down &rarr; Delegates &rarr; Mission Control</div>
+            <div class="flow-text">
+              Assign to Naga &rarr; Breaks down &rarr; Delegates &rarr; Mission
+              Control
+            </div>
             <div class="hack-grid">
               <div class="hack-card">
                 <h4>School Work</h4>
@@ -2111,7 +2976,20 @@
 
         <!-- Slide - Mission Control Screenshot -->
         <div class="slide reduced">
-          <img src="./images/mission-control.png" alt="Mission Control" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; z-index: 1;">
+          <img
+            src="./images/mission-control.png"
+            alt="Mission Control"
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top left;
+              z-index: 1;
+            "
+          />
         </div>
 
         <!-- Slide 22 - Momba -->
@@ -2124,19 +3002,50 @@
               <span class="habit-tag levelup">LEVEL UP THE TOOLS</span>
             </div>
             <h2>Momba: The Study Buddy</h2>
-            <ul class="bulleted" style="line-height: 34px; font-size: 15px;">
+            <ul class="bulleted" style="line-height: 34px; font-size: 15px">
               <li>RAG system for school questions via Slack</li>
               <li>Kids can print directly from Slack</li>
-              <li>Auto-extracts contests and events, sends reminders to parents</li>
+              <li>
+                Auto-extracts contests and events, sends reminders to parents
+              </li>
             </ul>
-            <div class="slack-mockup" style="margin-top: 10px;">
+            <div class="slack-mockup" style="margin-top: 10px">
               <div class="slack-user">@momba</div>
               <div class="slack-msg">When is the next science exhibition?</div>
-              <div class="slack-response">March 15th. Want me to help prepare?</div>
+              <div class="slack-response">
+                March 15th. Want me to help prepare?
+              </div>
             </div>
-            <p style="font-size: 18px; color: var(--text-bright); margin-top: 16px;">My son doesn't use ChatGPT or Claude directly. <span style="color: var(--accent); font-family: 'Space Mono', monospace;">He talks to the agent in Slack.</span></p>
-            <p style="font-size: 14px; color: var(--text); opacity: 0.5; margin-top: 6px;">Homework help. Concept explanations. Conversations. He finds it more natural to talk to a familiar agent.</p>
-            <p class="tagline" style="margin-top: 8px;">All four habits converge here.</p>
+            <p
+              style="
+                font-size: 18px;
+                color: var(--text-bright);
+                margin-top: 16px;
+              "
+            >
+              My son doesn't use ChatGPT or Claude directly.
+              <span
+                style="
+                  color: var(--accent);
+                  font-family: 'Space Mono', monospace;
+                "
+                >He talks to the agent in Slack.</span
+              >
+            </p>
+            <p
+              style="
+                font-size: 14px;
+                color: var(--text);
+                opacity: 0.5;
+                margin-top: 6px;
+              "
+            >
+              Homework help. Concept explanations. Conversations. He finds it
+              more natural to talk to a familiar agent.
+            </p>
+            <p class="tagline" style="margin-top: 8px">
+              All four habits converge here.
+            </p>
           </section>
         </div>
 
@@ -2144,7 +3053,16 @@
         <div class="slide reduced" data-time="60">
           <section>
             <h2>Tools I Use</h2>
-            <p style="font-size: 15px; color: var(--text); opacity: 0.6; margin-bottom: 20px;">Not a lot of fancy ones. Simplicity wins.</p>
+            <p
+              style="
+                font-size: 15px;
+                color: var(--text);
+                opacity: 0.6;
+                margin-bottom: 20px;
+              "
+            >
+              Not a lot of fancy ones. Simplicity wins.
+            </p>
             <div class="tool-item">
               <span class="tool-name">Mac Studio</span>
               <span class="tool-desc">The workhorse behind all the agents</span>
@@ -2159,9 +3077,11 @@
             </div>
             <div class="tool-item">
               <span class="tool-name">LM Studio</span>
-              <span class="tool-desc">Local models for offline and private workloads.</span>
+              <span class="tool-desc"
+                >Local models for offline and private workloads.</span
+              >
             </div>
-            <div class="tool-item" style="border-bottom: none;">
+            <div class="tool-item" style="border-bottom: none">
               <span class="tool-name">Gemini &amp; Grok</span>
               <span class="tool-desc">Image and video generation.</span>
             </div>
@@ -2179,38 +3099,118 @@
               </div>
               <div class="habit-card automate-card">
                 <h4>AUTOMATE THE TEDIOUS</h4>
-                <p>If you do it twice, script it. If you script it, schedule it.</p>
+                <p>
+                  If you do it twice, script it. If you script it, schedule it.
+                </p>
               </div>
               <div class="habit-card share-card">
                 <h4>SHARE &amp; MULTIPLY</h4>
-                <p>A hack shared is a hack multiplied. Build community around it.</p>
+                <p>
+                  A hack shared is a hack multiplied. Build community around it.
+                </p>
               </div>
               <div class="habit-card levelup-card">
                 <h4>LEVEL UP THE TOOLS</h4>
                 <p>Yesterday's hack becomes today's platform. Keep evolving.</p>
               </div>
             </div>
-            <p class="tagline" style="margin-top: 20px;">You've been watching these build up throughout the talk.</p>
+            <p class="tagline" style="margin-top: 20px">
+              You've been watching these build up throughout the talk.
+            </p>
           </section>
         </div>
 
         <!-- Slide 26 - Closing -->
         <div class="slide reduced" data-time="60">
           <section class="middle">
-            <div style="max-width: 800px; margin: 0 auto; display: flex; gap: 28px; align-items: flex-start; text-align: left;">
-              <div style="flex-shrink: 0; margin-top: 8px;">
-                <div style="position: relative;">
-                  <div style="position: absolute; top: -8px; right: -6px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(54,167,245,0.15), transparent 70%);"></div>
-                  <div style="position: absolute; bottom: -6px; left: -8px; width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle, rgba(167,139,250,0.12), transparent 70%);"></div>
-                  <img src="./images/varun.jpeg" alt="Varun" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(54,167,245,0.2); position: relative; z-index: 1;">
+            <div
+              style="
+                max-width: 800px;
+                margin: 0 auto;
+                display: flex;
+                gap: 28px;
+                align-items: flex-start;
+                text-align: left;
+              "
+            >
+              <div style="flex-shrink: 0; margin-top: 8px">
+                <div style="position: relative">
+                  <div
+                    style="
+                      position: absolute;
+                      top: -8px;
+                      right: -6px;
+                      width: 40px;
+                      height: 40px;
+                      border-radius: 50%;
+                      background: radial-gradient(
+                        circle,
+                        rgba(54, 167, 245, 0.15),
+                        transparent 70%
+                      );
+                    "
+                  ></div>
+                  <div
+                    style="
+                      position: absolute;
+                      bottom: -6px;
+                      left: -8px;
+                      width: 50px;
+                      height: 50px;
+                      border-radius: 50%;
+                      background: radial-gradient(
+                        circle,
+                        rgba(167, 139, 250, 0.12),
+                        transparent 70%
+                      );
+                    "
+                  ></div>
+                  <img
+                    src="./images/varun.jpeg"
+                    alt="Varun"
+                    style="
+                      width: 100px;
+                      height: 100px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                      border: 2px solid rgba(54, 167, 245, 0.2);
+                      position: relative;
+                      z-index: 1;
+                    "
+                  />
                 </div>
               </div>
               <div>
-                <div style="font-size: 19px; color: var(--text-bright); line-height: 1.7; border-left: 3px solid var(--accent); padding-left: 20px;">
-                  Every hack I showed you today started the same way: a small annoyance I refused to accept. A captcha. A paper diary. A mute button. None of them were meant to become anything.<br><br>
-                  <span style="opacity: 0.7;">But small hacks compound. The captcha cracker made me a blogger. The blogger won hackathons. The hackathons taught me to build fast. Building fast gave me agents. Now the agents build for me.</span>
+                <div
+                  style="
+                    font-size: 19px;
+                    color: var(--text-bright);
+                    line-height: 1.7;
+                    border-left: 3px solid var(--accent);
+                    padding-left: 20px;
+                  "
+                >
+                  Every hack I showed you today started the same way: a small
+                  annoyance I refused to accept. A captcha. A paper diary. A
+                  mute button. None of them were meant to become anything.<br /><br />
+                  <span style="opacity: 0.7"
+                    >But small hacks compound. The captcha cracker made me a
+                    blogger. The blogger won hackathons. The hackathons taught
+                    me to build fast. Building fast gave me agents. Now the
+                    agents build for me.</span
+                  >
                 </div>
-                <p style="font-size: 26px; color: var(--accent); font-family: 'Space Mono', monospace; margin-top: 28px;">Start small. Stay curious.<br>The compounding takes care of itself.</p>
+                <p
+                  style="
+                    font-size: 26px;
+                    color: var(--accent);
+                    font-family: 'Space Mono', monospace;
+                    margin-top: 28px;
+                  "
+                >
+                  Start small. Stay curious.<br />The compounding takes care of
+                  itself.
+                </p>
               </div>
             </div>
           </section>
@@ -2223,7 +3223,6 @@
             <p>Varunkumar Nagarajan</p>
           </section>
         </div>
-
       </div>
     </div>
 
@@ -2428,8 +3427,8 @@
               var transitionEnd = isWK
                 ? 'webkitTransitionEnd'
                 : isFF
-                ? 'mozTransitionEnd'
-                : 'oTransitionEnd';
+                  ? 'mozTransitionEnd'
+                  : 'oTransitionEnd';
               var _t = this;
               if (canTransition()) {
                 var l = function (evt) {
@@ -2476,42 +3475,42 @@
             function (e) {
               _t.handleKeys(e);
             },
-            false
+            false,
           );
           doc.addEventListener(
             'mousewheel',
             function (e) {
               _t.handleWheel(e);
             },
-            false
+            false,
           );
           doc.addEventListener(
             'DOMMouseScroll',
             function (e) {
               _t.handleWheel(e);
             },
-            false
+            false,
           );
           doc.addEventListener(
             'touchstart',
             function (e) {
               _t.handleTouchStart(e);
             },
-            false
+            false,
           );
           doc.addEventListener(
             'touchend',
             function (e) {
               _t.handleTouchEnd(e);
             },
-            false
+            false,
           );
           window.addEventListener(
             'popstate',
             function (e) {
               _t.go(e.state);
             },
-            false
+            false,
           );
           this._update();
         };
@@ -2528,7 +3527,7 @@
                 history.pushState(
                   this.current,
                   'Slide ' + this.current,
-                  '#slide' + this.current
+                  '#slide' + this.current,
                 );
               }
             } else {
@@ -2693,7 +3692,7 @@
         // Drawing functionality
         function initDrawing() {
           const slides = document.querySelectorAll('.slide');
-          slides.forEach(slide => {
+          slides.forEach((slide) => {
             const canvas = document.createElement('canvas');
             canvas.className = 'drawing-canvas';
             slide.appendChild(canvas);
@@ -2755,10 +3754,12 @@
               var isLight = document.body.classList.contains('light-theme');
               indicator.textContent = isLight ? 'Light Mode' : 'Dark Mode';
               indicator.classList.add('visible');
-              setTimeout(function() { indicator.classList.remove('visible'); }, 1500);
+              setTimeout(function () {
+                indicator.classList.remove('visible');
+              }, 1500);
               // Update drawing color for visibility
               var canvases = document.querySelectorAll('.drawing-canvas');
-              canvases.forEach(function(c) {
+              canvases.forEach(function (c) {
                 c.setAttribute('data-stroke', isLight ? '#0f5a96' : '#36a7f5');
               });
             } else if (e.key.toLowerCase() === 'a') {
@@ -2817,7 +3818,7 @@
               return;
             }
 
-            if (visitedSlides.has(slide) && (Date.now() - lastSlideTime < 1000)) {
+            if (visitedSlides.has(slide) && Date.now() - lastSlideTime < 1000) {
               return;
             }
 
@@ -2835,36 +3836,44 @@
 
             void progressBar.offsetWidth;
 
-            progressBar.style.transition = 'width ' + allocatedTime + 's linear';
-            requestAnimationFrame(function() {
+            progressBar.style.transition =
+              'width ' + allocatedTime + 's linear';
+            requestAnimationFrame(function () {
               progressBar.style.width = '100%';
             });
 
-            var cautionTimeout = setTimeout(function() {
+            var cautionTimeout = setTimeout(function () {
               timerContainer.classList.add('caution');
             }, allocatedTime * 750);
 
-            var warningTimeout = setTimeout(function() {
+            var warningTimeout = setTimeout(function () {
               timerContainer.classList.remove('caution');
               timerContainer.classList.add('warning');
             }, allocatedTime * 1000);
 
             currentTimer = {
               cautionTimeout: cautionTimeout,
-              warningTimeout: warningTimeout
+              warningTimeout: warningTimeout,
             };
 
             visitedSlides.add(slide);
           }
 
-          allSlides.forEach(function(slide, idx) {
-            var observer = new MutationObserver(function(mutations) {
-              mutations.forEach(function(mutation) {
+          allSlides.forEach(function (slide, idx) {
+            var observer = new MutationObserver(function (mutations) {
+              mutations.forEach(function (mutation) {
                 if (mutation.target.classList.contains('current')) {
                   startTimer(slide);
                   updateSlideProgress(idx + 1);
-                } else if (mutation.oldValue && mutation.oldValue.indexOf('current') >= 0) {
-                  timerContainer.classList.remove('active', 'warning', 'caution');
+                } else if (
+                  mutation.oldValue &&
+                  mutation.oldValue.indexOf('current') >= 0
+                ) {
+                  timerContainer.classList.remove(
+                    'active',
+                    'warning',
+                    'caution',
+                  );
                   if (currentTimer) {
                     clearTimeout(currentTimer.cautionTimeout);
                     clearTimeout(currentTimer.warningTimeout);
@@ -2876,7 +3885,7 @@
             observer.observe(slide, {
               attributes: true,
               attributeFilter: ['class'],
-              attributeOldValue: true
+              attributeOldValue: true,
             });
           });
         }
@@ -2933,7 +3942,9 @@
           }
 
           function setFocus(idx) {
-            items.forEach(function(item) { item.classList.remove('focused'); });
+            items.forEach(function (item) {
+              item.classList.remove('focused');
+            });
             if (idx >= 0 && idx < items.length) {
               focusIndex = idx;
               items[idx].classList.add('focused');
@@ -2945,17 +3956,20 @@
           }
 
           // Click to jump
-          items.forEach(function(item) {
-            item.addEventListener('click', function() {
+          items.forEach(function (item) {
+            item.addEventListener('click', function () {
               jumpToItem(item);
             });
           });
 
           // Reset when leaving agenda slide
-          var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-              if (mutation.oldValue && mutation.oldValue.indexOf('current') >= 0 &&
-                  !mutation.target.classList.contains('current')) {
+          var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+              if (
+                mutation.oldValue &&
+                mutation.oldValue.indexOf('current') >= 0 &&
+                !mutation.target.classList.contains('current')
+              ) {
                 setFocus(-1);
               }
             });
@@ -2963,44 +3977,52 @@
           observer.observe(agendaSlide, {
             attributes: true,
             attributeFilter: ['class'],
-            attributeOldValue: true
+            attributeOldValue: true,
           });
 
-          document.addEventListener('keydown', function(e) {
-            if (!agendaSlide.classList.contains('current')) return;
+          document.addEventListener(
+            'keydown',
+            function (e) {
+              if (!agendaSlide.classList.contains('current')) return;
 
-            if (e.keyCode === 38) { // up arrow
-              e.preventDefault();
-              e.stopPropagation();
-              if (focusIndex <= 0) {
-                setFocus(items.length - 1);
-              } else {
-                setFocus(focusIndex - 1);
-              }
-            } else if (e.keyCode === 40) { // down arrow
-              e.preventDefault();
-              e.stopPropagation();
-              if (focusIndex >= items.length - 1) {
-                setFocus(0);
-              } else {
-                setFocus(focusIndex + 1);
-              }
-            } else if (e.keyCode === 13) { // enter to jump
-              if (focusIndex >= 0) {
+              if (e.keyCode === 38) {
+                // up arrow
                 e.preventDefault();
                 e.stopPropagation();
-                jumpToItem(items[focusIndex]);
+                if (focusIndex <= 0) {
+                  setFocus(items.length - 1);
+                } else {
+                  setFocus(focusIndex - 1);
+                }
+              } else if (e.keyCode === 40) {
+                // down arrow
+                e.preventDefault();
+                e.stopPropagation();
+                if (focusIndex >= items.length - 1) {
+                  setFocus(0);
+                } else {
+                  setFocus(focusIndex + 1);
+                }
+              } else if (e.keyCode === 13) {
+                // enter to jump
+                if (focusIndex >= 0) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  jumpToItem(items[focusIndex]);
+                }
+              } else if (e.keyCode === 27) {
+                // escape to clear focus
+                setFocus(-1);
               }
-            } else if (e.keyCode === 27) { // escape to clear focus
-              setFocus(-1);
-            }
-          }, true);
+            },
+            true,
+          );
         }
 
         // Photo slideshows: crossfade through frames when parent slide is current
         function initSlideshows() {
           var slideshows = document.querySelectorAll('.photo-slideshow');
-          slideshows.forEach(function(ss) {
+          slideshows.forEach(function (ss) {
             var frames = ss.querySelectorAll('.slide-frame');
             var dots = ss.querySelectorAll('.dot');
             if (frames.length < 2) return;
@@ -3010,8 +4032,12 @@
             var parentSlide = ss.closest('.slide');
 
             function showFrame(idx) {
-              frames.forEach(function(f) { f.classList.remove('active'); });
-              dots.forEach(function(d) { d.classList.remove('active'); });
+              frames.forEach(function (f) {
+                f.classList.remove('active');
+              });
+              dots.forEach(function (d) {
+                d.classList.remove('active');
+              });
               frames[idx].classList.add('active');
               if (dots[idx]) dots[idx].classList.add('active');
               current = idx;
@@ -3034,8 +4060,8 @@
             }
 
             // Click on dots to jump
-            dots.forEach(function(dot, idx) {
-              dot.addEventListener('click', function() {
+            dots.forEach(function (dot, idx) {
+              dot.addEventListener('click', function () {
                 stopCycle();
                 showFrame(idx);
                 startCycle();
@@ -3043,18 +4069,23 @@
             });
 
             // Pause on hover
-            ss.addEventListener('mouseenter', function() { stopCycle(); });
-            ss.addEventListener('mouseleave', function() {
+            ss.addEventListener('mouseenter', function () {
+              stopCycle();
+            });
+            ss.addEventListener('mouseleave', function () {
               if (parentSlide.classList.contains('current')) startCycle();
             });
 
             // Watch parent slide for current class
-            var observer = new MutationObserver(function(mutations) {
-              mutations.forEach(function(mutation) {
+            var observer = new MutationObserver(function (mutations) {
+              mutations.forEach(function (mutation) {
                 if (mutation.target.classList.contains('current')) {
                   showFrame(0);
                   startCycle();
-                } else if (mutation.oldValue && mutation.oldValue.indexOf('current') >= 0) {
+                } else if (
+                  mutation.oldValue &&
+                  mutation.oldValue.indexOf('current') >= 0
+                ) {
                   stopCycle();
                 }
               });
@@ -3062,7 +4093,7 @@
             observer.observe(parentSlide, {
               attributes: true,
               attributeFilter: ['class'],
-              attributeOldValue: true
+              attributeOldValue: true,
             });
 
             // Start if already on this slide
