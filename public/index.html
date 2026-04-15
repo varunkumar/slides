@@ -1,105 +1,949 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Talks by Varunkumar Nagarajan">
-    <title>
-      Talks by Varunkumar Nagarajan
-    </title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="stylesheet" type="text/css" href="chronoline/jquery.qtip.min.css">
-    <link rel="stylesheet" type="text/css" href="chronoline/chronoline.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Talks by Varunkumar Nagarajan" />
+    <title>Talks by Varunkumar Nagarajan</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0f1117;
+        --surface: #1a1d27;
+        --surface2: #22263a;
+        --border: #2e3348;
+        --accent: #6c63ff;
+        --accent2: #a78bfa;
+        --text: #e2e8f0;
+        --text-muted: #8892a4;
+        --radius: 12px;
+        --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+      }
+
+      :root.light {
+        --bg: #f5f6fa;
+        --surface: #ffffff;
+        --surface2: #eef0f7;
+        --border: #dde1ee;
+        --accent: #5b52e8;
+        --accent2: #7c6fda;
+        --text: #1a1d2e;
+        --text-muted: #6b7280;
+        --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Theme toggle */
+      .theme-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: transparent;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition:
+          color 0.2s,
+          border-color 0.2s,
+          background 0.2s;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        color: var(--text);
+        border-color: var(--accent);
+        background: var(--surface2);
+      }
+      .theme-toggle svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      /* ── Header ── */
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 48px;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+      }
+      .site-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: -0.02em;
+      }
+      .site-title span {
+        color: var(--accent2);
+      }
+      header a.home-link {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      header a.home-link:hover {
+        color: var(--text);
+      }
+
+      /* ── View Switcher ── */
+      .view-switcher {
+        display: flex;
+        gap: 4px;
+        padding: 20px 0 0;
+      }
+      .view-btn {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 18px;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text-muted);
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .view-btn:hover {
+        color: var(--text);
+        border-color: var(--accent);
+      }
+      .view-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .view-btn svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
+
+      /* ── Layout centering ── */
+      .page-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 48px;
+      }
+
+      /* ── Main ── */
+      main {
+        padding: 32px 0 64px;
+      }
+
+      .view-panel {
+        display: none;
+      }
+      .view-panel.active {
+        display: block;
+      }
+
+      /* ── List View ── */
+      .talks-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .list-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 18px 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        text-decoration: none;
+        color: var(--text);
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          transform 0.15s;
+      }
+      .list-item:hover {
+        border-color: var(--accent);
+        background: var(--surface2);
+        transform: translateX(4px);
+      }
+      .list-date {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        white-space: nowrap;
+        min-width: 88px;
+        font-variant-numeric: tabular-nums;
+      }
+      .list-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+      }
+      .list-title {
+        font-size: 0.975rem;
+        font-weight: 500;
+        flex: 1;
+      }
+      .list-type {
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
+      .type-slides {
+        background: rgba(108, 99, 255, 0.18);
+        color: var(--accent2);
+      }
+      .type-video {
+        background: rgba(239, 68, 68, 0.15);
+        color: #e05555;
+      }
+      :root.light .type-video {
+        color: #c0392b;
+      }
+      .list-arrow {
+        color: var(--text-muted);
+        font-size: 1rem;
+      }
+
+      /* ── Tile View ── */
+      .tiles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+      }
+      .tile-card {
+        display: flex;
+        flex-direction: column;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        text-decoration: none;
+        color: var(--text);
+        transition:
+          border-color 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: var(--shadow);
+      }
+      .tile-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 36px rgba(108, 99, 255, 0.25);
+      }
+      .tile-thumb {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        display: block;
+      }
+      .tile-thumb-placeholder {
+        width: 100%;
+        aspect-ratio: 16/9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+      }
+      .tile-body {
+        padding: 16px 18px 20px;
+      }
+      .tile-date {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+        font-variant-numeric: tabular-nums;
+      }
+      .tile-title {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.45;
+      }
+
+      /* Gradient covers for local talks */
+      .cover-node {
+        background: linear-gradient(
+          135deg,
+          #1a2a1a 0%,
+          #2d5a27 50%,
+          #3d7a3a 100%
+        );
+      }
+      .cover-jstools {
+        background: linear-gradient(
+          135deg,
+          #1a1a2a 0%,
+          #2d3d6a 50%,
+          #3d5a8a 100%
+        );
+      }
+      .cover-jstools2 {
+        background: linear-gradient(
+          135deg,
+          #1a1a2a 0%,
+          #3d2d6a 50%,
+          #5a3d8a 100%
+        );
+      }
+      .cover-webcomp {
+        background: linear-gradient(
+          135deg,
+          #2a1a1a 0%,
+          #5a2d2d 50%,
+          #7a3d3d 100%
+        );
+      }
+      .cover-openstack {
+        background: linear-gradient(
+          135deg,
+          #1a2a2a 0%,
+          #2d5a5a 50%,
+          #3d7a7a 100%
+        );
+      }
+      .cover-habits {
+        background: linear-gradient(
+          135deg,
+          #2a1a2a 0%,
+          #5a2d5a 50%,
+          #7a3d6a 100%
+        );
+      }
+
+      /* ── Timeline View ── */
+      .vert-timeline {
+        position: relative;
+        padding: 4px 0 8px;
+      }
+      .vert-timeline::before {
+        content: '';
+        position: absolute;
+        left: 108px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--border);
+        border-radius: 2px;
+      }
+      .vt-year {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        position: relative;
+      }
+      .vt-year-label {
+        width: 100px;
+        min-width: 100px;
+        text-align: right;
+        padding-right: 16px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent2);
+      }
+      .vt-year-tick {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 3px solid var(--bg);
+        box-shadow: 0 0 0 2px var(--accent);
+        flex-shrink: 0;
+        margin-left: -7px;
+        z-index: 1;
+      }
+      .vt-event {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 24px;
+        position: relative;
+      }
+      .vt-event:last-child {
+        margin-bottom: 0;
+      }
+      .vt-date {
+        width: 100px;
+        min-width: 100px;
+        text-align: right;
+        padding-right: 16px;
+        padding-top: 1px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .vt-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--surface2);
+        border: 2px solid var(--accent);
+        flex-shrink: 0;
+        margin-top: 3px;
+        margin-left: -4px;
+        z-index: 1;
+      }
+      .vt-body {
+        flex: 1;
+        padding-left: 20px;
+      }
+      .vt-title {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--text);
+        text-decoration: none;
+        line-height: 1.4;
+        display: inline;
+        transition: color 0.15s;
+      }
+      .vt-title:hover {
+        color: var(--accent);
+      }
+      .vt-badge {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 20px;
+        margin-left: 8px;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 640px) {
+        header {
+          padding: 16px 20px;
+        }
+        .page-wrap {
+          padding: 0 16px;
+        }
+        .tiles-grid {
+          grid-template-columns: 1fr;
+        }
+        .list-item {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .vert-timeline::before {
+          left: 72px;
+        }
+        .vt-year-label,
+        .vt-date {
+          width: 64px;
+          min-width: 64px;
+          font-size: 0.65rem;
+        }
+        .vt-year-tick {
+          margin-left: -7px;
+        }
+        .vt-dot {
+          margin-left: -4px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="list" style="width: 100%; height: 50%">
-      <div style="background: #AAA; margin: 10px 0px;">
-        <h2 style="display: inline">
-          {slides}.varunkumar.me
-        </h2>
-        <span style="float: right;margin-top: 5px;margin-right: 15px;font-size: 10pt;font-weight: bold;"><a href="http://www.varunkumar.me">Home</a></span>
+    <header>
+      <div class="site-title"><span>slides</span>.varunkumar.dev</div>
+      <div style="display: flex; align-items: center; gap: 16px">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle theme"
+          title="Toggle light/dark"
+        >
+          <!-- sun icon (shown in dark mode) -->
+          <svg
+            id="icon-sun"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <line x1="12" y1="2" x2="12" y2="4" />
+            <line x1="12" y1="20" x2="12" y2="22" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="2" y1="12" x2="4" y2="12" />
+            <line x1="20" y1="12" x2="22" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <!-- moon icon (shown in light mode) -->
+          <svg
+            id="icon-moon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="display: none"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <a class="home-link" href="https://varunkumar.dev">varunkumar.dev ↗</a>
       </div>
-      <ul>
-        <li>
-          <span>[18-Jul-2012]</span> <a href="/node-friends" target="_blank">Node.js and friends</a></span>
-        </li>
-        <li>
-          <span>[20-Oct-2012]</span> <a href="/js-tools" target="_blank">Tools for debugging JavaScript</a></span>
-        </li>
-        <li>
-          <span>[07-Dec-2012]</span> <a href="/js-tools/do-more.html" target="_blank">Do more with JavaScript tools</a></span>
-        </li>
-        <li>
-          <span>[22-Feb-2013]</span> <a href="/webcomponents/index.html" target="_blank">Web Components and the future of Web development</a></span>
-        </li>
-        <li>
-          <span>[06-Mar-2013]</span> <a href="/openstack/index.html" target="_blank">OpenStack: The Cloud Operating System</a></span>
-        </li>
-        <li>
-          <span>[25-Apr-2024]</span> <a href="https://www.youtube.com/watch?v=7C3it10L-Jg" target="_blank">Mastering RocksDB for High Speed Data Processing</a></span>
-        </li>
-        <li>
-          <span>[22-Apr-2025]</span> <a href="https://www.youtube.com/watch?v=TEGF62q2c1M" target="_blank">Bringing Apache Iceberg and DuckDB Together for a Smarter Data Management</a></span>
-        </li>
-        <li>
-          <span>[09-Apr-2026]</span> <a href="/hacking-habits" target="_blank">The Hacking Habits</a></span>
-        </li>
-      </ul>
-      <div style="background: #AAA">
-        <h2>
-          {timeline}
-        </h2>
+    </header>
+
+    <div class="page-wrap">
+      <div class="view-switcher">
+        <button class="view-btn active" data-view="list">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <line x1="2" y1="4" x2="14" y2="4" />
+            <line x1="2" y1="8" x2="14" y2="8" />
+            <line x1="2" y1="12" x2="14" y2="12" />
+          </svg>
+          List
+        </button>
+        <button class="view-btn" data-view="tiles">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <rect x="1" y="1" width="6" height="6" rx="1" />
+            <rect x="9" y="1" width="6" height="6" rx="1" />
+            <rect x="1" y="9" width="6" height="6" rx="1" />
+            <rect x="9" y="9" width="6" height="6" rx="1" />
+          </svg>
+          Tiles
+        </button>
+        <button class="view-btn" data-view="timeline">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <circle cx="4" cy="8" r="2" />
+            <circle cx="12" cy="8" r="2" />
+            <line x1="6" y1="8" x2="10" y2="8" />
+            <line x1="1" y1="8" x2="2" y2="8" />
+            <line x1="14" y1="8" x2="15" y2="8" />
+          </svg>
+          Timeline
+        </button>
       </div>
     </div>
-    <center>
-      <div id="timeline" style="background: rgb(212, 227, 253);border: 10px solid #AAA;"></div>
-    </center>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="chronoline/jquery.qtip.min.js"></script>
-    <script type="text/javascript" src="chronoline/raphael-min.js"></script>
-    <script type="text/javascript" src="chronoline/chronoline.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
 
-          var events = [
-            {dates: [new Date(2012, 6, 18)], title: "Node.js and friends", section: 0},
-            {dates: [new Date(2012, 9, 20)], title: "Tools for debugging JavaScript", section: 3},
-            {dates: [new Date(2012, 11, 7)], title: "Do more with JavaScript tools", section: 3},
-            {dates: [new Date(2013, 1, 22)], title: "Web Components and the future of Web development", section: 3},
-            {dates: [new Date(2013, 2, 6)], title: "OpenStack: The Cloud Operating System", section: 3},
-            {dates: [new Date(2024, 3, 25)], title: "Mastering RocksDB for High Speed Data Processing", section: 3},
-            {dates: [new Date(2025, 3, 22)], title: "Bringing Apache Iceberg and DuckDB Together for a Smarter Data Management", section: 3},
-            {dates: [new Date(2026, 3, 9)], title: "The Hacking Habits", section: 3},
-          ];
+    <main>
+      <div class="page-wrap">
+        <!-- LIST VIEW -->
+        <div id="view-list" class="view-panel active">
+          <div class="talks-list">
+            <a class="list-item" href="/hacking-habits" target="_blank">
+              <span class="list-date">09 Apr 2026</span>
+              <span class="list-dot"></span>
+              <span class="list-title">The Hacking Habits</span>
+              <span class="list-type type-slides">Slides</span>
+              <span class="list-arrow">→</span>
+            </a>
 
-          var timeline1 = new Chronoline(document.getElementById('timeline'), events,
-              {visibleSpan: DAY_IN_MILLISECONDS * 366,
-             animated: true,
-             tooltips: true,
-             startDate: new Date(2011, 0, 1),
-             defaultStartDate: new Date(2025, 0, 1),
-             endDate: new Date(2027, 0, 1),
-             continuousScrollSpeed: 3,
-             sectionLabelAttrs: {'fill': '#997e3d', 'font-weight': 'bold'},
-             scrollable: true,
-             scrollLeft: prevMonth,
-             scrollRight: nextMonth,
-             draggable: true,
-             labelInterval: isHalfMonth,
-             markToday: false
+            <a
+              class="list-item"
+              href="https://www.youtube.com/watch?v=TEGF62q2c1M"
+              target="_blank"
+            >
+              <span class="list-date">22 Apr 2025</span>
+              <span class="list-dot"></span>
+              <span class="list-title"
+                >Bringing Apache Iceberg and DuckDB Together for a Smarter Data
+                Management</span
+              >
+              <span class="list-type type-video">Video</span>
+              <span class="list-arrow">→</span>
+            </a>
+
+            <a
+              class="list-item"
+              href="https://www.youtube.com/watch?v=7C3it10L-Jg"
+              target="_blank"
+            >
+              <span class="list-date">25 Apr 2024</span>
+              <span class="list-dot"></span>
+              <span class="list-title"
+                >Mastering RocksDB for High Speed Data Processing</span
+              >
+              <span class="list-type type-video">Video</span>
+              <span class="list-arrow">→</span>
+            </a>
+
+            <a class="list-item" href="/openstack/index.html" target="_blank">
+              <span class="list-date">06 Mar 2013</span>
+              <span class="list-dot"></span>
+              <span class="list-title"
+                >OpenStack: The Cloud Operating System</span
+              >
+              <span class="list-type type-slides">Slides</span>
+              <span class="list-arrow">→</span>
+            </a>
+
+            <a
+              class="list-item"
+              href="/webcomponents/index.html"
+              target="_blank"
+            >
+              <span class="list-date">22 Feb 2013</span>
+              <span class="list-dot"></span>
+              <span class="list-title"
+                >Web Components and the Future of Web Development</span
+              >
+              <span class="list-type type-slides">Slides</span>
+              <span class="list-arrow">→</span>
+            </a>
+
+            <a class="list-item" href="/js-tools/do-more.html" target="_blank">
+              <span class="list-date">07 Dec 2012</span>
+              <span class="list-dot"></span>
+              <span class="list-title">Do More with JavaScript Tools</span>
+              <span class="list-type type-slides">Slides</span>
+              <span class="list-arrow">→</span>
+            </a>
+
+            <a class="list-item" href="/js-tools" target="_blank">
+              <span class="list-date">20 Oct 2012</span>
+              <span class="list-dot"></span>
+              <span class="list-title">Tools for Debugging JavaScript</span>
+              <span class="list-type type-slides">Slides</span>
+              <span class="list-arrow">→</span>
+            </a>
+
+            <a class="list-item" href="/node-friends" target="_blank">
+              <span class="list-date">18 Jul 2012</span>
+              <span class="list-dot"></span>
+              <span class="list-title">Node.js and Friends</span>
+              <span class="list-type type-slides">Slides</span>
+              <span class="list-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- TILE VIEW -->
+        <div id="view-tiles" class="view-panel">
+          <div class="tiles-grid">
+            <a class="tile-card" href="/hacking-habits" target="_blank">
+              <div class="tile-thumb-placeholder cover-habits">🧠</div>
+              <div class="tile-body">
+                <div class="tile-date">09 Apr 2026 · Slides</div>
+                <div class="tile-title">The Hacking Habits</div>
+              </div>
+            </a>
+
+            <a
+              class="tile-card"
+              href="https://www.youtube.com/watch?v=TEGF62q2c1M"
+              target="_blank"
+            >
+              <img
+                class="tile-thumb"
+                src="https://img.youtube.com/vi/TEGF62q2c1M/maxresdefault.jpg"
+                alt="Bringing Apache Iceberg and DuckDB Together for a Smarter Data Management"
+                loading="lazy"
+              />
+              <div class="tile-body">
+                <div class="tile-date">22 Apr 2025 · Video</div>
+                <div class="tile-title">
+                  Bringing Apache Iceberg and DuckDB Together for a Smarter Data
+                  Management
+                </div>
+              </div>
+            </a>
+
+            <a
+              class="tile-card"
+              href="https://www.youtube.com/watch?v=7C3it10L-Jg"
+              target="_blank"
+            >
+              <img
+                class="tile-thumb"
+                src="https://img.youtube.com/vi/7C3it10L-Jg/maxresdefault.jpg"
+                alt="Mastering RocksDB for High Speed Data Processing"
+                loading="lazy"
+              />
+              <div class="tile-body">
+                <div class="tile-date">25 Apr 2024 · Video</div>
+                <div class="tile-title">
+                  Mastering RocksDB for High Speed Data Processing
+                </div>
+              </div>
+            </a>
+
+            <a class="tile-card" href="/openstack/index.html" target="_blank">
+              <div class="tile-thumb-placeholder cover-openstack">☁️</div>
+              <div class="tile-body">
+                <div class="tile-date">06 Mar 2013 · Slides</div>
+                <div class="tile-title">
+                  OpenStack: The Cloud Operating System
+                </div>
+              </div>
+            </a>
+
+            <a
+              class="tile-card"
+              href="/webcomponents/index.html"
+              target="_blank"
+            >
+              <div class="tile-thumb-placeholder cover-webcomp">🧩</div>
+              <div class="tile-body">
+                <div class="tile-date">22 Feb 2013 · Slides</div>
+                <div class="tile-title">
+                  Web Components and the Future of Web Development
+                </div>
+              </div>
+            </a>
+
+            <a class="tile-card" href="/js-tools/do-more.html" target="_blank">
+              <div class="tile-thumb-placeholder cover-jstools2">⚡</div>
+              <div class="tile-body">
+                <div class="tile-date">07 Dec 2012 · Slides</div>
+                <div class="tile-title">Do More with JavaScript Tools</div>
+              </div>
+            </a>
+
+            <a class="tile-card" href="/js-tools" target="_blank">
+              <div class="tile-thumb-placeholder cover-jstools">🔧</div>
+              <div class="tile-body">
+                <div class="tile-date">20 Oct 2012 · Slides</div>
+                <div class="tile-title">Tools for Debugging JavaScript</div>
+              </div>
+            </a>
+
+            <a class="tile-card" href="/node-friends" target="_blank">
+              <div class="tile-thumb-placeholder cover-node">🟢</div>
+              <div class="tile-body">
+                <div class="tile-date">18 Jul 2012 · Slides</div>
+                <div class="tile-title">Node.js and Friends</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- TIMELINE VIEW -->
+        <div id="view-timeline" class="view-panel">
+          <div class="vert-timeline">
+            <div class="vt-year">
+              <span class="vt-year-label">2026</span>
+              <span class="vt-year-tick"></span>
+            </div>
+            <div class="vt-event">
+              <span class="vt-date">09 Apr</span>
+              <span class="vt-dot"></span>
+              <div class="vt-body">
+                <a class="vt-title" href="/hacking-habits" target="_blank"
+                  >The Hacking Habits</a
+                >
+                <span class="vt-badge type-slides">Slides</span>
+              </div>
+            </div>
+
+            <div class="vt-year">
+              <span class="vt-year-label">2025</span>
+              <span class="vt-year-tick"></span>
+            </div>
+            <div class="vt-event">
+              <span class="vt-date">22 Apr</span>
+              <span class="vt-dot"></span>
+              <div class="vt-body">
+                <a
+                  class="vt-title"
+                  href="https://www.youtube.com/watch?v=TEGF62q2c1M"
+                  target="_blank"
+                  >Bringing Apache Iceberg and DuckDB Together for a Smarter
+                  Data Management</a
+                >
+                <span class="vt-badge type-video">Video</span>
+              </div>
+            </div>
+
+            <div class="vt-year">
+              <span class="vt-year-label">2024</span>
+              <span class="vt-year-tick"></span>
+            </div>
+            <div class="vt-event">
+              <span class="vt-date">25 Apr</span>
+              <span class="vt-dot"></span>
+              <div class="vt-body">
+                <a
+                  class="vt-title"
+                  href="https://www.youtube.com/watch?v=7C3it10L-Jg"
+                  target="_blank"
+                  >Mastering RocksDB for High Speed Data Processing</a
+                >
+                <span class="vt-badge type-video">Video</span>
+              </div>
+            </div>
+
+            <div class="vt-year">
+              <span class="vt-year-label">2013</span>
+              <span class="vt-year-tick"></span>
+            </div>
+            <div class="vt-event">
+              <span class="vt-date">06 Mar</span>
+              <span class="vt-dot"></span>
+              <div class="vt-body">
+                <a class="vt-title" href="/openstack/index.html" target="_blank"
+                  >OpenStack: The Cloud Operating System</a
+                >
+                <span class="vt-badge type-slides">Slides</span>
+              </div>
+            </div>
+            <div class="vt-event">
+              <span class="vt-date">22 Feb</span>
+              <span class="vt-dot"></span>
+              <div class="vt-body">
+                <a
+                  class="vt-title"
+                  href="/webcomponents/index.html"
+                  target="_blank"
+                  >Web Components and the Future of Web Development</a
+                >
+                <span class="vt-badge type-slides">Slides</span>
+              </div>
+            </div>
+
+            <div class="vt-year">
+              <span class="vt-year-label">2012</span>
+              <span class="vt-year-tick"></span>
+            </div>
+            <div class="vt-event">
+              <span class="vt-date">07 Dec</span>
+              <span class="vt-dot"></span>
+              <div class="vt-body">
+                <a
+                  class="vt-title"
+                  href="/js-tools/do-more.html"
+                  target="_blank"
+                  >Do More with JavaScript Tools</a
+                >
+                <span class="vt-badge type-slides">Slides</span>
+              </div>
+            </div>
+            <div class="vt-event">
+              <span class="vt-date">20 Oct</span>
+              <span class="vt-dot"></span>
+              <div class="vt-body">
+                <a class="vt-title" href="/js-tools" target="_blank"
+                  >Tools for Debugging JavaScript</a
+                >
+                <span class="vt-badge type-slides">Slides</span>
+              </div>
+            </div>
+            <div class="vt-event">
+              <span class="vt-date">18 Jul</span>
+              <span class="vt-dot"></span>
+              <div class="vt-body">
+                <a class="vt-title" href="/node-friends" target="_blank"
+                  >Node.js and Friends</a
+                >
+                <span class="vt-badge type-slides">Slides</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Theme toggle
+      (function () {
+        var root = document.documentElement;
+        var btn = document.getElementById('theme-toggle');
+        var sun = document.getElementById('icon-sun');
+        var moon = document.getElementById('icon-moon');
+        var saved = localStorage.getItem('theme');
+        function applyTheme(theme) {
+          if (theme === 'light') {
+            root.classList.add('light');
+            sun.style.display = 'none';
+            moon.style.display = '';
+          } else {
+            root.classList.remove('light');
+            sun.style.display = '';
+            moon.style.display = 'none';
+          }
+        }
+        applyTheme(saved || 'dark');
+        btn.addEventListener('click', function () {
+          var next = root.classList.contains('light') ? 'dark' : 'light';
+          localStorage.setItem('theme', next);
+          applyTheme(next);
+        });
+      })();
+
+      // View switching
+      document.querySelectorAll('.view-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var view = btn.dataset.view;
+          document.querySelectorAll('.view-btn').forEach(function (b) {
+            b.classList.remove('active');
           });
-
+          document.querySelectorAll('.view-panel').forEach(function (p) {
+            p.classList.remove('active');
           });
+          btn.classList.add('active');
+          document.getElementById('view-' + view).classList.add('active');
+        });
+      });
     </script>
-    <script type="text/javascript">
+    <script>
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-3626417-6']);
       _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src =
+          ('https:' == document.location.protocol
+            ? 'https://ssl'
+            : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
       })();
     </script>
   </body>
