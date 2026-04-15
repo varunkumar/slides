@@ -15,13 +15,9 @@
 .chronoline-canvas > svg {
     position: relative;
 }
-.chronoline-wrapper:hover > .chronoline-left,
-.chronoline-wrapper:hover > .chronoline-right {
-    display: block;
-}
 .chronoline-left,
 .chronoline-right {
-    display: none;
+    display: block;
     *display: block;
     top: 0;
     position: absolute;
